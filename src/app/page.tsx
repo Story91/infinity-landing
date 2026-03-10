@@ -715,6 +715,7 @@ export default function LandingPage() {
             <div className="hidden md:flex items-center gap-8">
               <a href="#start" className="text-slate-700 hover:text-indigo-600 transition-colors">Start</a>
               <a href="#o-nas" className="text-slate-700 hover:text-indigo-600 transition-colors">O nas</a>
+              <a href="/agents" className="text-slate-700 hover:text-indigo-600 transition-colors">Agenci AI</a>
               <a href="#uslugi" className="text-slate-700 hover:text-indigo-600 transition-colors">Usługi</a>
               <a href="#faq" className="text-slate-700 hover:text-indigo-600 transition-colors">FAQ</a>
               <a href="#kontakt" className="px-5 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors">
@@ -735,6 +736,7 @@ export default function LandingPage() {
               <div className="flex flex-col gap-4">
                 <a href="#start" onClick={() => setMobileMenuOpen(false)}>Start</a>
                 <a href="#o-nas" onClick={() => setMobileMenuOpen(false)}>O nas</a>
+                <a href="/agents" onClick={() => setMobileMenuOpen(false)}>Agenci AI</a>
                 <a href="#uslugi" onClick={() => setMobileMenuOpen(false)}>Usługi</a>
                 <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
                 <a href="#kontakt" onClick={() => setMobileMenuOpen(false)} className="px-5 py-2 bg-indigo-600 text-white rounded-full text-center">

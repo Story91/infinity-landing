@@ -36,9 +36,6 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
     creator: "@InfinityTech_PL",
   },
-  facebook: {
-    appId: "",
-  },
 };
 
 export default function RootLayout({

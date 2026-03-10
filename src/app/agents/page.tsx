@@ -779,17 +779,15 @@ export default function AgentsPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 relative">
-                <Image 
-                  src="/-2147483648_-211442.webp" 
-                  alt="Infinity Tech Logo" 
-                  width={40} 
-                  height={40}
-                  className="rounded-lg object-contain"
-                />
-              </div>
-              <span className="text-xl md:text-2xl font-bold logo-text gradient-text">INFINITY TECH</span>
+            <a href="/" className="flex items-center gap-3 py-1">
+              <Image 
+                src="/-2147483648_-211442.png" 
+                alt="Infinity Tech Logo" 
+                width={42} 
+                height={42}
+                className="object-contain"
+              />
+              <span className="text-xl md:text-2xl font-bold logo-text" style={{ background: 'linear-gradient(180deg, #1a1a2e 0%, #4a4a6a 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>INFINITY TECH</span>
             </a>
             
             <div className="hidden md:flex items-center gap-8">

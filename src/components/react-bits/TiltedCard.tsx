@@ -63,12 +63,12 @@ export default function TiltedCard({
       <div
         className={cn(
           'relative overflow-hidden rounded-2xl bg-white shadow-xl transition-transform duration-300 ease-out h-full flex flex-col',
-          featured && 'md:shadow-2xl md:ring-2'
+          featured && 'md:shadow-2xl'
         )}
         style={{
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transformStyle: 'preserve-3d',
-          ringColor: featured ? accentColor : 'transparent',
+          borderColor: featured ? accentColor : 'transparent',
         }}
       >
         {/* Gradient overlay */}

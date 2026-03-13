@@ -276,7 +276,7 @@ function HeroSection() {
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-slate-900">
               <SplitText 
-                text="Przekształcamy Firmy" 
+                text="Asystujemy Firmy" 
                 tag="span"
                 className="block mb-2"
                 duration={1}

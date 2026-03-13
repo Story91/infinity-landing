@@ -36,7 +36,7 @@ export function Ripple({ children, className, onClick }: RippleProps) {
       onClick={createRipple}
       className={cn(
         'relative overflow-hidden rounded-full px-8 py-4 font-semibold transition-all',
-        'bg-indigo-600 hover:bg-indigo-700 text-white',
+        'text-white',
         className
       )}
     >

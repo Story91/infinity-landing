@@ -142,7 +142,7 @@ const SERVICES = [
       'Priorytetowy support',
       'Raporty tygodniowe'
     ],
-    accentColor: '#6366f1',
+    accentColor: '#EA580C',
     featured: true
   },
   {
@@ -159,7 +159,7 @@ const SERVICES = [
       '24/7 Dedicated Support',
       'SLA gwarancje'
     ],
-    accentColor: '#a855f7',
+    accentColor: '#D97706',
     featured: false
   }
 ];
@@ -255,26 +255,22 @@ const BENEFITS = [
 // Główne sekcje
 function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50" />
-      <Beams color="#6366f1" density={20} speed={4} />
-      <Particles quantity={25} color="#818cf8" speed={0.8} />
-      
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-50" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-50" />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 hero-grain" style={{ backgroundColor: '#E4E6DD' }}>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20" style={{ backgroundColor: '#EC6B2D' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15" style={{ backgroundColor: '#777870' }} />
       </div>
-      
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+
+      <div className="relative z-10 w-full max-w-full px-6 md:px-12 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <FadeIn direction="down" delay={0.2}>
-              <div className="inline-block px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-6">
+              <div className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ backgroundColor: '#777870', color: '#E4E6DD' }}>
                 Przyszłość Biznesu
               </div>
             </FadeIn>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-slate-900">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" style={{ fontFamily: 'var(--font-geist)', color: '#0D0F05' }}>
               <SplitText 
                 text="Asystujemy Firmy" 
                 tag="span"
@@ -286,7 +282,7 @@ function HeroSection() {
             </h1>
             
             <FadeIn delay={0.5}>
-              <p className="text-xl text-slate-600 mb-8 max-w-xl">
+              <p className="text-xl mb-8 max-w-xl" style={{ color: '#333333' }}>
                 Wykorzystujemy potęgę agentów AI OpenCLAW, aby zautomatyzować Twoją firmę 
                 i pozwolić skupić się na tym, co najważniejsze - rozwoju biznesu.
               </p>
@@ -294,10 +290,10 @@ function HeroSection() {
             
             <FadeIn delay={0.7}>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Ripple className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white text-lg">
+                <Ripple className="px-8 py-4 text-white text-lg bg-[#EC6B2D] hover:bg-[#d45a22] btn-grain">
                   Rozpocznij Transformację
                 </Ripple>
-                <button className="px-8 py-4 bg-white border-2 border-slate-200 rounded-full font-semibold text-lg hover:border-indigo-300 transition-all flex items-center justify-center gap-2 text-slate-700">
+                <button className="px-8 py-4 border-2 rounded-full font-semibold text-lg transition-all flex items-center justify-center gap-2" style={{ borderColor: '#777870', color: '#0D0F05', backgroundColor: 'transparent' }}>
                   Dowiedz się więcej
                   <ArrowRight className="w-5 h-5" />
                 </button>
@@ -320,8 +316,8 @@ function HeroSection() {
             </FadeIn>
           </div>
 
-          <div className="relative hidden lg:block">
-            <div className="relative w-full aspect-square">
+          <div className="relative block flex justify-center items-center">
+            <div className="relative aspect-square" style={{ width: '70%' }}>
               <Image
                 src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="AI Technology"
@@ -341,11 +337,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 rounded-full border-2 border-slate-300 flex justify-center pt-2">
-          <div className="w-1 h-3 bg-slate-400 rounded-full" />
-        </div>
-      </div>
+
     </section>
   );
 }
@@ -358,7 +350,7 @@ function StatsSection() {
           {STATS.map((stat, i) => (
             <FadeIn key={i} delay={i * 0.1}>
               <div className="text-center">
-                <stat.icon className="w-8 h-8 mx-auto mb-3 text-indigo-600" />
+                <stat.icon className="w-8 h-8 mx-auto mb-3 text-orange-600" />
                 <div className="text-3xl md:text-4xl font-bold mb-1">
                   <AnimatedCounter end={parseInt(stat.value.replace(/[^0-9]/g, ''))} suffix={stat.suffix} />
                 </div>
@@ -478,8 +470,8 @@ function PartnersSection() {
       <div className="w-full">
         <Marquee speed={25} pauseOnHover={true} className="py-4">
           {allPartners.map((partner, i) => (
-            <div key={i} className="flex flex-col items-center px-8 mx-4 py-4 rounded-2xl bg-slate-50 hover:bg-indigo-50 transition-colors min-w-[180px]">
-              <partner.icon className="w-10 h-10 text-indigo-600 mb-2" />
+            <div key={i} className="flex flex-col items-center px-8 mx-4 py-4 rounded-2xl bg-slate-50 hover:bg-orange-50 transition-colors min-w-[180px]">
+              <partner.icon className="w-10 h-10 text-orange-600 mb-2" />
               <h3 className="font-bold text-slate-900 text-sm">{partner.name}</h3>
               <p className="text-xs text-slate-500">{partner.desc}</p>
             </div>
@@ -564,13 +556,13 @@ function TestimonialsSection() {
 
 function TechnologySection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white relative overflow-hidden">
-      <Aurora colorStops={['#3A29FF', '#FF94B4', '#6366f1']} speed={0.8} blend={0.3} amplitude={1.2} />
-      <Particles quantity={30} color="#6366f1" speed={0.5} />
+    <section className="py-24 bg-gradient-to-br from-slate-900 via-orange-950 to-slate-900 text-white relative overflow-hidden">
+      <Aurora colorStops={['#EA580C', '#D97706', '#EA580C']} speed={0.8} blend={0.3} amplitude={1.2} />
+      <Particles quantity={30} color="#EA580C" speed={0.5} />
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <FadeIn>
-            <div className="inline-block px-4 py-2 rounded-full bg-indigo-500/20 text-indigo-300 text-sm font-medium mb-4">
+            <div className="inline-block px-4 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium mb-4">
               Nasz silnik AI
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Technologia OpenCLAW</h2>
@@ -599,8 +591,8 @@ function TechnologySection() {
             <div className="glass rounded-3xl p-8 bg-white/5 backdrop-blur-sm">
               <div className="grid grid-cols-3 gap-4 mb-6">
                 {[1,2,3,4,5,6,7,8,9].map((i) => (
-                  <div key={i} className="aspect-square rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center">
-                    <Bot className="w-6 h-6 text-indigo-400" />
+                  <div key={i} className="aspect-square rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
+                    <Bot className="w-6 h-6 text-orange-400" />
                   </div>
                 ))}
               </div>
@@ -650,8 +642,8 @@ function ContactSection() {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-indigo-600" />
+                <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
                   <p className="text-sm text-slate-500">Email</p>
@@ -659,8 +651,8 @@ function ContactSection() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-indigo-600" />
+                <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
                   <p className="text-sm text-slate-500">Telefon</p>
@@ -668,8 +660,8 @@ function ContactSection() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-indigo-600" />
+                <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
                   <p className="text-sm text-slate-500">Lokalizacja</p>
@@ -691,7 +683,7 @@ function ContactSection() {
                   <span className="text-xs text-slate-600">RODO/GDPR</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-slate-100 rounded-lg">
-                  <Shield className="w-5 h-5 text-purple-600" />
+                  <Shield className="w-5 h-5 text-amber-600" />
                   <span className="text-xs text-slate-600">ISO 27001</span>
                 </div>
               </div>
@@ -707,7 +699,7 @@ function ContactSection() {
                     type="text"
                     value={formState.name}
                     onChange={(e) => setFormState({...formState, name: e.target.value})}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
                     placeholder="Jan Kowalski"
                   />
                 </div>
@@ -717,7 +709,7 @@ function ContactSection() {
                     type="email"
                     value={formState.email}
                     onChange={(e) => setFormState({...formState, email: e.target.value})}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
                     placeholder="jan@firma.pl"
                   />
                 </div>
@@ -727,7 +719,7 @@ function ContactSection() {
                     type="tel"
                     value={formState.phone}
                     onChange={(e) => setFormState({...formState, phone: e.target.value})}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
                     placeholder="+48 000 000 000"
                   />
                 </div>
@@ -737,11 +729,11 @@ function ContactSection() {
                     value={formState.message}
                     onChange={(e) => setFormState({...formState, message: e.target.value})}
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all resize-none"
                     placeholder="Opisz swój projekt..."
                   />
                 </div>
-                    <Ripple className="w-full py-4 bg-indigo-600 text-white text-lg flex items-center justify-center gap-2">
+                    <Ripple className="w-full py-4 bg-orange-600 text-white text-lg flex items-center justify-center gap-2">
                   <Send className="w-5 h-5" />
                   Wyślij wiadomość
                 </Ripple>
@@ -773,14 +765,14 @@ function ContactSection() {
 function CTASection() {
   return (
     <section className="py-24 relative overflow-hidden">
-      <AnimatedGradient className="absolute inset-0" colors={['#6366f1', '#a855f7', '#ec4899', '#6366f1']} />
-      <Aurora colorStops={['#6366f1', '#a855f7', '#ec4899']} speed={1} blend={0.2} amplitude={0.8} />
+      <AnimatedGradient className="absolute inset-0" colors={['#EA580C', '#D97706', '#F97316', '#EA580C']} />
+      <Aurora colorStops={['#EA580C', '#D97706', '#F97316']} speed={1} blend={0.2} amplitude={0.8} />
       
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <FadeIn>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Gotowy na Transformację?</h2>
           <p className="text-xl text-white/80 mb-8">Dołącz do firm, które już oszczędzają czas i pieniądze z Infinity Tech</p>
-          <Ripple className="px-10 py-5 bg-white text-indigo-600 text-lg">
+          <Ripple className="px-10 py-5 bg-white text-orange-600 text-lg">
             Umów Bezpłatną Konsultację
           </Ripple>
         </FadeIn>
@@ -846,9 +838,9 @@ function Footer() {
               <input
                 type="email"
                 placeholder="Twój email"
-                className="flex-1 px-4 py-3 rounded-l-lg bg-slate-800 border border-slate-700 text-white outline-none focus:border-indigo-500"
+                className="flex-1 px-4 py-3 rounded-l-lg bg-slate-800 border border-slate-700 text-white outline-none focus:border-orange-500"
               />
-              <button className="px-4 py-3 bg-indigo-600 rounded-r-lg hover:bg-indigo-700 transition-colors">
+              <button className="px-4 py-3 bg-orange-600 rounded-r-lg hover:bg-orange-700 transition-colors">
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -888,14 +880,14 @@ export default function LandingPage() {
             </a>
             
             <div className="hidden md:flex items-center gap-8">
-              <a href="#start" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">Start</a>
-              <a href="#o-nas" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">O nas</a>
-              <a href="/agents" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">Agenci AI</a>
-              <a href="#uslugi" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">Usługi</a>
-              <a href="/blog" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">Blog</a>
-              <a href="/case-studies" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">Case Studies</a>
-              <a href="#faq" className="text-slate-700 hover:text-indigo-600 transition-colors font-medium">FAQ</a>
-              <a href="#kontakt" className="px-5 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors">
+              <a href="#start" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Start</a>
+              <a href="#o-nas" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">O nas</a>
+              <a href="/agents" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Agenci AI</a>
+              <a href="#uslugi" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Usługi</a>
+              <a href="/blog" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Blog</a>
+              <a href="/case-studies" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Case Studies</a>
+              <a href="#faq" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">FAQ</a>
+              <a href="#kontakt" className="px-5 py-2 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-colors">
                 Kontakt
               </a>
             </div>
@@ -918,7 +910,7 @@ export default function LandingPage() {
                 <a href="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</a>
                 <a href="/case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</a>
                 <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-                <a href="#kontakt" onClick={() => setMobileMenuOpen(false)} className="px-5 py-2 bg-indigo-600 text-white rounded-full text-center">
+                <a href="#kontakt" onClick={() => setMobileMenuOpen(false)} className="px-5 py-2 bg-orange-600 text-white rounded-full text-center">
                   Kontakt
                 </a>
               </div>

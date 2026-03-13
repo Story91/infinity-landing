@@ -21,11 +21,15 @@ const config: Config = {
           800: '#075985',
           900: '#0c4a6e',
         },
-        infinity: {
-          dark: '#0a0a0f',
-          darkSecondary: '#12121a',
-          accent: '#6366f1',
-          accentLight: '#818cf8',
+        brand: {
+          orange:  '#EC6B2D',
+          orange2: '#EE8012',
+          stone:   '#777870',
+          black:   '#0D0F05',
+          dark:    '#333333',
+          light:   '#E4E6DD',
+          white:   '#000003',
+          mid:     '#666666',
         }
       },
       animation: {

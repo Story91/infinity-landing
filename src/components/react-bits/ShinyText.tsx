@@ -12,7 +12,7 @@ export default function ShinyText({ text, className = '', speed = 5 }: ShinyText
   return (
     <span
       className={cn(
-        'relative inline-block bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent',
+        'relative inline-block bg-gradient-to-r from-orange-600 via-amber-500 to-orange-400 bg-clip-text text-transparent',
         className
       )}
       style={{

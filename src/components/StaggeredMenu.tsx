@@ -60,7 +60,7 @@ export const StaggeredMenu = ({
   const iconRef = useRef<HTMLDivElement | null>(null);
   const textInnerRef = useRef<HTMLDivElement | null>(null);
   const textWrapRef = useRef<HTMLDivElement | null>(null);
-  const [textLines, setTextLines] = useState(['Menu', 'Close']);
+  const [textLines, setTextLines] = useState(['Rozwiń', 'Zwiń']);
 
 
 
@@ -374,14 +374,14 @@ export const StaggeredMenu = ({
     textCycleAnimRef.current?.kill();
 
 
-    const currentLabel = opening ? 'Menu' : 'Close';
-    const targetLabel = opening ? 'Close' : 'Menu';
+    const currentLabel = opening ? 'Rozwiń' : 'Zwiń';
+    const targetLabel = opening ? 'Zwiń' : 'Rozwiń';
     const cycles = 3;
     const seq = [currentLabel];
 
     let last = currentLabel;
     for (let i = 0; i < cycles; i++) {
-      last = last === 'Menu' ? 'Close' : 'Menu';
+      last = last === 'Rozwiń' ? 'Zwiń' : 'Rozwiń';
       seq.push(last);
     }
 
@@ -441,6 +441,22 @@ export const StaggeredMenu = ({
 
 
 
+  const [hidden, setHidden] = React.useState(false);
+  React.useEffect(() => {
+    let lastY = window.scrollY;
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastY && currentY > 80 && !open) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      lastY = currentY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [open]);
+
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
@@ -484,7 +500,11 @@ export const StaggeredMenu = ({
           return arr.map((c, i) => <div key={i} className="sm-prelayer" style={{ background: c }} />);
         })()}
       </div>
-      <header className="staggered-menu-header" aria-label="Main navigation header">
+      <header
+        className="staggered-menu-header"
+        aria-label="Main navigation header"
+        style={{ transform: hidden ? 'translateY(-100%)' : 'translateY(0)', transition: 'transform 0.3s ease' }}
+      >
         <div className="sm-logo" aria-label="Logo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

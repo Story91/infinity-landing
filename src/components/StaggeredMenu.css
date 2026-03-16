@@ -42,6 +42,26 @@
 
 
 
+.sm-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #0D0F05;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #0D0F05 0%, #EC6B2D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+
 .sm-logo {
   display: flex;
   align-items: center;
@@ -52,9 +72,10 @@
 
 .sm-logo-img {
   display: block;
-  height: 32px;
+  height: 52px;
   width: auto;
   object-fit: contain;
+  margin-top: -8px;
 }
 
 
@@ -455,6 +476,15 @@
 
   .staggered-menu-wrapper[data-open] .sm-logo-img {
     filter: invert(100%);
+  }
+
+  .staggered-menu-wrapper:not(.fixed-wrapper) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
   }
 }
 

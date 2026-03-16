@@ -287,8 +287,8 @@ function HeroSection() {
 
             <FadeIn delay={0.7}>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#kontakt">
-                  <Ripple className="px-8 py-4 text-white text-lg bg-[#EC6B2D] hover:bg-[#d45a22] btn-grain">
+                <a href="#kontakt" className="w-full sm:w-auto">
+                  <Ripple className="w-full px-8 py-4 text-white text-lg bg-[#EC6B2D] hover:bg-[#d45a22] btn-grain border-2 border-[#EC6B2D]">
                     Umów konsultację
                   </Ripple>
                 </a>
@@ -364,6 +364,10 @@ function BenefitsSection() {
             </FadeIn>
           ))}
         </div>
+
+        <FadeIn delay={0.3}>
+          <ROICalculator />
+        </FadeIn>
       </div>
     </section>
   );
@@ -873,7 +877,7 @@ export default function LandingPage() {
           openMenuButtonColor="#ffffff"
           changeMenuColorOnOpen={true}
           colors={['#0D0F05', '#3D1A08', '#8B4010']}
-          logoUrl="/-2147483648_-211442.png"
+          logoUrl="/logo.png"
           accentColor="#B85420"
           className=""
           onMenuOpen={() => {}}
@@ -936,8 +940,6 @@ export default function LandingPage() {
         </div>
         
         <ContactSection />
-        
-        <ROICalculator />
         
         <CTASection />
       </main>

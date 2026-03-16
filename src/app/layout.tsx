@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://infinityteam.io'),
@@ -45,8 +49,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" style={{ '--font-geist': GeistSans.style.fontFamily } as React.CSSProperties}>
-      <body className="antialiased">{children}</body>
+    <html lang="pl" style={{ '--font-geist': GeistSans.style.fontFamily, '--font-inter': inter.style.fontFamily, '--font-jakarta': plusJakarta.style.fontFamily } as React.CSSProperties}>
+      <body className={`antialiased ${inter.variable} ${plusJakarta.variable}`}>{children}</body>
     </html>
   );
 }

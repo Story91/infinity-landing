@@ -48,6 +48,8 @@ import Marquee from '@/components/react-bits/Marquee';
 import AnimatedCounter from '@/components/react-bits/AnimatedCounter';
 import ROICalculator from '@/components/ROICalculator';
 import ChatWidget from '@/components/ChatWidget';
+import dynamic from 'next/dynamic';
+const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), { ssr: false });
 
 // Dane zespołu
 const TEAM_MEMBERS = [
@@ -862,62 +864,45 @@ function Footer() {
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const menuItems: { label: string; ariaLabel: string; link: string }[] = [
+    { label: 'Start', ariaLabel: 'Przejdź do sekcji start', link: '#start' },
+    { label: 'O nas', ariaLabel: 'Dowiedz się więcej o nas', link: '#o-nas' },
+    { label: 'Agenci AI', ariaLabel: 'Zobacz naszych agentów AI', link: '/agents' },
+    { label: 'Usługi', ariaLabel: 'Zobacz nasze usługi', link: '#uslugi' },
+    { label: 'Blog', ariaLabel: 'Przeczytaj naszego bloga', link: '/blog' },
+    { label: 'Case Studies', ariaLabel: 'Zobacz case studies', link: '/case-studies' },
+    { label: 'FAQ', ariaLabel: 'Częste pytania', link: '#faq' },
+    { label: 'Kontakt', ariaLabel: 'Skontaktuj się z nami', link: '#kontakt' }
+  ];
+
+  const socialItems: { label: string; link: string }[] = [
+    { label: 'LinkedIn', link: 'https://linkedin.com' },
+    { label: 'Twitter', link: 'https://twitter.com' },
+    { label: 'GitHub', link: 'https://github.com' }
+  ];
+
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3 py-1">
-              <Image 
-                src="/-2147483648_-211442.png" 
-                alt="Infinity Tech Logo" 
-                width={42} 
-                height={42}
-                className="object-contain"
-              />
-              <span className="text-xl md:text-2xl font-bold logo-text" style={{ background: 'linear-gradient(180deg, #1a1a2e 0%, #4a4a6a 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>INFINITY TECH</span>
-            </a>
-            
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#start" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Start</a>
-              <a href="#o-nas" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">O nas</a>
-              <a href="/agents" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Agenci AI</a>
-              <a href="#uslugi" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Usługi</a>
-              <a href="/blog" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Blog</a>
-              <a href="/case-studies" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">Case Studies</a>
-              <a href="#faq" className="text-slate-700 hover:text-orange-600 transition-colors font-medium">FAQ</a>
-              <a href="#kontakt" className="px-5 py-2 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-colors">
-                Kontakt
-              </a>
-            </div>
-
-            <button 
-              className="md:hidden p-2 text-slate-700"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X /> : <Menu />}
-            </button>
-          </div>
-
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-slate-200 mt-4">
-              <div className="flex flex-col gap-4">
-                <a href="#start" onClick={() => setMobileMenuOpen(false)}>Start</a>
-                <a href="#o-nas" onClick={() => setMobileMenuOpen(false)}>O nas</a>
-                <a href="/agents" onClick={() => setMobileMenuOpen(false)}>Agenci AI</a>
-                <a href="#uslugi" onClick={() => setMobileMenuOpen(false)}>Usługi</a>
-                <a href="/blog" onClick={() => setMobileMenuOpen(false)}>Blog</a>
-                <a href="/case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</a>
-                <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-                <a href="#kontakt" onClick={() => setMobileMenuOpen(false)} className="px-5 py-2 bg-orange-600 text-white rounded-full text-center">
-                  Kontakt
-                </a>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      {/* Navigation - StaggeredMenu */}
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 50, pointerEvents: 'none' }}>
+        <StaggeredMenu
+          isFixed={true}
+          position="right"
+          items={menuItems}
+          socialItems={socialItems}
+          displaySocials={true}
+          displayItemNumbering={true}
+          menuButtonColor="#ffffff"
+          openMenuButtonColor="#ffffff"
+          changeMenuColorOnOpen={true}
+          colors={['#0D0F05', '#3D1A08', '#8B4010']}
+          logoUrl="/-2147483648_-211442.png"
+          accentColor="#B85420"
+          className=""
+          onMenuOpen={() => {}}
+          onMenuClose={() => {}}
+        />
+      </div>
 
       <main>
         <div id="start">

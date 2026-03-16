@@ -1,81 +1,65 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
-import { LucideIcon } from 'lucide-react';
+import { useRef } from 'react';
 
 interface SpotlightCardProps {
   children?: React.ReactNode;
   className?: string;
-  title?: string;
-  description?: string;
-  icon?: LucideIcon;
+  spotlightColor?: string;
 }
 
 export default function SpotlightCard({
   children,
-  className,
-  title,
-  description,
-  icon: Icon,
+  className = '',
+  spotlightColor = 'rgba(236, 107, 45, 0.15)',
 }: SpotlightCardProps) {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const cardRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const rect = card.getBoundingClientRect();
+    const rect = divRef.current!.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
-    setMousePosition({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePosition({ x: 0, y: 0 });
+    divRef.current!.style.setProperty('--mouse-x', `${x}px`);
+    divRef.current!.style.setProperty('--mouse-y', `${y}px`);
+    divRef.current!.style.setProperty('--spotlight-color', spotlightColor);
   };
 
   return (
     <div
-      ref={cardRef}
-      className={cn(
-        'relative overflow-hidden rounded-2xl bg-white shadow-lg',
-        className
-      )}
+      ref={divRef}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        background: mousePosition.x ? 
-          `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(99, 102, 241, 0.15), transparent 50%)` :
-          'white'
-      }}
+      className={`card-spotlight ${className}`}
     >
-      {/* Spotlight effect */}
-      <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(99, 102, 241, 0.1), transparent 40%)`,
-          opacity: mousePosition.x ? 1 : 0,
-        }}
-      />
-      
-      {/* Content */}
-      <div className="relative p-6">
-        {Icon && (
-          <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100">
-            <Icon className="h-6 w-6 text-indigo-600" />
-          </div>
-        )}
-        {title && (
-          <h3 className="mb-2 text-xl font-semibold text-slate-900">{title}</h3>
-        )}
-        {description && (
-          <p className="text-slate-600">{description}</p>
-        )}
-        {children}
-      </div>
+      {children}
+      <style jsx>{`
+        .card-spotlight {
+          position: relative;
+          border-radius: 1rem;
+          border: 1px solid rgba(119, 120, 112, 0.2);
+          background-color: #ffffff;
+          padding: 1.5rem;
+          overflow: hidden;
+          height: 100%;
+          --mouse-x: 50%;
+          --mouse-y: 50%;
+          --spotlight-color: rgba(236, 107, 45, 0.15);
+        }
+        .card-spotlight::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          pointer-events: none;
+        }
+        .card-spotlight:hover::before {
+          opacity: 1;
+        }
+      `}</style>
     </div>
   );
 }

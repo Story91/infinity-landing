@@ -339,23 +339,27 @@ function StatsSection() {
 
 function BenefitsSection() {
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24" style={{ backgroundColor: '#E4E6DD' }}>
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">Dlaczego Infinity Tech?</h2>
-            <p className="text-xl text-slate-500">Dostarczamy rozwiązania dopasowane do Twojej firmy</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#0D0F05' }}>
+              Dlaczego <ShinyText text="Infinity Tech?" />
+            </h2>
+            <p className="text-xl" style={{ color: '#777870' }}>Dostarczamy rozwiązania dopasowane do Twojej firmy</p>
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {BENEFITS.map((benefit, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <SpotlightCard
-                title={benefit.title}
-                description={benefit.description}
-                icon={benefit.icon}
-              />
+            <FadeIn key={i} delay={i * 0.1} className="h-full">
+              <SpotlightCard spotlightColor="rgba(236, 107, 45, 0.18)">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl" style={{ backgroundColor: '#EC6B2D' }}>
+                  <benefit.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mb-2 text-lg font-semibold" style={{ color: '#0D0F05' }}>{benefit.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#555550' }}>{benefit.description}</p>
+              </SpotlightCard>
             </FadeIn>
           ))}
         </div>

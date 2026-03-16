@@ -48,6 +48,7 @@ import Marquee from '@/components/react-bits/Marquee';
 import AnimatedCounter from '@/components/react-bits/AnimatedCounter';
 import ROICalculator from '@/components/ROICalculator';
 import ChatWidget from '@/components/ChatWidget';
+import ClickSpark from '@/components/react-bits/ClickSpark';
 import dynamic from 'next/dynamic';
 const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), { ssr: false });
 
@@ -857,6 +858,7 @@ export default function LandingPage() {
   ];
 
   return (
+    <ClickSpark sparkColor="#EC6B2D" sparkSize={12} sparkRadius={20} sparkCount={8} duration={500}>
     <div className="min-h-screen bg-white text-slate-900">
       {/* Navigation - StaggeredMenu */}
       <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 50, pointerEvents: 'none' }}>
@@ -944,5 +946,6 @@ export default function LandingPage() {
       
       <ChatWidget />
     </div>
+    </ClickSpark>
   );
 }

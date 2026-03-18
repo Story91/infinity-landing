@@ -603,7 +603,7 @@ function TechnologySection() {
                 </div>
 
                 <div className="pt-3 mt-3 border-t border-white/10 space-y-2">
-                  <div className="text-white/30 text-xs">// live stats</div>
+                  <div className="text-white/30 text-xs">{/* live stats */}</div>
                   <div className="flex justify-between">
                     <span className="text-white/50">Obsłużone zapytania</span>
                     <span className="font-bold" style={{ color: '#EC6B2D' }}>12 847</span>

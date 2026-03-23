@@ -898,6 +898,7 @@ export default function LandingPage() {
     { label: 'Usługi', ariaLabel: 'Zobacz nasze usługi', link: '#uslugi' },
     { label: 'Blog', ariaLabel: 'Przeczytaj naszego bloga', link: '/blog' },
     { label: 'Case Studies', ariaLabel: 'Zobacz case studies', link: '/case-studies' },
+    { label: 'Kalkulator ROI', ariaLabel: 'Oblicz ROI automatyzacji', link: '/kalkulator' },
     { label: 'FAQ', ariaLabel: 'Częste pytania', link: '#faq' },
     { label: 'Kontakt', ariaLabel: 'Skontaktuj się z nami', link: '#kontakt' }
   ];

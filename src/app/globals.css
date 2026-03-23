@@ -118,3 +118,21 @@ body {
   font-weight: 700;
   letter-spacing: -0.02em;
 }
+
+/* Print styles for /kalkulator */
+@media print {
+  .print\:hidden {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12px !important;
+  }
+  #kalkulator-results {
+    padding: 0 !important;
+  }
+  #kalkulator-results * {
+    break-inside: avoid;
+  }
+}

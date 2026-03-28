@@ -53,7 +53,7 @@ export default function ChatWidget() {
       if (!response.ok) throw new Error('Failed to get response');
 
       const data = await response.json();
-      
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -85,7 +85,7 @@ export default function ChatWidget() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-700 transition-all flex items-center justify-center ${
+        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full liquid-glass-strong text-white hover:scale-105 active:scale-95 transition-all flex items-center justify-center ${
           isOpen ? 'rotate-90' : ''
         }`}
         aria-label="Otwórz czat"
@@ -95,22 +95,22 @@ export default function ChatWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 md:w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200">
+        <div className="fixed bottom-24 right-6 z-50 w-80 md:w-96 h-[500px] rounded-3xl flex flex-col overflow-hidden" style={{ background: 'rgba(11, 15, 46, 0.85)', backdropFilter: 'blur(50px)', WebkitBackdropFilter: 'blur(50px)', boxShadow: '0 25px 60px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1)' }}>
           {/* Header */}
-          <div className="bg-indigo-600 p-4 text-white">
+          <div className="p-4 text-white" style={{ background: 'rgba(46, 74, 173, 0.15)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
                 <Bot className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold">Asystent AI</h3>
-                <p className="text-xs text-white/80">Infinity Tech</p>
+                <h3 className="font-bold text-white">Asystent AI</h3>
+                <p className="text-xs text-white/60">Infinity Tech</p>
               </div>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -119,9 +119,10 @@ export default function ChatWidget() {
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                     message.role === 'user'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-white text-slate-800 shadow-sm'
+                      ? 'bg-[#2E4AAD] text-white'
+                      : 'text-white/90'
                   }`}
+                  style={message.role === 'assistant' ? { background: 'rgba(255,255,255,0.08)' } : undefined}
                 >
                   <p className="text-sm">{message.content}</p>
                 </div>
@@ -129,8 +130,8 @@ export default function ChatWidget() {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white rounded-2xl px-4 py-2 shadow-sm">
-                  <Loader2 className="w-5 h-5 animate-spin text-indigo-600" />
+                <div className="rounded-2xl px-4 py-2" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                  <Loader2 className="w-5 h-5 animate-spin text-[#7B9BDB]" />
                 </div>
               </div>
             )}
@@ -138,7 +139,7 @@ export default function ChatWidget() {
           </div>
 
           {/* Input */}
-          <div className="p-4 bg-white border-t border-slate-200">
+          <div className="p-4" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
             <div className="flex gap-2">
               <input
                 type="text"
@@ -146,13 +147,14 @@ export default function ChatWidget() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Napisz wiadomość..."
-                className="flex-1 px-4 py-2 rounded-full border border-slate-200 focus:border-indigo-500 focus:outline-none text-sm"
+                className="flex-1 px-4 py-2 rounded-full text-sm text-white placeholder-white/40 focus:outline-none"
+                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)' }}
                 disabled={isLoading}
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-10 h-10 rounded-full bg-[#2E4AAD] text-white flex items-center justify-center hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 <Send className="w-4 h-4" />
               </button>

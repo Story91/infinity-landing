@@ -335,50 +335,19 @@ function HeroSection() {
           </div>
         </FadeIn>
 
-        {/* Pills */}
-        <FadeIn delay={0.9}>
-          <div className="flex flex-wrap justify-center gap-3 mt-8">
-            {['Automatyzacja AI', 'Agenci OpenCLAW', 'Transformacja Cyfrowa'].map((pill) => (
-              <span key={pill} className="liquid-glass rounded-full px-5 py-2 text-xs text-white/80">
-                {pill}
-              </span>
-            ))}
-          </div>
-        </FadeIn>
       </div>
 
-      {/* Bottom section — quote + feature cards */}
+      {/* Bottom section — quote centered */}
       <div className="relative z-10 px-6 md:px-12 lg:px-20 pb-8">
-        <div className="flex flex-col lg:flex-row items-end gap-6">
-          {/* Quote */}
-          <div className="flex-1 text-center lg:text-left space-y-2">
-            <p className="text-xs tracking-widest uppercase text-white/50">Innowacyjne Rozwiązania</p>
-            <p className="text-white text-base lg:text-lg leading-relaxed">
-              &ldquo;Automatyzujemy procesy, aby Twój biznes mógł <span className="italic text-white/80">rosnąć bez granic.</span>&rdquo;
-            </p>
-            <div className="flex items-center justify-center lg:justify-start gap-4">
-              <div className="h-px w-12 bg-white/20" />
-              <span className="text-xs tracking-widest uppercase text-white/50">Infinity Team</span>
-              <div className="h-px w-12 bg-white/20" />
-            </div>
-          </div>
-
-          {/* Feature cards */}
-          <div className="flex gap-3">
-            <div className="liquid-glass rounded-3xl p-5 hover:scale-105 transition-transform">
-              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-3">
-                <Wand2 className="w-4 h-4 text-white" />
-              </span>
-              <h4 className="text-white font-medium text-sm">AI Processing</h4>
-              <p className="text-white/50 text-xs mt-1">Przetwarzanie w czasie rzeczywistym</p>
-            </div>
-            <div className="liquid-glass rounded-3xl p-5 hover:scale-105 transition-transform">
-              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-3">
-                <BookOpen className="w-4 h-4 text-white" />
-              </span>
-              <h4 className="text-white font-medium text-sm">Baza Wiedzy</h4>
-              <p className="text-white/50 text-xs mt-1">Inteligentne archiwum danych</p>
-            </div>
+        <div className="text-center space-y-2">
+          <p className="text-xs tracking-widest uppercase text-white/50">Innowacyjne Rozwiązania</p>
+          <p className="text-white text-base lg:text-lg leading-relaxed">
+            &ldquo;Automatyzujemy procesy, aby Twój biznes mógł <span className="italic text-white/80">rosnąć bez granic.</span>&rdquo;
+          </p>
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-12 bg-white/20" />
+            <span className="text-xs tracking-widest uppercase text-white/50">Infinity Team</span>
+            <div className="h-px w-12 bg-white/20" />
           </div>
         </div>
       </div>

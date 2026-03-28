@@ -10,9 +10,13 @@ const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), { ssr:
 
 const menuItems = [
   { label: 'Start', ariaLabel: 'Strona główna', link: '/' },
+  { label: 'O nas', ariaLabel: 'Dowiedz się więcej o nas', link: '/#o-nas' },
   { label: 'Agenci AI', ariaLabel: 'Zobacz naszych agentów AI', link: '/agents' },
-  { label: 'Case Studies', ariaLabel: 'Zobacz case studies', link: '/case-studies' },
+  { label: 'Usługi', ariaLabel: 'Zobacz nasze usługi', link: '/#uslugi' },
   { label: 'Blog', ariaLabel: 'Przeczytaj bloga', link: '/blog' },
+  { label: 'Case Studies', ariaLabel: 'Zobacz case studies', link: '/case-studies' },
+  { label: 'Kalkulator ROI', ariaLabel: 'Oblicz ROI automatyzacji', link: '/kalkulator' },
+  { label: 'FAQ', ariaLabel: 'Częste pytania', link: '/#faq' },
   { label: 'Kontakt', ariaLabel: 'Skontaktuj się z nami', link: '/#kontakt' },
 ];
 

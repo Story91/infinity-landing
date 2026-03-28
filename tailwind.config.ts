@@ -22,14 +22,14 @@ const config: Config = {
           900: '#0c4a6e',
         },
         brand: {
-          orange:  '#EC6B2D',
-          orange2: '#EE8012',
-          stone:   '#777870',
-          black:   '#0D0F05',
-          dark:    '#333333',
-          light:   '#E4E6DD',
-          white:   '#000003',
-          mid:     '#666666',
+          blue:    '#2E4AAD',
+          blue2:   '#7B9BDB',
+          muted:   '#7B9BDB',
+          black:   '#0B0F2E',
+          dark:    '#1A2461',
+          light:   '#D6E4FF',
+          white:   '#D6E4FF',
+          mid:     '#4a6099',
         }
       },
       animation: {
@@ -49,7 +49,7 @@ const config: Config = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #0B0F2E 0%, #1A2461 50%, #0B0F2E 100%)',
       }
     },
   },

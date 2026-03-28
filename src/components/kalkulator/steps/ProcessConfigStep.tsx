@@ -37,10 +37,10 @@ export default function ProcessConfigStep({
       {/* Lewa kolumna: konfiguracja procesów */}
       <div className="lg:col-span-2 space-y-3">
         <div className="text-center lg:text-left mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0D0F05' }}>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0B0F2E' }}>
             Skonfiguruj szczegóły
           </h2>
-          <p className="text-sm" style={{ color: '#777870' }}>
+          <p className="text-sm" style={{ color: '#7B9BDB' }}>
             Dla każdego procesu podaj liczbę pracowników i czas poświęcany tygodniowo.
           </p>
         </div>
@@ -77,10 +77,10 @@ export default function ProcessConfigStep({
                     <IconComponent className="w-4 h-4" style={{ color: category.color }} />
                   </div>
                   <div>
-                    <span className="font-bold text-sm" style={{ color: '#0D0F05' }}>
+                    <span className="font-bold text-sm" style={{ color: '#0B0F2E' }}>
                       {category.name}
                     </span>
-                    <div className="flex items-center gap-3 text-xs" style={{ color: '#777870' }}>
+                    <div className="flex items-center gap-3 text-xs" style={{ color: '#7B9BDB' }}>
                       <span className="flex items-center gap-1">
                         <Users className="w-3 h-3" /> {selection.employeeCount} os.
                       </span>
@@ -91,20 +91,20 @@ export default function ProcessConfigStep({
                   </div>
                 </div>
                 {isExpanded ? (
-                  <ChevronUp className="w-5 h-5" style={{ color: '#777870' }} />
+                  <ChevronUp className="w-5 h-5" style={{ color: '#7B9BDB' }} />
                 ) : (
-                  <ChevronDown className="w-5 h-5" style={{ color: '#777870' }} />
+                  <ChevronDown className="w-5 h-5" style={{ color: '#7B9BDB' }} />
                 )}
               </button>
 
               {/* Treść rozwinięta */}
               {isExpanded && (
-                <div className="px-4 pb-5 space-y-5 border-t" style={{ borderColor: '#E4E6DD' }}>
+                <div className="px-4 pb-5 space-y-5 border-t" style={{ borderColor: '#D6E4FF' }}>
                   {/* Liczba pracowników */}
                   <div className="pt-4">
                     <div className="flex items-center gap-2 mb-3">
                       <Users className="w-4 h-4" style={{ color: category.color }} />
-                      <span className="text-sm font-medium" style={{ color: '#0D0F05' }}>
+                      <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
                         Liczba pracowników
                       </span>
                     </div>
@@ -117,7 +117,7 @@ export default function ProcessConfigStep({
                           })
                         }
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold border"
-                        style={{ borderColor: '#E4E6DD', color: '#777870' }}
+                        style={{ borderColor: '#D6E4FF', color: '#7B9BDB' }}
                       >
                         −
                       </button>
@@ -132,7 +132,7 @@ export default function ProcessConfigStep({
                           })
                         }
                         className="w-20 text-center py-1.5 rounded-lg text-sm font-bold border"
-                        style={{ borderColor: '#E4E6DD', color: '#0D0F05' }}
+                        style={{ borderColor: '#D6E4FF', color: '#0B0F2E' }}
                       />
                       <button
                         type="button"
@@ -142,7 +142,7 @@ export default function ProcessConfigStep({
                           })
                         }
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold border"
-                        style={{ borderColor: '#E4E6DD', color: '#777870' }}
+                        style={{ borderColor: '#D6E4FF', color: '#7B9BDB' }}
                       >
                         +
                       </button>
@@ -163,7 +163,7 @@ export default function ProcessConfigStep({
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <CheckSquare className="w-4 h-4" style={{ color: category.color }} />
-                      <span className="text-sm font-medium" style={{ color: '#0D0F05' }}>
+                      <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
                         Zadania do automatyzacji
                       </span>
                     </div>
@@ -187,7 +187,7 @@ export default function ProcessConfigStep({
                               className="w-4 h-4 rounded"
                               style={{ accentColor: category.color }}
                             />
-                            <span className="text-sm" style={{ color: '#333' }}>
+                            <span className="text-sm" style={{ color: '#0B0F2E' }}>
                               {task.name}
                             </span>
                             <span
@@ -227,7 +227,7 @@ export default function ProcessConfigStep({
         <div
           className="sticky top-24 rounded-2xl p-6"
           style={{
-            background: 'linear-gradient(135deg, #0D0F05 0%, #2a2a25 100%)',
+            background: 'linear-gradient(135deg, #0B0F2E 0%, #1A2461 100%)',
           }}
         >
           <h3 className="text-white font-bold text-lg mb-4">Szacowane oszczędności</h3>
@@ -250,7 +250,7 @@ export default function ProcessConfigStep({
               </div>
               <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
                 <div className="text-white/50 text-xs">Ekwiwalent etatów</div>
-                <div className="text-lg font-bold" style={{ color: '#EC6B2D' }}>
+                <div className="text-lg font-bold" style={{ color: '#2E4AAD' }}>
                   {results.fteEquivalent}
                 </div>
               </div>

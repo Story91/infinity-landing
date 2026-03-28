@@ -20,12 +20,12 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
     <div className="space-y-8" id="kalkulator-results">
       {/* Nagłówek */}
       <div className="text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0D0F05' }}>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0B0F2E' }}>
           {companyProfile.companyName
             ? `Raport ROI dla ${companyProfile.companyName}`
             : 'Twój raport ROI automatyzacji'}
         </h2>
-        <p className="text-sm" style={{ color: '#777870' }}>
+        <p className="text-sm" style={{ color: '#7B9BDB' }}>
           Na podstawie rzeczywistych danych rynku polskiego (marzec 2026) i wybranych procesów
         </p>
       </div>
@@ -53,7 +53,7 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
         className="rounded-2xl p-5 md:p-6"
         style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}
       >
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#0D0F05' }}>
+        <h3 className="text-lg font-bold mb-4" style={{ color: '#0B0F2E' }}>
           Redukcja błędów dzięki AI
         </h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -64,7 +64,7 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
                   className="w-2.5 h-2.5 rounded-full"
                   style={{ backgroundColor: proc.categoryColor }}
                 />
-                <span className="text-sm font-medium" style={{ color: '#0D0F05' }}>
+                <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
                   {proc.categoryName}
                 </span>
               </div>
@@ -115,31 +115,31 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
       <div
         className="rounded-2xl p-6 relative overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, rgba(236,107,45,0.05), rgba(236,107,45,0.12))',
-          border: '2px solid rgba(236,107,45,0.2)',
+          background: 'linear-gradient(135deg, rgba(46,74,173,0.05), rgba(46,74,173,0.12))',
+          border: '2px solid rgba(46,74,173,0.2)',
         }}
       >
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
           <div
             className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ backgroundColor: 'rgba(236,107,45,0.15)' }}
+            style={{ backgroundColor: 'rgba(46,74,173,0.15)' }}
           >
-            <Shield className="w-6 h-6" style={{ color: '#EC6B2D' }} />
+            <Shield className="w-6 h-6" style={{ color: '#2E4AAD' }} />
           </div>
           <div className="flex-1">
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#0D0F05' }}>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#0B0F2E' }}>
               Ulga podatkowa na robotyzację — 50% odliczenia
             </h3>
-            <p className="text-sm" style={{ color: '#777870' }}>
+            <p className="text-sm" style={{ color: '#7B9BDB' }}>
               Na podstawie ustawy obowiązującej w latach 2022–2026, możesz odliczyć 50% kosztów
               wdrożenia automatyzacji od podstawy opodatkowania.
             </p>
           </div>
           <div className="text-right flex-shrink-0">
-            <div className="text-2xl font-bold" style={{ color: '#EC6B2D' }}>
+            <div className="text-2xl font-bold" style={{ color: '#2E4AAD' }}>
               {formatZl(results.taxRelief)} zł
             </div>
-            <div className="text-xs" style={{ color: '#777870' }}>
+            <div className="text-xs" style={{ color: '#7B9BDB' }}>
               szacowana ulga
             </div>
           </div>
@@ -150,13 +150,13 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
       <div
         className="rounded-2xl p-6 md:p-8 text-center"
         style={{
-          background: 'linear-gradient(135deg, #0D0F05 0%, #2a2a25 100%)',
+          background: 'linear-gradient(135deg, #0B0F2E 0%, #1A2461 100%)',
         }}
       >
         <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
           Łączna roczna oszczędność netto
         </h3>
-        <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: '#EC6B2D' }}>
+        <div className="text-4xl md:text-5xl font-bold mb-1" style={{ color: '#2E4AAD' }}>
           {formatZl(results.totalAnnualSavings)} zł
         </div>
         <p className="text-sm text-white/50 mb-6">
@@ -169,9 +169,9 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
             href="/#kontakt"
             className="inline-flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-bold transition-all hover:scale-105"
             style={{
-              backgroundColor: '#EC6B2D',
+              backgroundColor: '#2E4AAD',
               color: '#fff',
-              boxShadow: '0 4px 20px rgba(236,107,45,0.3)',
+              boxShadow: '0 4px 20px rgba(46,74,173,0.3)',
             }}
           >
             Umów bezpłatną konsultację

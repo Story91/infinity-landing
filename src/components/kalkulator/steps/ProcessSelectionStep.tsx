@@ -18,14 +18,14 @@ export default function ProcessSelectionStep({
   return (
     <div>
       <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0D0F05' }}>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0B0F2E' }}>
           Które procesy chcesz zautomatyzować?
         </h2>
-        <p className="text-sm" style={{ color: '#777870' }}>
+        <p className="text-sm" style={{ color: '#7B9BDB' }}>
           Wybierz minimum 1 kategorię. Zaznacz wszystkie obszary, w których Twoja firma traci czas na powtarzalne zadania.
         </p>
         {enabledCount > 0 && (
-          <p className="text-sm mt-2 font-semibold" style={{ color: '#EC6B2D' }}>
+          <p className="text-sm mt-2 font-semibold" style={{ color: '#2E4AAD' }}>
             Wybrano: {enabledCount} {enabledCount === 1 ? 'kategoria' : enabledCount < 5 ? 'kategorie' : 'kategorii'}
           </p>
         )}

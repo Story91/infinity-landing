@@ -50,11 +50,11 @@
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: #0D0F05;
+  color: #0B0F2E;
   user-select: none;
   pointer-events: none;
   white-space: nowrap;
-  background: linear-gradient(135deg, #0D0F05 0%, #EC6B2D 100%);
+  background: linear-gradient(135deg, #0B0F2E 0%, #2E4AAD 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -85,7 +85,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  background: #0D0F05;
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
   border: none;
   cursor: pointer;
   color: #ffffff;
@@ -97,13 +100,43 @@
   overflow: visible;
   padding: 0.7rem 1.3rem 0.7rem 1.1rem;
   border-radius: 999px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    4px 4px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sm-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.4px;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    transparent 40%,
+    transparent 60%,
+    rgba(255, 255, 255, 0.2) 80%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .sm-toggle:hover {
-  background: #EC6B2D;
-  box-shadow: 0 4px 28px rgba(236, 107, 45, 0.35);
+  transform: scale(1.05);
+  box-shadow:
+    4px 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 
@@ -186,7 +219,11 @@
 
 
 .sm-line {
-  display: none !important;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
 }
 
 

@@ -24,10 +24,10 @@ export default function RangeSlider({
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <label className="text-sm font-medium" style={{ color: '#0D0F05' }}>
+        <label className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
           {label}
         </label>
-        <span className="text-sm font-bold" style={{ color: '#EC6B2D' }}>
+        <span className="text-sm font-bold" style={{ color: '#2E4AAD' }}>
           {value.toLocaleString('pl-PL')}{suffix}
         </span>
       </div>
@@ -41,11 +41,11 @@ export default function RangeSlider({
           onChange={(e) => onChange(Number(e.target.value))}
           className="w-full h-2 rounded-lg appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to right, #EC6B2D 0%, #EC6B2D ${percentage}%, #E4E6DD ${percentage}%, #E4E6DD 100%)`,
-            accentColor: '#EC6B2D',
+            background: `linear-gradient(to right, #2E4AAD 0%, #2E4AAD ${percentage}%, #D6E4FF ${percentage}%, #D6E4FF 100%)`,
+            accentColor: '#2E4AAD',
           }}
         />
-        <div className="flex justify-between text-xs mt-1" style={{ color: '#777870' }}>
+        <div className="flex justify-between text-xs mt-1" style={{ color: '#7B9BDB' }}>
           <span>{min.toLocaleString('pl-PL')}{suffix}</span>
           <span>{max.toLocaleString('pl-PL')}{suffix}</span>
         </div>

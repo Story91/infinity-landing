@@ -104,7 +104,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   'OpenCLAW': 'from-purple-600 to-indigo-600',
   'AI': 'from-blue-600 to-cyan-600',
   'AI Agents': 'from-green-600 to-emerald-600',
-  'Technologie': 'from-orange-600 to-amber-600',
+  'Technologie': 'from-[#2E4AAD] to-[#7B9BDB]',
   'Bezpieczeństwo': 'from-red-600 to-rose-600',
 };
 
@@ -126,7 +126,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-[#D6E4FF]">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 py-1">
@@ -141,7 +141,7 @@ export default function BlogPage() {
                 INFINITY TECH
               </span>
             </Link>
-            <Link href="/" className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors">
+            <Link href="/" className="flex items-center gap-2 text-[#1A2461] hover:text-indigo-600 transition-colors">
               <ArrowLeft className="w-4 h-4" />
               <span className="hidden sm:inline">Powrót</span>
             </Link>
@@ -229,18 +229,18 @@ export default function BlogPage() {
       </section>
 
       {/* Search & Categories */}
-      <section className="py-10 bg-slate-50">
+      <section className="py-10 bg-[#D6E4FF]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
             {/* Search */}
             <div className="relative w-full md:w-96">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#7B9BDB]" />
               <input
                 type="text"
                 placeholder="Szukaj artykułów..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all"
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-white border border-[#D6E4FF] focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all"
               />
             </div>
 
@@ -253,7 +253,7 @@ export default function BlogPage() {
                   className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                     selectedCategory === category 
                       ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' 
-                      : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                      : 'bg-white text-[#1A2461] hover:bg-slate-100 border border-[#D6E4FF]'
                   }`}
                 >
                   {category}
@@ -273,13 +273,13 @@ export default function BlogPage() {
               <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
                 <Tag className="w-7 h-7 text-indigo-600" />
                 {selectedCategory === 'Wszystkie' ? 'Wszystkie artykuły' : selectedCategory}
-                <span className="text-base font-normal text-slate-500">({filteredPosts.length})</span>
+                <span className="text-base font-normal text-[#7B9BDB]">({filteredPosts.length})</span>
               </h2>
               
               <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                 {filteredPosts.map((post, index) => (
                   <FadeIn key={post.id} delay={index * 0.1}>
-                    <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group h-full flex flex-col">
+                    <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-[#D6E4FF] group h-full flex flex-col">
                       <div className="relative h-64 flex-shrink-0">
                         <Image
                           src={post.coverImage}
@@ -293,13 +293,13 @@ export default function BlogPage() {
                         </span>
                       </div>
                       <div className="p-6">
-                        <h3 className="text-lg font-bold mb-3 text-slate-900 line-clamp-2 group-hover:text-indigo-600 transition-colors">
+                        <h3 className="text-lg font-bold mb-3 text-[#0B0F2E] line-clamp-2 group-hover:text-indigo-600 transition-colors">
                           <Link href={`/blog/${post.id}`}>{post.title}</Link>
                         </h3>
-                        <p className="text-sm text-slate-600 mb-4 line-clamp-3">
+                        <p className="text-sm text-[#1A2461] mb-4 line-clamp-3">
                           {post.excerpt}
                         </p>
-                        <div className="flex items-center justify-between text-xs text-slate-500 border-t pt-4">
+                        <div className="flex items-center justify-between text-xs text-[#7B9BDB] border-t pt-4">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-3 h-3" />
                             {new Date(post.date).toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' })}
@@ -320,8 +320,8 @@ export default function BlogPage() {
               </div>
               
               {filteredPosts.length === 0 && (
-                <div className="text-center py-16 bg-slate-50 rounded-2xl">
-                  <p className="text-slate-500 text-lg">Nie znaleziono artykułów spełniających kryteria.</p>
+                <div className="text-center py-16 bg-[#D6E4FF] rounded-2xl">
+                  <p className="text-[#7B9BDB] text-lg">Nie znaleziono artykułów spełniających kryteria.</p>
                   <button 
                     onClick={() => {setSelectedCategory('Wszystkie'); setSearchQuery('');}}
                     className="mt-4 text-indigo-600 font-medium hover:underline"
@@ -335,14 +335,14 @@ export default function BlogPage() {
             {/* Sidebar - Right Panel */}
             <div className="xl:w-1/4 space-y-8">
               {/* Popular Posts - Professional Card */}
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#D6E4FF]">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#D6E4FF]">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-900">Popularne</h3>
-                    <p className="text-xs text-slate-500">Najczęściej czytane</p>
+                    <h3 className="font-bold text-[#0B0F2E]">Popularne</h3>
+                    <p className="text-xs text-[#7B9BDB]">Najczęściej czytane</p>
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -357,10 +357,10 @@ export default function BlogPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-sm text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                        <h4 className="font-semibold text-sm text-[#0B0F2E] group-hover:text-indigo-600 transition-colors line-clamp-2">
                           {post.title}
                         </h4>
-                        <p className="text-xs text-slate-500 mt-1 flex items-center gap-1">
+                        <p className="text-xs text-[#7B9BDB] mt-1 flex items-center gap-1">
                           <Eye className="w-3 h-3" /> {post.views}
                         </p>
                       </div>
@@ -378,7 +378,7 @@ export default function BlogPage() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-slate-900/90 backdrop-blur-sm"></div>
+                  <div className="absolute inset-0 bg-[#0B0F2E]/90 backdrop-blur-sm"></div>
                 </div>
                 <div className="relative z-10 p-8 text-white">
                   <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4">
@@ -394,7 +394,7 @@ export default function BlogPage() {
                       placeholder="Twój adres email" 
                       className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/50"
                     />
-                    <button className="w-full py-3 bg-white text-slate-900 font-bold rounded-xl hover:bg-white/90 transition-colors">
+                    <button className="w-full py-3 bg-white text-[#0B0F2E] font-bold rounded-xl hover:bg-white/90 transition-colors">
                       Zapisz się
                     </button>
                   </div>
@@ -405,7 +405,7 @@ export default function BlogPage() {
               </div>
 
               {/* Social Follow - Black bg with white icons */}
-              <div className="bg-slate-900 rounded-2xl p-8 text-white text-center">
+              <div className="bg-[#0B0F2E] rounded-2xl p-8 text-white text-center">
                 <h3 className="font-bold mb-2">Obserwuj nas</h3>
                 <p className="text-white/60 text-sm mb-6">Dołącz do społeczności AI</p>
                 <div className="flex justify-center gap-4">
@@ -426,12 +426,12 @@ export default function BlogPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 bg-slate-900 text-white">
+      <footer className="py-16 bg-[#0B0F2E] text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="text-2xl font-bold gradient-text mb-4">Infinity Tech</div>
-              <p className="text-slate-400 mb-6">
+              <p className="text-[#7B9BDB] mb-6">
                 Tworzymy przyszłość biznesu z AI.
               </p>
               <div className="flex gap-4">
@@ -449,7 +449,7 @@ export default function BlogPage() {
             
             <div>
               <h4 className="font-semibold mb-4">Na skróty</h4>
-              <ul className="space-y-2 text-slate-400">
+              <ul className="space-y-2 text-[#7B9BDB]">
                 <li><a href="/" className="hover:text-white transition-colors">Start</a></li>
                 <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
                 <li><a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a></li>
@@ -458,7 +458,7 @@ export default function BlogPage() {
             
             <div>
               <h4 className="font-semibold mb-4">Usługi</h4>
-              <ul className="space-y-2 text-slate-400">
+              <ul className="space-y-2 text-[#7B9BDB]">
                 <li><a href="/agents" className="hover:text-white transition-colors">AI Agenci</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Automatyzacja</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Consulting</a></li>
@@ -467,7 +467,7 @@ export default function BlogPage() {
             
             <div>
               <h4 className="font-semibold mb-4">Kontakt</h4>
-              <ul className="space-y-2 text-slate-400">
+              <ul className="space-y-2 text-[#7B9BDB]">
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4" /> contact@infinityteam.io
                 </li>
@@ -481,7 +481,7 @@ export default function BlogPage() {
             </div>
           </div>
           
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
+          <div className="border-t border-slate-800 pt-8 text-center text-[#7B9BDB]">
             <p>&copy; {new Date().getFullYear()} Infinity Tech.</p>
           </div>
         </div>

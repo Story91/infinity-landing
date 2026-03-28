@@ -156,7 +156,7 @@ function HeroSection() {
           </div>
         </FadeIn>
         
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-slate-900">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-[#0B0F2E]">
           <SplitText 
             text="Przyszłość Twojego Biznesu" 
             tag="span"
@@ -168,7 +168,7 @@ function HeroSection() {
         </h1>
         
         <FadeIn delay={0.5}>
-          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-[#1A2461] mb-8 max-w-3xl mx-auto">
             Kompleksowa analiza korzyści biznesowych i potencjału wzrostu dla Twojej firmy 
             w działach HR, Marketingu i Sprzedaży.
           </p>
@@ -179,7 +179,7 @@ function HeroSection() {
             <Ripple className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white text-lg">
               Poznaj Korzyści
             </Ripple>
-            <button className="px-8 py-4 bg-white border-2 border-slate-200 rounded-full font-semibold text-lg hover:border-indigo-300 transition-all flex items-center justify-center gap-2 text-slate-700">
+            <button className="px-8 py-4 bg-white border-2 border-[#D6E4FF] rounded-full font-semibold text-lg hover:border-indigo-300 transition-all flex items-center justify-center gap-2 text-slate-700">
               Skontaktuj się
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -196,7 +196,7 @@ function HeroSection() {
               <div key={i} className={`p-6 rounded-2xl bg-${dept.color}-50 border border-${dept.color}-200`}>
                 <dept.icon className={`w-8 h-8 mx-auto mb-2 text-${dept.color}-600`} />
                 <div className={`text-2xl font-bold text-${dept.color}-600`}>{dept.value}</div>
-                <div className="text-sm text-slate-600">{dept.title}</div>
+                <div className="text-sm text-[#1A2461]">{dept.title}</div>
               </div>
             ))}
           </div>
@@ -235,7 +235,7 @@ function StatsOverview() {
                       <div className="text-2xl font-bold" style={{ color: dept.color }}>
                         {stat.value}{stat.suffix}
                       </div>
-                      <div className="text-xs text-slate-400">{stat.label}</div>
+                      <div className="text-xs text-[#7B9BDB]">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -259,8 +259,8 @@ function HRSection() {
               <UsersRound className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Agent AI w Dziale HR</h2>
-              <p className="text-slate-500">Kompleksowa automatyzacja procesów kadrowych</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0B0F2E]">Agent AI w Dziale HR</h2>
+              <p className="text-[#7B9BDB]">Kompleksowa automatyzacja procesów kadrowych</p>
             </div>
           </div>
         </FadeIn>
@@ -290,7 +290,7 @@ function HRSection() {
                     {HR_AUTOMATION.map((item, i) => (
                       <tr key={i} className="border-t border-red-100">
                         <td className="p-3 text-slate-700">{item.area}</td>
-                        <td className="p-3 text-center text-slate-600">{item.time}</td>
+                        <td className="p-3 text-center text-[#1A2461]">{item.time}</td>
                         <td className="p-3 text-center">
                           <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
                             {item.potential}
@@ -336,7 +336,7 @@ function HRSection() {
 
         {/* HR Features Grid */}
         <FadeIn>
-          <h3 className="text-xl font-bold text-slate-900 mb-6">Co Agent AI może zrobić:</h3>
+          <h3 className="text-xl font-bold text-[#0B0F2E] mb-6">Co Agent AI może zrobić:</h3>
         </FadeIn>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -352,7 +352,7 @@ function HRSection() {
                   {i === 5 && <BarChart className="w-6 h-6 text-blue-600" />}
                 </div>
                 <h4 className="font-bold text-slate-800 mb-2">{feature.title}</h4>
-                <p className="text-slate-600 text-sm mb-3">{feature.desc}</p>
+                <p className="text-[#1A2461] text-sm mb-3">{feature.desc}</p>
                 <div className="flex items-center gap-2 text-xs">
                   {feature.stats.map((stat, j) => (
                     <span key={j} className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{stat}</span>
@@ -365,7 +365,7 @@ function HRSection() {
 
         {/* Timeline */}
         <FadeIn>
-          <div className="bg-slate-50 rounded-2xl p-6 mb-8">
+          <div className="bg-[#D6E4FF] rounded-2xl p-6 mb-8">
             <h3 className="font-bold text-slate-800 mb-6 flex items-center gap-2">
               <Zap className="w-5 h-5 text-blue-600" />
               Agent AI w akcji: Przykładowy proces rekrutacji
@@ -416,13 +416,13 @@ function HRSection() {
                 {HR_RESULTS.map((result, i) => (
                   <div key={i}>
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-slate-600 text-sm">{result.label}</span>
+                      <span className="text-[#1A2461] text-sm">{result.label}</span>
                       <span className="font-bold text-blue-600">-{result.value}%</span>
                     </div>
                     <div className="w-full bg-blue-200 rounded-full h-3">
                       <div className="bg-blue-600 h-3 rounded-full" style={{ width: `${result.value}%` }}></div>
                     </div>
-                    <div className="text-xs text-slate-500 mt-1">{result.before} → {result.after}</div>
+                    <div className="text-xs text-[#7B9BDB] mt-1">{result.before} → {result.after}</div>
                   </div>
                 ))}
               </div>
@@ -432,7 +432,7 @@ function HRSection() {
           <FadeIn delay={0.2}>
             <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-6">
               <h4 className="font-semibold text-blue-800 mb-4">Na co HR przeznaczy zaoszczędzony czas?</h4>
-              <p className="text-slate-600 text-sm mb-4">Agent AI przejmuje 60-70% powtarzalnych zadań:</p>
+              <p className="text-[#1A2461] text-sm mb-4">Agent AI przejmuje 60-70% powtarzalnych zadań:</p>
               
               <div className="space-y-3">
                 {[
@@ -445,7 +445,7 @@ function HRSection() {
                     <span className="text-2xl">{item.emoji}</span>
                     <div>
                       <div className="font-semibold text-slate-800">{item.title}</div>
-                      <div className="text-xs text-slate-500">{item.desc}</div>
+                      <div className="text-xs text-[#7B9BDB]">{item.desc}</div>
                     </div>
                   </div>
                 ))}
@@ -475,7 +475,7 @@ function HRSection() {
               <tbody className="bg-white">
                 {HR_TRANSFORMATION.map((item, i) => (
                   <tr key={i} className={i % 2 === 0 ? 'border-b border-blue-100' : 'border-b border-blue-100 bg-blue-50'}>
-                    <td className="p-4 text-slate-600">{item.before}</td>
+                    <td className="p-4 text-[#1A2461]">{item.before}</td>
                     <td className="p-4 text-center text-blue-500">→</td>
                     <td className="p-4 text-slate-800 font-semibold">{item.after}</td>
                   </tr>
@@ -492,7 +492,7 @@ function HRSection() {
 // Marketing Section
 function MarketingSection() {
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24 bg-[#D6E4FF]">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="flex items-center gap-4 mb-8">
@@ -500,8 +500,8 @@ function MarketingSection() {
               <Megaphone className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Agent AI w Marketingu</h2>
-              <p className="text-slate-500">Twórz więcej treści przy mniejszym wysiłku</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0B0F2E]">Agent AI w Marketingu</h2>
+              <p className="text-[#7B9BDB]">Twórz więcej treści przy mniejszym wysiłku</p>
             </div>
           </div>
         </FadeIn>
@@ -516,7 +516,7 @@ function MarketingSection() {
             <FadeIn key={i} delay={i * 0.1}>
               <div className={`bg-gradient-to-br from-pink-100 to-purple-100 rounded-xl p-4 text-center`}>
                 <div className={`text-3xl font-bold text-${stat.color}-600`}>{stat.value}</div>
-                <div className="text-sm text-slate-600">{stat.title}</div>
+                <div className="text-sm text-[#1A2461]">{stat.title}</div>
               </div>
             </FadeIn>
           ))}
@@ -536,7 +536,7 @@ function MarketingSection() {
               ].map((feature, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
-                  <span className="text-slate-600">{feature}</span>
+                  <span className="text-[#1A2461]">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -554,7 +554,7 @@ function MarketingSection() {
                 ].map((step, i) => (
                   <div key={i} className="flex items-center gap-3 p-2 bg-white rounded-lg">
                     <span className="text-purple-600 font-mono">{step.time}</span>
-                    <span className="text-slate-600">{step.event}</span>
+                    <span className="text-[#1A2461]">{step.event}</span>
                   </div>
                 ))}
               </div>
@@ -581,7 +581,7 @@ function MarketingSection() {
                 {MARKETING_METRICS.map((row, i) => (
                   <tr key={i} className={i % 2 === 0 ? 'border-b border-purple-100' : 'border-b border-purple-100 bg-purple-50'}>
                     <td className="p-4 text-slate-700">{row.metric}</td>
-                    <td className="p-4 text-center text-slate-500">{row.before}</td>
+                    <td className="p-4 text-center text-[#7B9BDB]">{row.before}</td>
                     <td className="p-4 text-center text-slate-700">{row.after}</td>
                     <td className="p-4 text-center font-bold text-green-600">{row.change}</td>
                   </tr>
@@ -626,8 +626,8 @@ function SalesSection() {
               <Target className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Agent AI w Sprzedaży</h2>
-              <p className="text-slate-500">Zwiększ przychody bez zwiększania zespołu</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0B0F2E]">Agent AI w Sprzedaży</h2>
+              <p className="text-[#7B9BDB]">Zwiększ przychody bez zwiększania zespołu</p>
             </div>
           </div>
         </FadeIn>
@@ -655,7 +655,7 @@ function SalesSection() {
                 ].map((step, i) => (
                   <div key={i} className={`flex items-center gap-3 p-3 rounded-lg ${step.highlight ? 'bg-green-100 rounded-lg border-2 border-green-300' : 'bg-green-50'}`}>
                     <span className="text-green-600 font-mono text-sm">{step.time}</span>
-                    <span className={`text-sm ${step.highlight ? 'text-slate-700 font-semibold' : 'text-slate-600'}`}>{step.event}</span>
+                    <span className={`text-sm ${step.highlight ? 'text-slate-700 font-semibold' : 'text-[#1A2461]'}`}>{step.event}</span>
                   </div>
                 ))}
               </div>
@@ -673,7 +673,7 @@ function SalesSection() {
                 ].map((result, i) => (
                   <div key={i}>
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-slate-600 text-sm">{result.label}</span>
+                      <span className="text-[#1A2461] text-sm">{result.label}</span>
                       <span className="font-bold text-green-600">+{result.value}%</span>
                     </div>
                     <div className="w-full bg-green-200 rounded-full h-2">
@@ -685,11 +685,11 @@ function SalesSection() {
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <div className="p-4 bg-white rounded-xl text-center">
                   <div className="text-2xl font-bold text-green-600">100 000 zł</div>
-                  <div className="text-xs text-slate-500">przed / mies.</div>
+                  <div className="text-xs text-[#7B9BDB]">przed / mies.</div>
                 </div>
                 <div className="p-4 bg-white rounded-xl text-center">
                   <div className="text-2xl font-bold text-green-600">180 000 zł</div>
-                  <div className="text-xs text-slate-500">po / mies.</div>
+                  <div className="text-xs text-[#7B9BDB]">po / mies.</div>
                 </div>
               </div>
             </div>
@@ -752,17 +752,17 @@ function SummarySection() {
 // Footer
 function Footer() {
   return (
-    <footer className="py-12 bg-slate-900 text-white">
+    <footer className="py-12 bg-[#0B0F2E] text-white">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Infinity Tech</div>
-          <div className="flex gap-6 text-slate-400">
+          <div className="flex gap-6 text-[#7B9BDB]">
             <a href="#" className="hover:text-white">Polityka Prywatności</a>
             <a href="#" className="hover:text-white">Regulamin</a>
             <a href="mailto:contact@infinityteam.io" className="hover:text-white">contact@infinityteam.io</a>
           </div>
         </div>
-        <div className="text-center text-slate-500 text-sm mt-8 pt-8 border-t border-slate-800">
+        <div className="text-center text-[#7B9BDB] text-sm mt-8 pt-8 border-t border-slate-800">
           © 2026 Infinity Tech. Wszelkie prawa zastrzeżone.
         </div>
       </div>
@@ -774,9 +774,9 @@ export default function AgentsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-white text-[#0B0F2E]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-[#D6E4FF]">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <a href="/" className="flex items-center gap-3 py-1">

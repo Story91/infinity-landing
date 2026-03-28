@@ -22,7 +22,7 @@ export default function ProgressBar({ currentStep, onStepClick }: ProgressBarPro
           className="absolute top-5 left-0 h-0.5 transition-all duration-500 ease-out"
           style={{
             width: `${(currentStep / (STEPS.length - 1)) * 100}%`,
-            backgroundColor: '#EC6B2D',
+            backgroundColor: '#2E4AAD',
           }}
         />
 
@@ -43,11 +43,11 @@ export default function ProgressBar({ currentStep, onStepClick }: ProgressBarPro
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300"
                 style={{
-                  backgroundColor: isActive || isCompleted ? '#EC6B2D' : '#fff',
-                  color: isActive || isCompleted ? '#fff' : '#777870',
-                  border: isActive || isCompleted ? '3px solid #EC6B2D' : '3px solid #E4E6DD',
+                  backgroundColor: isActive || isCompleted ? '#2E4AAD' : '#fff',
+                  color: isActive || isCompleted ? '#fff' : '#7B9BDB',
+                  border: isActive || isCompleted ? '3px solid #2E4AAD' : '3px solid #D6E4FF',
                   transform: isActive ? 'scale(1.15)' : 'scale(1)',
-                  boxShadow: isActive ? '0 0 20px rgba(236,107,45,0.3)' : 'none',
+                  boxShadow: isActive ? '0 0 20px rgba(46,74,173,0.3)' : 'none',
                 }}
               >
                 {isCompleted ? (
@@ -60,7 +60,7 @@ export default function ProgressBar({ currentStep, onStepClick }: ProgressBarPro
               </div>
               <span
                 className="text-xs font-medium hidden sm:block transition-colors"
-                style={{ color: isActive ? '#EC6B2D' : isCompleted ? '#0D0F05' : '#777870' }}
+                style={{ color: isActive ? '#2E4AAD' : isCompleted ? '#0B0F2E' : '#7B9BDB' }}
               >
                 {step.label}
               </span>

@@ -34,10 +34,10 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
       className="rounded-2xl p-5 md:p-6"
       style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}
     >
-      <h3 className="text-lg font-bold mb-1" style={{ color: '#0D0F05' }}>
+      <h3 className="text-lg font-bold mb-1" style={{ color: '#0B0F2E' }}>
         Obecne koszty vs. po automatyzacji
       </h3>
-      <p className="text-xs mb-6" style={{ color: '#777870' }}>
+      <p className="text-xs mb-6" style={{ color: '#7B9BDB' }}>
         Porównanie rocznych kosztów roboczogodzin per proces
       </p>
 
@@ -56,11 +56,11 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ backgroundColor: proc.categoryColor }}
                   />
-                  <span className="text-sm font-medium" style={{ color: '#0D0F05' }}>
+                  <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
                     {proc.categoryName}
                   </span>
                 </div>
-                <span className="text-xs font-semibold" style={{ color: '#EC6B2D' }}>
+                <span className="text-xs font-semibold" style={{ color: '#2E4AAD' }}>
                   -{proc.automationPercentage}%
                 </span>
               </div>
@@ -75,7 +75,7 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
                     className="h-full rounded-md transition-all duration-1000 ease-out flex items-center justify-end pr-2"
                     style={{
                       width: `${currentWidth}%`,
-                      backgroundColor: '#777870',
+                      backgroundColor: '#7B9BDB',
                       minWidth: currentWidth > 0 ? '60px' : '0',
                     }}
                   >
@@ -96,7 +96,7 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
                     className="h-full rounded-md transition-all duration-1000 ease-out delay-300 flex items-center justify-end pr-2"
                     style={{
                       width: `${afterWidth}%`,
-                      backgroundColor: '#EC6B2D',
+                      backgroundColor: '#2E4AAD',
                       minWidth: afterWidth > 0 ? '60px' : '0',
                     }}
                   >
@@ -111,14 +111,14 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
         })}
       </div>
 
-      <div className="flex items-center gap-4 mt-6 pt-4" style={{ borderTop: '1px solid #E4E6DD' }}>
+      <div className="flex items-center gap-4 mt-6 pt-4" style={{ borderTop: '1px solid #D6E4FF' }}>
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#777870' }} />
-          <span className="text-xs" style={{ color: '#777870' }}>Obecne koszty</span>
+          <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#7B9BDB' }} />
+          <span className="text-xs" style={{ color: '#7B9BDB' }}>Obecne koszty</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#EC6B2D' }} />
-          <span className="text-xs" style={{ color: '#777870' }}>Po automatyzacji AI</span>
+          <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#2E4AAD' }} />
+          <span className="text-xs" style={{ color: '#7B9BDB' }}>Po automatyzacji AI</span>
         </div>
       </div>
     </div>

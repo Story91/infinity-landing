@@ -39,7 +39,7 @@ export default function ProcessCard({ category, enabled, onToggle }: ProcessCard
         className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200"
         style={{
           backgroundColor: enabled ? category.color : 'transparent',
-          border: enabled ? `2px solid ${category.color}` : '2px solid #E4E6DD',
+          border: enabled ? `2px solid ${category.color}` : '2px solid #D6E4FF',
         }}
       >
         {enabled && <CheckCircle2 className="w-4 h-4" style={{ color: '#fff' }} />}
@@ -54,18 +54,18 @@ export default function ProcessCard({ category, enabled, onToggle }: ProcessCard
       >
         <IconComponent
           className="w-5 h-5"
-          style={{ color: enabled ? category.color : '#777870' }}
+          style={{ color: enabled ? category.color : '#7B9BDB' }}
         />
       </div>
 
       {/* Treść */}
       <h3
         className="text-sm font-bold mb-1 transition-colors"
-        style={{ color: enabled ? '#0D0F05' : '#333' }}
+        style={{ color: enabled ? '#0B0F2E' : '#0B0F2E' }}
       >
         {category.name}
       </h3>
-      <p className="text-xs leading-relaxed mb-3" style={{ color: '#777870' }}>
+      <p className="text-xs leading-relaxed mb-3" style={{ color: '#7B9BDB' }}>
         {category.description}
       </p>
 

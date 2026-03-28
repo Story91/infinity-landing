@@ -95,27 +95,27 @@ export default function ROISummaryCards({ results }: ROISummaryCardsProps) {
           className="rounded-2xl p-4 text-center transition-transform hover:scale-105"
           style={{
             background: card.highlight
-              ? 'linear-gradient(135deg, #EC6B2D 0%, #d45a22 100%)'
+              ? 'linear-gradient(135deg, #2E4AAD 0%, #1A2461 100%)'
               : 'rgba(255,255,255,0.8)',
             border: card.highlight ? 'none' : '1px solid rgba(228,230,221,0.5)',
             boxShadow: card.highlight
-              ? '0 8px 30px rgba(236,107,45,0.25)'
+              ? '0 8px 30px rgba(46,74,173,0.25)'
               : '0 2px 10px rgba(0,0,0,0.04)',
           }}
         >
           <card.icon
             className="w-5 h-5 mx-auto mb-2"
-            style={{ color: card.highlight ? 'rgba(255,255,255,0.8)' : '#EC6B2D' }}
+            style={{ color: card.highlight ? 'rgba(255,255,255,0.8)' : '#2E4AAD' }}
           />
           <div
             className="text-xl md:text-2xl font-bold mb-1"
-            style={{ color: card.highlight ? '#fff' : '#0D0F05' }}
+            style={{ color: card.highlight ? '#fff' : '#0B0F2E' }}
           >
             <AnimatedNumber value={card.value} suffix={card.suffix} />
           </div>
           <div
             className="text-xs"
-            style={{ color: card.highlight ? 'rgba(255,255,255,0.7)' : '#777870' }}
+            style={{ color: card.highlight ? 'rgba(255,255,255,0.7)' : '#7B9BDB' }}
           >
             {card.label}
           </div>

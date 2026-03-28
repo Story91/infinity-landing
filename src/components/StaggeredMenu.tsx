@@ -60,7 +60,7 @@ export const StaggeredMenu = ({
   const iconRef = useRef<HTMLDivElement | null>(null);
   const textInnerRef = useRef<HTMLDivElement | null>(null);
   const textWrapRef = useRef<HTMLDivElement | null>(null);
-  const [textLines, setTextLines] = useState(['Rozwiń', 'Zwiń']);
+  const [textLines, setTextLines] = useState(['Menu', 'Zamknij']);
 
 
 
@@ -374,14 +374,14 @@ export const StaggeredMenu = ({
     textCycleAnimRef.current?.kill();
 
 
-    const currentLabel = opening ? 'Rozwiń' : 'Zwiń';
-    const targetLabel = opening ? 'Zwiń' : 'Rozwiń';
+    const currentLabel = opening ? 'Menu' : 'Zamknij';
+    const targetLabel = opening ? 'Zamknij' : 'Menu';
     const cycles = 3;
     const seq = [currentLabel];
 
     let last = currentLabel;
     for (let i = 0; i < cycles; i++) {
-      last = last === 'Rozwiń' ? 'Zwiń' : 'Rozwiń';
+      last = last === 'Menu' ? 'Zamknij' : 'Menu';
       seq.push(last);
     }
 

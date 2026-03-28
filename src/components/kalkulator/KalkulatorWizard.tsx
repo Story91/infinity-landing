@@ -173,8 +173,8 @@ export default function KalkulatorWizard() {
             className="px-6 py-3 rounded-xl text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             style={{
               backgroundColor: 'rgba(255,255,255,0.7)',
-              color: '#0D0F05',
-              border: '2px solid #E4E6DD',
+              color: '#0B0F2E',
+              border: '2px solid #D6E4FF',
             }}
           >
             Wstecz
@@ -182,10 +182,10 @@ export default function KalkulatorWizard() {
 
           {/* Mini-podsumowanie (kroki 1-2) */}
           {state.currentStep > 0 && state.currentStep < 3 && enabledCount > 0 && (
-            <div className="hidden md:flex items-center gap-4 text-sm" style={{ color: '#777870' }}>
+            <div className="hidden md:flex items-center gap-4 text-sm" style={{ color: '#7B9BDB' }}>
               <span>
                 Szacowane oszczędności:{' '}
-                <strong style={{ color: '#EC6B2D' }}>
+                <strong style={{ color: '#2E4AAD' }}>
                   {Math.round(results.totalAnnualSavings).toLocaleString('pl-PL')} zł/rok
                 </strong>
               </span>
@@ -198,9 +198,9 @@ export default function KalkulatorWizard() {
             disabled={!canGoNext()}
             className="px-8 py-3 rounded-xl text-sm font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
-              backgroundColor: canGoNext() ? '#EC6B2D' : '#ccc',
+              backgroundColor: canGoNext() ? '#2E4AAD' : '#ccc',
               color: '#fff',
-              boxShadow: canGoNext() ? '0 4px 20px rgba(236,107,45,0.3)' : 'none',
+              boxShadow: canGoNext() ? '0 4px 20px rgba(46,74,173,0.3)' : 'none',
             }}
           >
             {state.currentStep === 2 ? 'Oblicz ROI' : 'Dalej'}

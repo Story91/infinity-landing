@@ -14,10 +14,10 @@ export default function CompanyInfoStep({ profile, onUpdate }: CompanyInfoStepPr
   return (
     <div className="max-w-2xl mx-auto">
       <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0D0F05' }}>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0B0F2E' }}>
           Dane Twojej firmy
         </h2>
-        <p className="text-sm" style={{ color: '#777870' }}>
+        <p className="text-sm" style={{ color: '#7B9BDB' }}>
           Opcjonalne informacje, które pozwolą lepiej dopasować kalkulację.
         </p>
       </div>
@@ -32,8 +32,8 @@ export default function CompanyInfoStep({ profile, onUpdate }: CompanyInfoStepPr
       >
         {/* Nazwa firmy */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-medium mb-2" style={{ color: '#0D0F05' }}>
-            <Building2 className="w-4 h-4" style={{ color: '#EC6B2D' }} />
+          <label className="flex items-center gap-2 text-sm font-medium mb-2" style={{ color: '#0B0F2E' }}>
+            <Building2 className="w-4 h-4" style={{ color: '#2E4AAD' }} />
             Nazwa firmy
             <span className="text-xs font-normal" style={{ color: '#999' }}>(opcjonalne)</span>
           </label>
@@ -42,21 +42,21 @@ export default function CompanyInfoStep({ profile, onUpdate }: CompanyInfoStepPr
             value={profile.companyName}
             onChange={(e) => onUpdate({ companyName: e.target.value })}
             placeholder="np. ABC Sp. z o.o."
-            className="w-full px-4 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-[#EC6B2D]"
-            style={{ borderColor: '#E4E6DD', color: '#0D0F05' }}
+            className="w-full px-4 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-[#2E4AAD]"
+            style={{ borderColor: '#D6E4FF', color: '#0B0F2E' }}
           />
         </div>
 
         {/* Branża */}
         <div>
-          <label className="block text-sm font-medium mb-2" style={{ color: '#0D0F05' }}>
+          <label className="block text-sm font-medium mb-2" style={{ color: '#0B0F2E' }}>
             Branża
           </label>
           <select
             value={profile.industry}
             onChange={(e) => onUpdate({ industry: e.target.value })}
-            className="w-full px-4 py-2.5 rounded-xl text-sm border outline-none bg-white transition-colors focus:border-[#EC6B2D]"
-            style={{ borderColor: '#E4E6DD', color: profile.industry ? '#0D0F05' : '#999' }}
+            className="w-full px-4 py-2.5 rounded-xl text-sm border outline-none bg-white transition-colors focus:border-[#2E4AAD]"
+            style={{ borderColor: '#D6E4FF', color: profile.industry ? '#0B0F2E' : '#999' }}
           >
             <option value="">Wybierz branżę...</option>
             {INDUSTRIES.map((ind) => (
@@ -94,8 +94,8 @@ export default function CompanyInfoStep({ profile, onUpdate }: CompanyInfoStepPr
 
         {/* Email */}
         <div>
-          <label className="flex items-center gap-2 text-sm font-medium mb-2" style={{ color: '#0D0F05' }}>
-            <Mail className="w-4 h-4" style={{ color: '#EC6B2D' }} />
+          <label className="flex items-center gap-2 text-sm font-medium mb-2" style={{ color: '#0B0F2E' }}>
+            <Mail className="w-4 h-4" style={{ color: '#2E4AAD' }} />
             E-mail do wysłania raportu
             <span className="text-xs font-normal" style={{ color: '#999' }}>(opcjonalne)</span>
           </label>
@@ -104,8 +104,8 @@ export default function CompanyInfoStep({ profile, onUpdate }: CompanyInfoStepPr
             value={profile.email}
             onChange={(e) => onUpdate({ email: e.target.value })}
             placeholder="jan@firma.pl"
-            className="w-full px-4 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-[#EC6B2D]"
-            style={{ borderColor: '#E4E6DD', color: '#0D0F05' }}
+            className="w-full px-4 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-[#2E4AAD]"
+            style={{ borderColor: '#D6E4FF', color: '#0B0F2E' }}
           />
         </div>
       </div>

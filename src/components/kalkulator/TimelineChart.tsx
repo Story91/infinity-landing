@@ -33,10 +33,10 @@ export default function TimelineChart({ years, implementationCost }: TimelineCha
     <div
       ref={ref}
       className="rounded-2xl p-6"
-      style={{ background: 'linear-gradient(135deg, #0D0F05 0%, #2a2a25 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #0B0F2E 0%, #1A2461 100%)' }}
     >
       <div className="flex items-center gap-2 mb-1">
-        <Zap className="w-5 h-5" style={{ color: '#EC6B2D' }} />
+        <Zap className="w-5 h-5" style={{ color: '#2E4AAD' }} />
         <span className="text-white/70 text-sm font-medium">
           Skumulowane oszczędności (5 lat)
         </span>
@@ -68,7 +68,7 @@ export default function TimelineChart({ years, implementationCost }: TimelineCha
                 style={{
                   height: `${heightPx}px`,
                   transitionDuration: `${600 + y.year * 150}ms`,
-                  background: `linear-gradient(180deg, #EC6B2D ${Math.max(100 - y.year * 15, 25)}%, #d45a22 100%)`,
+                  background: `linear-gradient(180deg, #2E4AAD ${Math.max(100 - y.year * 15, 25)}%, #1A2461 100%)`,
                   opacity: 0.65 + y.year * 0.07,
                   minHeight: '8px',
                 }}
@@ -87,7 +87,7 @@ export default function TimelineChart({ years, implementationCost }: TimelineCha
       {/* Legenda */}
       <div className="flex items-center gap-4 pt-4 border-t border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#EC6B2D' }} />
+          <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#2E4AAD' }} />
           <span className="text-xs text-white/40">
             +15% wzrost efektywności AI rocznie (compound)
           </span>

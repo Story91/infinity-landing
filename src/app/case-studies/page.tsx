@@ -78,7 +78,7 @@ export default function CaseStudiesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#D6E4FF]">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 py-1">
@@ -95,7 +95,7 @@ export default function CaseStudiesPage() {
             </Link>
             <Link 
               href="/"
-              className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors"
+              className="flex items-center gap-2 text-[#1A2461] hover:text-indigo-600 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Powrót do strony głównej</span>
@@ -111,10 +111,10 @@ export default function CaseStudiesPage() {
         
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
           <FadeIn>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-slate-900">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#0B0F2E]">
               Case Studies
             </h1>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
+            <p className="text-xl text-[#7B9BDB] max-w-2xl mx-auto">
               Zobacz, jak pomagamy firmom transformować się z AI. Historie sukcesu naszych klientów.
             </p>
           </FadeIn>
@@ -157,12 +157,12 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 bg-slate-900 text-white">
+      <footer className="py-16 bg-[#0B0F2E] text-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="text-2xl font-bold gradient-text mb-4">Infinity Tech</div>
-              <p className="text-slate-400 mb-6">
+              <p className="text-[#7B9BDB] mb-6">
                 Tworzymy przyszłość biznesu z AI. Automatyzujemy, optymalizujemy, transformujemy.
               </p>
               <div className="flex gap-4">
@@ -186,7 +186,7 @@ export default function CaseStudiesPage() {
             
             <div>
               <h4 className="font-semibold mb-4">Na skróty</h4>
-              <ul className="space-y-2 text-slate-400">
+              <ul className="space-y-2 text-[#7B9BDB]">
                 <li><a href="/" className="hover:text-white transition-colors">Start</a></li>
                 <li><a href="/#o-nas" className="hover:text-white transition-colors">O nas</a></li>
                 <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
@@ -197,7 +197,7 @@ export default function CaseStudiesPage() {
             
             <div>
               <h4 className="font-semibold mb-4">Usługi</h4>
-              <ul className="space-y-2 text-slate-400">
+              <ul className="space-y-2 text-[#7B9BDB]">
                 <li><a href="/agents" className="hover:text-white transition-colors">AI Agenci</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Automatyzacja</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Consulting</a></li>
@@ -207,7 +207,7 @@ export default function CaseStudiesPage() {
             
             <div>
               <h4 className="font-semibold mb-4">Kontakt</h4>
-              <ul className="space-y-2 text-slate-400">
+              <ul className="space-y-2 text-[#7B9BDB]">
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
                   contact@infinityteam.io
@@ -224,7 +224,7 @@ export default function CaseStudiesPage() {
             </div>
           </div>
           
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
+          <div className="border-t border-slate-800 pt-8 text-center text-[#7B9BDB]">
             <p>&copy; {new Date().getFullYear()} Infinity Tech. Wszystkie prawa zastrzeżone.</p>
           </div>
         </div>

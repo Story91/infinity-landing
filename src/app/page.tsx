@@ -130,50 +130,48 @@ const SERVICES = [
   {
     title: 'Starter',
     tierLabel: 'STARTER',
-    description: 'Dla firm, które chcą zacząć automatyzację',
-    price: '149',
+    description: 'Zainstaluj i działaj samodzielnie',
+    price: '249',
     features: [
-      'Jeden agent AI (np. chatbot)',
-      'Automatyzacja do 3 procesów',
-      'Integracja z e-mail i CRM',
-      'Podstawowe raporty',
-      'Wsparcie e-mail',
-      'Panel zarządzania',
-      'Aktualizacje co miesiąc'
+      'Agent AI na dedykowanym VPS',
+      'Pełny OpenClaw Dashboard',
+      'Chat z agentem przez panel',
+      'Monitoring live',
+      'Telegram, Discord lub Web',
+      'Darmowy model AI (limitowany)',
+      'Self-service — bez wsparcia'
     ],
     accentColor: '#7B9BDB',
     featured: false
   },
   {
-    title: 'Pro',
-    tierLabel: 'PRO',
-    description: 'Pełna automatyzacja dla rosnących zespołów',
-    price: '799',
+    title: 'Standard',
+    tierLabel: 'STANDARD',
+    description: 'Wsparcie na start i w trakcie',
+    price: '499',
     features: [
       'Wszystko ze Starter',
-      'Do 5 agentów AI',
-      'Automatyzacja HR i sprzedaży',
-      'Zaawansowane analytics',
-      'Integracja API (Slack, Teams)',
-      'Dedykowany opiekun',
-      'Priorytetowy support'
+      'Mocniejszy serwer (8 GB RAM)',
+      'Darmowy model AI (limitowany)',
+      'Pomoc z konfiguracją agenta',
+      'Wsparcie email (do 24h)',
+      'Skills marketplace'
     ],
     accentColor: '#2E4AAD',
     featured: true
   },
   {
-    title: 'Firma',
-    tierLabel: 'FIRMA',
-    description: 'Rozwiązania enterprise bez limitów',
-    price: '3999',
+    title: 'Premium',
+    tierLabel: 'PREMIUM',
+    description: 'Pełna obsługa i szkolenie',
+    price: '799',
     features: [
-      'Wszystko z Pro',
-      'Nielimitowani agenci AI',
-      'Custom AI development',
-      'Predictive analytics',
-      'On-premise / dedykowany cloud',
-      '24/7 support z SLA',
-      'Szkolenia dla zespołu'
+      'Wszystko ze Standard',
+      'Najsilniejszy serwer (16 GB RAM)',
+      'Darmowy model AI — bez limitu',
+      'Pełny support (telefon + video)',
+      'Konfiguracja skillów pod branżę',
+      'Dedykowany opiekun'
     ],
     accentColor: '#0B0F2E',
     featured: false
@@ -308,21 +306,23 @@ function HeroSection() {
 
       {/* Centered content */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-6 py-12 text-center">
+        <FadeIn delay={0.2}>
+          <p className="text-lg md:text-xl tracking-widest uppercase text-white/60 mb-4" style={{ fontFamily: 'var(--font-geist)' }}>Rewolucja AI już trwa — Twoja konkurencja nie śpi</p>
+        </FadeIn>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight text-white" style={{ fontFamily: 'var(--font-geist)' }}>
           <SplitText
-            text="Asystujemy Firmy"
+            text="Zautomatyzuj firmę"
             tag="span"
             className="block mb-2"
             duration={1}
             delay={80}
           />
-          <ShinyText text="z AI Nowej Generacji" />
+          <ShinyText text="z agentami AI" />
         </h1>
 
         <FadeIn delay={0.5}>
           <p className="text-lg mb-7 max-w-lg mx-auto text-white/80">
-            Wykorzystujemy potęgę agentów AI OpenCLAW, aby zautomatyzować Twoją firmę
-            i pozwolić skupić się na tym, co najważniejsze - rozwoju biznesu.
+            Wykorzystaj potęgę agentów AI OpenCLAW, aby zautomatyzować procesy, zwiększyć efektywność i skupić się na tym, co naprawdę napędza rozwój Twojej firmy.
           </p>
         </FadeIn>
 

@@ -31,7 +31,9 @@ import {
   Wand2,
   BookOpen,
   Instagram,
-  Download
+  Download,
+  Settings,
+  Lightbulb
 } from 'lucide-react';
 
 import SplitText from '@/components/react-bits/SplitText';
@@ -125,56 +127,45 @@ const FAQ_ITEMS = [
   }
 ];
 
-// Usługi z cenami
+// Co robimy — filary
 const SERVICES = [
   {
-    title: 'Starter',
-    tierLabel: 'STARTER',
-    description: 'Zainstaluj i działaj samodzielnie',
-    price: '249',
-    features: [
-      'Agent AI na dedykowanym VPS',
-      'Pełny OpenClaw Dashboard',
-      'Chat z agentem przez panel',
-      'Monitoring live',
-      'Telegram, Discord lub Web',
-      'Darmowy model AI (limitowany)',
-      'Self-service — bez wsparcia'
-    ],
+    title: 'OpenClaw Wrapper',
+    tierLabel: 'WRAPPER',
+    description: 'To nasz główny produkt — gotowy agent AI „pod klucz" dla firm. Wdrażamy w 2-4 tygodnie kompletnego agenta AI, który pracuje autonomicznie 24/7 na dedykowanym serwerze, zintegrowanego z kanałami które już używasz — WhatsApp, Telegram, Slack, Discord i 20+ innych.',
+    price: '',
+    features: [],
     accentColor: '#7B9BDB',
     featured: false
   },
   {
-    title: 'Standard',
-    tierLabel: 'STANDARD',
-    description: 'Wsparcie na start i w trakcie',
-    price: '499',
-    features: [
-      'Wszystko ze Starter',
-      'Mocniejszy serwer (8 GB RAM)',
-      'Darmowy model AI (limitowany)',
-      'Pomoc z konfiguracją agenta',
-      'Wsparcie email (do 24h)',
-      'Skills marketplace'
-    ],
+    title: 'Automatyzacja procesów',
+    tierLabel: 'AUTOMATYZACJA',
+    description: 'Indywidualne wdrożenia AI pod konkretne procesy Twojej firmy — HR, sprzedaż, obsługa klienta, screening kandydatów, lead generation. Analizujemy Twoje procesy, znajdujemy wąskie gardła i wdrażamy automatyzację, która pracuje za Twój zespół.',
+    price: '',
+    features: [],
     accentColor: '#2E4AAD',
-    featured: true
+    featured: false
   },
   {
-    title: 'Premium',
-    tierLabel: 'PREMIUM',
-    description: 'Pełna obsługa i szkolenie',
-    price: '799',
-    features: [
-      'Wszystko ze Standard',
-      'Najsilniejszy serwer (16 GB RAM)',
-      'Darmowy model AI — bez limitu',
-      'Pełny support (telefon + video)',
-      'Konfiguracja skillów pod branżę',
-      'Dedykowany opiekun'
-    ],
+    title: 'AI Consulting',
+    tierLabel: 'CONSULTING',
+    description: 'Konsultacje, audyt procesów i strategia AI dla firm, które chcą zacząć ale nie wiedzą od czego. Pokażemy Ci gdzie AI zaoszczędzi Ci czas i pieniądze, oszacujemy ROI i przygotujemy plan wdrożenia krok po kroku.',
+    price: '',
+    features: [],
     accentColor: '#0B0F2E',
     featured: false
+  },
+  {
+    title: 'Desktop App',
+    tierLabel: 'DESKTOP APP',
+    description: 'Aplikacja na desktop — wkrótce dostępna. Zapisz się na listę oczekujących, aby otrzymać dostęp jako pierwszy.',
+    price: '',
+    features: [],
+    accentColor: '#7B9BDB',
+    featured: true,
+    badgeText: 'Wkrótce',
+    buttonText: 'Zapisz się na waitlist'
   }
 ];
 
@@ -283,6 +274,7 @@ const BENEFITS = [
 // Główne sekcje
 function HeroSection() {
   return (
+    <>
     <section className="min-h-screen flex flex-col relative overflow-hidden">
       {/* Video background */}
       <video
@@ -373,12 +365,16 @@ function HeroSection() {
         </div>
       </div>
     </section>
+
+    {/* Ambient transition */}
+    <div className="h-24 bg-gradient-to-b from-[#0B0F2E] to-white" />
+    </>
   );
 }
 
 function StatsSection() {
   return (
-    <section className="py-20 bg-white border-y border-[#D6E4FF]">
+    <section className="pt-8 pb-16 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map((stat, i) => (
@@ -429,9 +425,6 @@ function BenefitsSection() {
           ))}
         </div>
 
-        <FadeIn delay={0.3}>
-          <ROICalculator />
-        </FadeIn>
       </div>
     </section>
   );
@@ -474,12 +467,12 @@ function ServicesSection() {
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#0B0F2E' }}>Nasze Rozwiązania</h2>
-            <p className="text-xl" style={{ color: '#7B9BDB' }}>Wybierz plan dopasowany do Twojej firmy</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#0B0F2E' }}>Co <ShinyText text="robimy" /></h2>
+            <p className="text-xl" style={{ color: '#7B9BDB' }}>Cztery filary automatyzacji Twojej firmy</p>
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {SERVICES.map((service, i) => (
             <FadeIn key={i} delay={i * 0.15}>
               <TiltedCard
@@ -490,6 +483,8 @@ function ServicesSection() {
                 features={service.features}
                 accentColor={service.accentColor}
                 featured={service.featured}
+                badgeText={(service as any).badgeText}
+                buttonText={(service as any).buttonText}
               />
             </FadeIn>
           ))}
@@ -1010,7 +1005,11 @@ export default function LandingPage() {
         </div>
         
         <StatsSection />
-        
+
+        <div id="uslugi">
+          <ServicesSection />
+        </div>
+
         <div id="o-nas">
           <BenefitsSection />
         </div>
@@ -1043,10 +1042,6 @@ export default function LandingPage() {
         
         {/* TODO: włącz TeamSection gdy będą gotowe prawdziwe dane zespołu */}
         {/* <TeamSection /> */}
-        
-        <div id="uslugi">
-          <ServicesSection />
-        </div>
         
         <TechStackSection />
 

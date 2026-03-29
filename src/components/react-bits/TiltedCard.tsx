@@ -13,6 +13,8 @@ interface TiltedCardProps {
   className?: string;
   accentColor?: string;
   featured?: boolean;
+  badgeText?: string;
+  buttonText?: string;
 }
 
 export default function TiltedCard({
@@ -24,6 +26,8 @@ export default function TiltedCard({
   className = '',
   accentColor = '#EC6B2D',
   featured = false,
+  badgeText,
+  buttonText,
 }: TiltedCardProps) {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
@@ -45,35 +49,26 @@ export default function TiltedCard({
   return (
     <div
       ref={cardRef}
-      className={cn('perspective-1000 h-full', featured && 'md:-mt-4 md:mb-4', className)}
+      className={cn('perspective-1000 h-full', className)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
       <div
         className={cn(
           'relative overflow-hidden rounded-2xl shadow-xl transition-transform duration-300 ease-out h-full flex flex-col',
-          featured ? 'md:shadow-2xl border-2' : 'border'
+          'border'
         )}
         style={{
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transformStyle: 'preserve-3d',
-          borderColor: featured ? accentColor : 'rgba(119,120,112,0.15)',
+          borderColor: 'rgba(46,74,173,0.12)',
           backgroundColor: '#ffffff',
         }}
       >
-        {/* Featured badge */}
-        {featured && (
-          <div
-            className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-xs font-bold text-white"
-            style={{ backgroundColor: accentColor }}
-          >
-            Popularny
-          </div>
-        )}
 
         {/* Branded header */}
         <div
-          className="relative h-32 w-full flex-shrink-0 overflow-hidden"
+          className="relative h-14 w-full flex-shrink-0 overflow-hidden"
           style={{ backgroundColor: accentColor }}
         >
           {/* Decorative circles */}
@@ -96,10 +91,10 @@ export default function TiltedCard({
             <img
               src="/logo.png"
               alt="Logo"
-              className="h-10 w-auto"
-              style={{ filter: accentColor === '#0D0F05' ? 'brightness(0) saturate(100%) invert(45%) sepia(85%) saturate(1000%) hue-rotate(350deg)' : undefined, opacity: 0.9 }}
+              className="h-6 w-auto"
+              style={{ filter: accentColor === '#0B0F2E' ? 'brightness(0) invert(1)' : undefined, opacity: 0.9 }}
             />
-            <span className="text-white font-extrabold text-3xl tracking-widest uppercase">
+            <span className="text-white font-semibold text-sm tracking-widest uppercase">
               {tierLabel || title.toUpperCase()}
             </span>
           </div>
@@ -111,21 +106,27 @@ export default function TiltedCard({
               <span className="text-3xl font-bold" style={{ color: accentColor }}>
                 {price}
               </span>
-              <span className="text-sm" style={{ color: '#777870' }}> zł/miesiąc</span>
+              <span className="text-sm" style={{ color: '#7B9BDB' }}> zł/miesiąc</span>
             </div>
           )}
 
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#0D0F05' }}>{title}</h3>
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#0B0F2E' }}>{title}</h3>
+
+          {featured && badgeText && (
+            <span className="inline-block w-fit px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-white mb-2" style={{ backgroundColor: accentColor }}>
+              {badgeText}
+            </span>
+          )}
 
           {description && (
-            <p className="text-sm mb-4" style={{ color: '#777870' }}>{description}</p>
+            <p className={`text-sm mb-4 ${!features || features.length === 0 ? 'flex-1 text-base leading-relaxed' : ''}`} style={{ color: '#7B9BDB' }}>{description}</p>
           )}
 
           <div className="flex-1">
             {features && features.length > 0 && (
               <ul className="space-y-2.5">
                 {features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2 text-sm" style={{ color: '#333' }}>
+                  <li key={index} className="flex items-start gap-2 text-sm" style={{ color: '#1A2461' }}>
                     <CheckCircle2
                       className="h-4 w-4 mt-0.5 flex-shrink-0"
                       style={{ color: accentColor }}
@@ -141,12 +142,12 @@ export default function TiltedCard({
             href="#kontakt"
             className="mt-5 block w-full py-3 rounded-full text-center font-semibold text-sm transition-all"
             style={{
-              backgroundColor: featured ? accentColor : 'transparent',
-              color: featured ? '#fff' : accentColor,
+              backgroundColor: 'transparent',
+              color: accentColor,
               border: `2px solid ${accentColor}`,
             }}
           >
-            Wybierz {title}
+            {buttonText || (features && features.length > 0 ? `Wybierz ${title}` : 'Dowiedz się więcej')}
           </a>
         </div>
       </div>

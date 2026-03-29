@@ -400,29 +400,102 @@ function StatsSection() {
 
 function BenefitsSection() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#D6E4FF' }}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="pt-6 pb-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #D6E4FF 0%, #c8d4f0 100%)' }}>
+      {/* Animated blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="blob-1 absolute rounded-full" style={{ width: '450px', height: '450px', background: '#4F6AE8', opacity: 0.08, filter: 'blur(100px)', top: '10%', left: '-5%' }} />
+        <div className="blob-2 absolute rounded-full" style={{ width: '350px', height: '350px', background: '#7B5CCC', opacity: 0.06, filter: 'blur(120px)', top: '50%', right: '-3%' }} />
+        <div className="blob-3 absolute rounded-full" style={{ width: '400px', height: '400px', background: '#5B9BD5', opacity: 0.07, filter: 'blur(90px)', bottom: '-10%', left: '30%' }} />
+      </div>
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         <FadeIn>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#0B0F2E' }}>
-              Dlaczego <ShinyText text="Infinity Tech?" />
+              Dlaczego <span style={{ color: '#4F6AE8' }}>Infinity Tech?</span>
             </h2>
             <p className="text-xl" style={{ color: '#7B9BDB' }}>Dostarczamy rozwiązania dopasowane do Twojej firmy</p>
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
-          {BENEFITS.map((benefit, i) => (
-            <FadeIn key={i} delay={i * 0.1} className="h-full">
-              <SpotlightCard spotlightColor="rgba(46, 74, 173, 0.18)">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl" style={{ backgroundColor: '#2E4AAD' }}>
-                  <benefit.icon className="h-6 w-6 text-white" />
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Row 1 */}
+          <FadeIn delay={0} className="md:col-span-2">
+            <div className="bento-card relative overflow-hidden rounded-2xl p-8 shadow-md h-full" style={{ minHeight: '220px' }}>
+              {/* Animated gears */}
+              <div className="bento-anim">
+                <div className="bento-gear-1 absolute" style={{ width: '80px', height: '80px', right: '0', bottom: '0' }}>
+                  <Settings className="w-full h-full" style={{ color: '#6B8DE3', opacity: 0.35 }} />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold" style={{ color: '#0B0F2E' }}>{benefit.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#1A2461' }}>{benefit.description}</p>
-              </SpotlightCard>
-            </FadeIn>
-          ))}
+                <div className="bento-gear-2 absolute" style={{ width: '50px', height: '50px', right: '60px', bottom: '40px' }}>
+                  <Settings className="w-full h-full" style={{ color: '#9B7CE8', opacity: 0.4 }} />
+                </div>
+                <div className="bento-gear-3 absolute" style={{ width: '35px', height: '35px', right: '20px', bottom: '70px' }}>
+                  <Settings className="w-full h-full" style={{ color: '#7B9BDB', opacity: 0.45 }} />
+                </div>
+              </div>
+              <div className="relative z-10">
+                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl" style={{ background: 'linear-gradient(135deg, #4F6AE8, #7B5CCC)' }}>
+                  <Zap className="h-7 w-7 text-white" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-white">Szybka Automatyzacja</h3>
+                <p className="text-base leading-relaxed max-w-md" style={{ color: 'rgba(255,255,255,0.7)' }}>Algorytmy AI przejmują monotonne zadania, zwiększając efektywność Twojego zespołu nawet o 300%.</p>
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.15}>
+            <div className="bento-card relative overflow-hidden rounded-2xl p-8 shadow-md h-full" style={{ minHeight: '220px' }}>
+              {/* Animated clock */}
+              <div className="bento-anim-top" style={{ width: '70px', height: '70px' }}>
+                <div className="rounded-full border-2 w-full h-full" style={{ borderColor: 'rgba(107,141,227,0.3)' }} />
+                <div className="bento-clock-hand absolute top-1/2 left-1/2" style={{ width: '2px', height: '28px', background: '#6B8DE3', opacity: 0.5, transformOrigin: 'bottom center', marginLeft: '-1px', marginTop: '-28px' }} />
+              </div>
+              <div className="relative z-10">
+                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl" style={{ background: 'linear-gradient(135deg, #4F6AE8, #7B5CCC)' }}>
+                  <Clock className="h-7 w-7 text-white" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-white">Szybka Implementacja</h3>
+                <p className="text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>Wdrażamy rozwiązania w tygodnie, nie miesiące. Pierwsze rezultaty widoczne od pierwszego dnia.</p>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Row 2 */}
+          <FadeIn delay={0.3}>
+            <div className="bento-card relative overflow-hidden rounded-2xl p-8 shadow-md h-full" style={{ minHeight: '220px' }}>
+              {/* Animated shield */}
+              <div className="bento-anim-top bento-shield">
+                <Shield className="w-16 h-16" style={{ color: '#6B8DE3', opacity: 0.4 }} />
+              </div>
+              <div className="relative z-10">
+                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl" style={{ background: 'linear-gradient(135deg, #4F6AE8, #7B5CCC)' }}>
+                  <Shield className="h-7 w-7 text-white" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-white">Bezpieczeństwo Danych</h3>
+                <p className="text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>Twoje dane pozostają w Polsce. Gwarantujemy pełną zgodność z RODO i certyfikację ISO.</p>
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.45} className="md:col-span-2">
+            <div className="bento-card relative overflow-hidden rounded-2xl p-8 shadow-md h-full" style={{ minHeight: '220px' }}>
+              {/* Animated bar chart */}
+              <div className="bento-anim flex items-end gap-2" style={{ height: '80px' }}>
+                <div className="bento-bar rounded-t" style={{ width: '14px', background: 'linear-gradient(180deg, #6B8DE3, #9B7CE8)', opacity: 0.35 }} />
+                <div className="bento-bar rounded-t" style={{ width: '14px', background: 'linear-gradient(180deg, #6B8DE3, #9B7CE8)', opacity: 0.4 }} />
+                <div className="bento-bar rounded-t" style={{ width: '14px', background: 'linear-gradient(180deg, #6B8DE3, #9B7CE8)', opacity: 0.45 }} />
+                <div className="bento-bar rounded-t" style={{ width: '14px', background: 'linear-gradient(180deg, #7B9BDB, #9B7CE8)', opacity: 0.5 }} />
+              </div>
+              <div className="relative z-10">
+                <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl" style={{ background: 'linear-gradient(135deg, #4F6AE8, #7B5CCC)' }}>
+                  <BarChart3 className="h-7 w-7 text-white" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-white">Mierzalne Wyniki</h3>
+                <p className="text-base leading-relaxed max-w-md" style={{ color: 'rgba(255,255,255,0.7)' }}>Śledź ROI w czasie rzeczywistym. Widoczny wzrost produktywności od pierwszego miesiąca.</p>
+              </div>
+            </div>
+          </FadeIn>
         </div>
 
       </div>
@@ -463,7 +536,7 @@ function TeamSection() {
 
 function ServicesSection() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#D6E4FF' }}>
+    <section className="pt-24 pb-6" style={{ backgroundColor: '#D6E4FF' }}>
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-16">

@@ -43,6 +43,124 @@ body {
   animation: fomoSlide 1.5s ease-out both;
 }
 
+/* Animated blobs */
+@keyframes blobDrift1 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(60px, -40px); }
+  50% { transform: translate(20px, 50px); }
+  75% { transform: translate(-40px, 20px); }
+}
+
+@keyframes blobDrift2 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-50px, 30px); }
+  50% { transform: translate(30px, -60px); }
+  75% { transform: translate(50px, 40px); }
+}
+
+@keyframes blobDrift3 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(40px, 50px); }
+  50% { transform: translate(-60px, -20px); }
+  75% { transform: translate(20px, -50px); }
+}
+
+.blob-1 { animation: blobDrift1 10s ease-in-out infinite; }
+.blob-2 { animation: blobDrift2 12s ease-in-out infinite; }
+.blob-3 { animation: blobDrift3 8s ease-in-out infinite; }
+
+/* Bento cards - dark gradient */
+.bento-card {
+  background: linear-gradient(135deg, #1a1f3a, #0f1729);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Bento animations positioning - bottom right */
+.bento-anim {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  pointer-events: none;
+}
+
+/* Bento animations positioning - top right */
+.bento-anim-top {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .bento-anim {
+    right: 8px;
+    bottom: auto;
+    top: 8px;
+    transform: scale(0.5);
+    transform-origin: top right;
+  }
+  .bento-anim-top {
+    right: 8px;
+    top: 8px;
+    transform: scale(0.5);
+    transform-origin: top right;
+  }
+}
+
+/* Gears rotation */
+@keyframes gearSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.bento-gear-1 { animation: gearSpin 8s linear infinite; }
+.bento-gear-2 { animation: gearSpin 6s linear infinite reverse; }
+.bento-gear-3 { animation: gearSpin 4s linear infinite; }
+
+/* Clock hand */
+@keyframes clockSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.bento-clock-hand {
+  animation: clockSpin 3s linear infinite;
+}
+
+/* Shield pulse */
+@keyframes shieldPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.bento-shield {
+  animation: shieldPulse 2s ease-in-out infinite;
+}
+
+/* Bar chart grow */
+@keyframes barGrow {
+  0% { height: 0; }
+  100% { height: var(--bar-height, 60px); }
+}
+
+.bento-bar {
+  animation: barGrow 1.5s ease-out infinite alternate;
+}
+
+.bento-bar:nth-child(1) { --bar-height: 35px; animation-delay: 0s; }
+.bento-bar:nth-child(2) { --bar-height: 55px; animation-delay: 0.2s; }
+.bento-bar:nth-child(3) { --bar-height: 45px; animation-delay: 0.4s; }
+.bento-bar:nth-child(4) { --bar-height: 70px; animation-delay: 0.6s; }
+
 /* Liquid Glass Morphism */
 @layer components {
   .liquid-glass {

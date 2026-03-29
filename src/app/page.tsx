@@ -302,28 +302,18 @@ function HeroSection() {
       {/* Blue overlay */}
       <div className="absolute inset-0 bg-[#0B0F2E]/60 mix-blend-multiply z-[1]" />
 
-      {/* Top bar — social icons */}
-      <div className="relative z-10 hidden md:flex items-center md:justify-start md:px-12 lg:px-20 md:pt-6 md:ml-12 lg:ml-14 w-full">
-        <div className="liquid-glass rounded-full px-3 py-2 flex items-center gap-2">
-          {[
-            { Icon: XIcon, href: 'https://x.com/InfinityTech_PL' },
-            { Icon: Linkedin, href: 'https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true' },
-          ].map(({ Icon, href }, i) => (
-            <a key={i} href={href} className="text-white hover:text-white/80 transition-colors">
-              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:scale-105 transition-transform">
-                <Icon className="w-4 h-4" />
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
-
       {/* Centered content */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-6 py-12 text-center">
-        <FadeIn delay={0.2}>
-          <p className="text-lg md:text-xl tracking-widest uppercase text-white/60 mb-4" style={{ fontFamily: 'var(--font-geist)' }}>Rewolucja AI już trwa — Twoja konkurencja nie śpi</p>
-        </FadeIn>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight text-white" style={{ fontFamily: 'var(--font-geist)' }}>
+        <div className="text-xs sm:text-sm md:text-xl tracking-wider md:tracking-widest uppercase mb-4 px-2 text-[#8BB8E8]" style={{ fontFamily: 'var(--font-geist)' }}>
+          <SplitText
+            text="Rewolucja AI już trwa — Twoja konkurencja nie śpi"
+            tag="span"
+            className="inline"
+            duration={1}
+            delay={40}
+          />
+        </div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight text-white" style={{ fontFamily: 'var(--font-geist)' }}>
           <SplitText
             text="Zautomatyzuj firmę"
             tag="span"
@@ -335,7 +325,7 @@ function HeroSection() {
         </h1>
 
         <FadeIn delay={0.5}>
-          <p className="text-lg mb-7 max-w-lg mx-auto text-white/80">
+          <p className="text-base md:text-lg mb-7 max-w-lg mx-auto text-white/80 px-2">
             Wykorzystaj potęgę agentów AI OpenCLAW, aby zautomatyzować procesy, zwiększyć efektywność i skupić się na tym, co naprawdę napędza rozwój Twojej firmy.
           </p>
         </FadeIn>
@@ -343,11 +333,11 @@ function HeroSection() {
         <FadeIn delay={0.7}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#kontakt" className="w-full sm:w-auto">
-              <Ripple className="w-full px-8 py-4 text-white text-lg bg-[#2E4AAD] hover:bg-[#1A2461] btn-grain border-2 border-[#2E4AAD]">
+              <Ripple className="w-full px-6 py-3 md:px-8 md:py-4 text-white text-base md:text-lg bg-[#2E4AAD] hover:bg-[#1A2461] btn-grain border-2 border-[#2E4AAD]">
                 Umów konsultację
               </Ripple>
             </a>
-            <a href="/case-studies" className="px-8 py-4 border-2 rounded-full font-semibold text-lg transition-all flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10">
+            <a href="/case-studies" className="px-6 py-3 md:px-8 md:py-4 border-2 rounded-full font-semibold text-base md:text-lg transition-all flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10">
               Dowiedz się więcej
               <ArrowRight className="w-5 h-5" />
             </a>
@@ -356,11 +346,23 @@ function HeroSection() {
 
       </div>
 
-      {/* Bottom section — quote centered */}
+      {/* Bottom section — social icons left + quote centered */}
       <div className="relative z-10 px-6 md:px-12 lg:px-20 pb-8">
+        {/* Social icons — bottom left */}
+        <div className="liquid-glass flex gap-2 items-center rounded-full px-2 py-1.5 mb-4 md:mb-0 md:absolute md:bottom-8 md:left-[2em] w-fit" style={{ border: '1px solid rgba(255,255,255,0.15)' }}>
+          <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
+            <XIcon className="w-4 h-4" />
+          </a>
+          <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
+            <Linkedin className="w-4 h-4" />
+          </a>
+          <a href="mailto:contact@infinityteam.io" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
+            <Mail className="w-4 h-4" />
+          </a>
+        </div>
         <div className="text-center space-y-2">
           <p className="text-xs tracking-widest uppercase text-white/50">Innowacyjne Rozwiązania</p>
-          <p className="text-white text-base lg:text-lg leading-relaxed">
+          <p className="text-white text-sm sm:text-base lg:text-lg leading-relaxed">
             &ldquo;Automatyzujemy procesy, aby Twój biznes mógł <span className="italic text-white/80">rosnąć bez granic.</span>&rdquo;
           </p>
           <div className="flex items-center justify-center gap-4">
@@ -383,14 +385,14 @@ function StatsSection() {
             <FadeIn key={i} delay={i * 0.1}>
               <div className="text-center">
                 <stat.icon className="w-8 h-8 mx-auto mb-3 text-[#2E4AAD]" />
-                <div className="text-3xl md:text-4xl font-bold mb-1">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">
                   {/^\d+$/.test(stat.value) ? (
                     <AnimatedCounter end={parseInt(stat.value)} suffix={stat.suffix} />
                   ) : (
                     <span>{stat.value}{stat.suffix}</span>
                   )}
                 </div>
-                <div className="text-sm text-[#7B9BDB]">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-[#7B9BDB]">{stat.label}</div>
               </div>
             </FadeIn>
           ))}
@@ -406,14 +408,14 @@ function BenefitsSection() {
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#0B0F2E' }}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#0B0F2E' }}>
               Dlaczego <ShinyText text="Infinity Tech?" />
             </h2>
             <p className="text-xl" style={{ color: '#7B9BDB' }}>Dostarczamy rozwiązania dopasowane do Twojej firmy</p>
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
           {BENEFITS.map((benefit, i) => (
             <FadeIn key={i} delay={i * 0.1} className="h-full">
               <SpotlightCard spotlightColor="rgba(46, 74, 173, 0.18)">
@@ -472,7 +474,7 @@ function ServicesSection() {
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#0B0F2E' }}>Nasze Rozwiązania</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#0B0F2E' }}>Nasze Rozwiązania</h2>
             <p className="text-xl" style={{ color: '#7B9BDB' }}>Wybierz plan dopasowany do Twojej firmy</p>
           </div>
         </FadeIn>
@@ -560,13 +562,13 @@ function OpenClawSection() {
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0B0F2E' }}>Budujemy na technologii, której ufa 339 000+ developerów</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0B0F2E' }}>Budujemy na technologii, której ufa 339 000+ developerów</h2>
             <p style={{ color: '#7B9BDB' }}>OpenClaw — najszybciej rosnący open-source framework agentów AI na świecie</p>
           </div>
         </FadeIn>
 
         {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-12">
           {[
             { value: '339 000+', label: 'GitHub Stars' },
             { value: '50+', label: 'Integracji z aplikacjami' },
@@ -582,7 +584,7 @@ function OpenClawSection() {
         </div>
 
         {/* Quotes */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
           {OPENCLAW_QUOTES.map((item, i) => (
             <FadeIn key={i} delay={i * 0.1}>
               <div className="rounded-2xl p-6 hover:shadow-lg transition-shadow border h-full flex flex-col" style={{ backgroundColor: 'rgba(255,255,255,0.6)', borderColor: 'rgba(46,74,173,0.12)' }}>
@@ -614,7 +616,7 @@ function TechnologySection() {
             <div className="inline-block px-4 py-2 rounded-full bg-[#7B9BDB]/20 text-[#D6E4FF] text-sm font-medium mb-4">
               Nasz silnik AI
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Technologia OpenCLAW</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Technologia OpenCLAW</h2>
             <p className="text-xl text-slate-300 mb-8">
               Wykorzystujemy OpenCLAW - otwarty framework agentów AI, który łączy komunikację 
               z potężnymi modelami językowymi, zapewniając autonomiczne działanie 24/7.
@@ -647,7 +649,7 @@ function TechnologySection() {
               </div>
 
               {/* Terminal body */}
-              <div className="p-6 font-mono text-sm space-y-3" style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}>
+              <div className="p-4 md:p-6 font-mono text-xs md:text-sm space-y-3" style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}>
                 <div className="flex items-center gap-2">
                   <span style={{ color: '#2E4AAD' }}>▸</span>
                   <span className="text-white/50">Inicjalizacja agenta...</span>
@@ -710,7 +712,7 @@ function FAQSection() {
       <div className="max-w-3xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#0B0F2E]">Częste Pytania</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-[#0B0F2E]">Częste Pytania</h2>
             <p className="text-xl text-[#7B9BDB]">Odpowiedzi na najczęściej zadawane pytania</p>
           </div>
         </FadeIn>
@@ -731,7 +733,7 @@ function ContactSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16">
           <FadeIn>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#0B0F2E]">Porozmawiajmy o Twoim projekcie</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-[#0B0F2E]">Porozmawiajmy o Twoim projekcie</h2>
             <p className="text-xl text-[#7B9BDB] mb-8">
               Skontaktuj się z nami, a przygotujemy darmową wycenę w ciągu 24 godzin.
             </p>
@@ -866,7 +868,7 @@ function CTASection() {
       
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <FadeIn>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Gotowy na Transformację?</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Gotowy na Transformację?</h2>
           <p className="text-xl text-white/80 mb-8">Dołącz do firm, które już oszczędzają czas i pieniądze z Infinity Tech</p>
           <a href="#kontakt">
             <Ripple className="px-10 py-5 bg-[#D6E4FF] text-[#0B0F2E] text-lg font-semibold">
@@ -883,7 +885,7 @@ function Footer() {
   return (
     <footer className="py-16 bg-[#0B0F2E] text-white">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="text-2xl font-bold gradient-text mb-4">Infinity Tech</div>
             <p className="text-[#7B9BDB] mb-6">

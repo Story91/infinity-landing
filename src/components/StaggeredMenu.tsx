@@ -517,6 +517,7 @@ export const StaggeredMenu = ({
             width={110}
             height={24}
           />
+          <span className={`sm-brand-center${atTop ? ' sm-brand-hero' : ' sm-brand-scroll'}`}>INFINITY</span>
         </div>
         <button
           ref={toggleBtnRef}

@@ -33,7 +33,8 @@ import {
   Instagram,
   Download,
   Settings,
-  Lightbulb
+  Lightbulb,
+  ChevronDown
 } from 'lucide-react';
 
 import SplitText from '@/components/react-bits/SplitText';
@@ -54,6 +55,7 @@ import Marquee from '@/components/react-bits/Marquee';
 import AnimatedCounter from '@/components/react-bits/AnimatedCounter';
 import ROICalculator from '@/components/ROICalculator';
 import ChatWidget from '@/components/ChatWidget';
+import StarBorder from '@/components/StarBorder';
 import ClickSpark from '@/components/react-bits/ClickSpark';
 import dynamic from 'next/dynamic';
 const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), { ssr: false });
@@ -947,19 +949,41 @@ function TechnologySection() {
 }
 
 function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
-    <section className="py-24 bg-[#D6E4FF]">
-      <div className="max-w-3xl mx-auto px-6">
+    <section className="py-24" style={{ background: 'linear-gradient(180deg, #0f1a3c, #1a2a5c)' }}>
+      <div className="max-w-[800px] mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-[#0B0F2E]">Częste Pytania</h2>
-            <p className="text-xl text-[#7B9BDB]">Odpowiedzi na najczęściej zadawane pytania</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+              Częste <span style={{ color: '#7B9AFF' }}>Pytania</span>
+            </h2>
+            <p className="text-xl text-white/50">Odpowiedzi na najczęściej zadawane pytania</p>
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.2}>
-          <Accordion items={FAQ_ITEMS} />
-        </FadeIn>
+        <div className="space-y-3">
+          {FAQ_ITEMS.map((item, i) => (
+            <FadeIn key={i} delay={i * 0.08}>
+              <StarBorder color="#7B9AFF" speed="8s" thickness={1}>
+                <button
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="flex w-full items-center justify-between p-5 text-left transition-colors hover:bg-white/[0.03]"
+                >
+                  <span className="font-medium text-white pr-4">{item.question}</span>
+                  <ChevronDown
+                    className={`h-5 w-5 flex-shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}
+                    style={{ color: '#7B9AFF' }}
+                  />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${openIndex === i ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <p className="px-5 pb-5 text-white/70 text-sm leading-relaxed">{item.answer}</p>
+                </div>
+              </StarBorder>
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1277,11 +1301,11 @@ export default function LandingPage() {
         
         <TechnologySection />
         
+        <ContactCTASection />
+
         <div id="faq">
           <FAQSection />
         </div>
-        
-        <ContactCTASection />
       </main>
 
       <Footer />

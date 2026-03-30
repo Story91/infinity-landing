@@ -2,7 +2,7 @@
   perspective: 500px;
   transform: translate3d(0, 0, 0.1px);
   position: relative;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .pc-behind {
@@ -190,11 +190,11 @@
 @keyframes holo-bg { 0% { background-position: 0 var(--background-y), 0 0, center; } 100% { background-position: 0 var(--background-y), 90% 90%, center; } }
 
 @media (max-width: 768px) {
-  .pc-card { max-height: 220px; }
+  .pc-card { max-height: 300px; }
   .pc-details { top: 0.5em; }
   .pc-details h3 { font-size: min(2.5svh, 1em); }
   .pc-details p { font-size: 8px; top: -2px; }
-  .pc-bio { font-size: 7px; padding: 0 0.5em; }
+  .pc-bio { font-size: 6px; padding: 0 0.4em; line-height: 1.3; }
   .pc-user-info { --ui-inset: 8px; padding: 6px 8px; }
   .pc-mini-avatar { width: 20px; height: 20px; }
   .pc-user-details { gap: 6px; }
@@ -205,9 +205,9 @@
 }
 
 @media (max-width: 480px) {
-  .pc-card { max-height: 160px; }
-  .pc-details { top: 0.4em; }
+  .pc-card { max-height: 260px; }
+  .pc-details { top: 0.3em; }
   .pc-details h3 { font-size: min(2svh, 0.85em); }
-  .pc-details p { font-size: 7px; top: -2px; }
-  .pc-bio { font-size: 6px; padding: 0 0.3em; }
+  .pc-details p { font-size: 6px; top: -2px; }
+  .pc-bio { font-size: 5.5px; padding: 0 0.3em; line-height: 1.2; }
 }

@@ -1056,42 +1056,41 @@ function Footer() {
   return (
     <footer className="py-16 bg-[#0B0F2E] text-white">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
             <div className="text-2xl font-bold gradient-text mb-4">Infinity Tech</div>
             <p className="text-[#7B9BDB] mb-6">
               Tworzymy przyszłość biznesu z AI. Automatyzujemy, optymalizujemy, transformujemy.
             </p>
-            <div className="flex gap-4">
-              <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1A2461] flex items-center justify-center hover:bg-[#2E4AAD] transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
+            <div className="flex gap-3">
               <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1A2461] flex items-center justify-center hover:bg-[#2E4AAD] transition-colors">
                 <XIcon className="w-5 h-5" />
               </a>
-              <a href="https://youtube.com/@infinitytech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1A2461] flex items-center justify-center hover:bg-[#2E4AAD] transition-colors">
-                <Youtube className="w-5 h-5" />
+              <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1A2461] flex items-center justify-center hover:bg-[#2E4AAD] transition-colors">
+                <Linkedin className="w-5 h-5" />
               </a>
-              <a href="https://wa.me/infinitytech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1A2461] flex items-center justify-center hover:bg-[#2E4AAD] transition-colors">
-                <Send className="w-5 h-5" />
-              </a>
-              <a href="https://t.me/infinitytech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1A2461] flex items-center justify-center hover:bg-[#2E4AAD] transition-colors">
-                <Send className="w-5 h-5" />
+              <a href="mailto:contact@infinityteam.io" className="w-10 h-10 rounded-full bg-[#1A2461] flex items-center justify-center hover:bg-[#2E4AAD] transition-colors">
+                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Na skróty</h4>
-            <ul className="space-y-2 text-[#7B9BDB]">
-              <li><a href="#start" className="hover:text-white transition-colors">Start</a></li>
-              <li><a href="#o-nas" className="hover:text-white transition-colors">O nas</a></li>
-              <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#kontakt" className="hover:text-white transition-colors">Kontakt</a></li>
-            </ul>
+            <h4 className="font-semibold mb-4 text-white/90">Na skróty</h4>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-[#7B9BDB]">
+              <a href="#start" className="hover:text-white transition-colors text-sm">Start</a>
+              <a href="/blog" className="hover:text-white transition-colors text-sm">Blog</a>
+              <a href="#o-nas" className="hover:text-white transition-colors text-sm">O nas</a>
+              <a href="/case-studies" className="hover:text-white transition-colors text-sm">Case Studies</a>
+              <a href="#uslugi" className="hover:text-white transition-colors text-sm">Co robimy</a>
+              <a href="/kalkulator" className="hover:text-white transition-colors text-sm">Kalkulator ROI</a>
+              <a href="#faq" className="hover:text-white transition-colors text-sm">FAQ</a>
+              <a href="#kontakt" className="hover:text-white transition-colors text-sm">Kontakt</a>
+            </div>
           </div>
           
+          {/* Usługi — ukryte, do przywrócenia */}
+          {/*
           <div>
             <h4 className="font-semibold mb-4">Usługi</h4>
             <ul className="space-y-2 text-[#7B9BDB]">
@@ -1101,6 +1100,7 @@ function Footer() {
               <li><a href="#" className="hover:text-white transition-colors">Konsultacje</a></li>
             </ul>
           </div>
+          */}
           
           <div>
             <h4 className="font-semibold mb-4">Newsletter</h4>

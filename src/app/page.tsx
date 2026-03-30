@@ -719,25 +719,25 @@ function TechBentoSection() {
 
           {/* Row 3: Channels (full width) */}
           <FadeIn delay={0.3} className="md:col-span-3">
-            <div className="tech-tile relative overflow-hidden rounded-2xl py-10" style={{ background: '#f0f4ff' }}>
+            <div className="tech-tile relative overflow-hidden rounded-2xl py-10" style={{ background: '#D6E4FF' }}>
               <div className="px-8 mb-6 text-center">
                 <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0B0F2E' }}>23+ kanałów komunikacji</h3>
                 <p className="text-base" style={{ color: '#7B9BDB' }}>Twój agent AI działa tam, gdzie Ty i Twoi klienci</p>
               </div>
               <Marquee speed={25} pauseOnHover={true} direction="right" className="py-2">
                 {allChannels.map((ch, i) => (
-                  <div key={i} className="channel-tile flex items-center gap-2 px-4 mx-2 py-2.5 rounded-xl min-w-[140px] whitespace-nowrap">
+                  <div key={i} className="flex items-center gap-2 mx-4 whitespace-nowrap">
                     {ch.name === 'Slack' ? (
-                      <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="#0B0F2E"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521 2.52A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.312z"/></svg>
+                      <svg className="flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="#0B0F2E"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521 2.52A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.312z"/></svg>
                     ) : ch.name === 'MS Teams' ? (
-                      <svg className="flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="#0B0F2E"><path d="M20.625 8.5h-1.5V6.25a1.875 1.875 0 0 0-1.875-1.875h-.375a2.625 2.625 0 1 0-3.75-1.453V4.5H9.75A1.875 1.875 0 0 0 7.875 6.375V13.5a1.875 1.875 0 0 0 1.875 1.875h5.625A1.875 1.875 0 0 0 17.25 13.5v-.75h1.5a1.125 1.125 0 0 0 1.125-1.125v-2A1.125 1.125 0 0 0 20.625 8.5zM17.25 3.375a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zM6 8.5H2.25A1.125 1.125 0 0 0 1.125 9.625v4.5A1.125 1.125 0 0 0 2.25 15.25h1.5v2.625a.375.375 0 0 0 .638.265L6.75 15.25H7.5V9.625A1.125 1.125 0 0 0 6 8.5z"/></svg>
+                      <svg className="flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="#0B0F2E"><path d="M20.625 8.5h-1.5V6.25a1.875 1.875 0 0 0-1.875-1.875h-.375a2.625 2.625 0 1 0-3.75-1.453V4.5H9.75A1.875 1.875 0 0 0 7.875 6.375V13.5a1.875 1.875 0 0 0 1.875 1.875h5.625A1.875 1.875 0 0 0 17.25 13.5v-.75h1.5a1.125 1.125 0 0 0 1.125-1.125v-2A1.125 1.125 0 0 0 20.625 8.5zM17.25 3.375a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zM6 8.5H2.25A1.125 1.125 0 0 0 1.125 9.625v4.5A1.125 1.125 0 0 0 2.25 15.25h1.5v2.625a.375.375 0 0 0 .638.265L6.75 15.25H7.5V9.625A1.125 1.125 0 0 0 6 8.5z"/></svg>
                     ) : ch.icon ? (
                       /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={ch.icon} alt={ch.name} width={20} height={20} className="flex-shrink-0" />
+                      <img src={ch.icon} alt={ch.name} width={18} height={18} className="flex-shrink-0" />
                     ) : (
-                      <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style={{ backgroundColor: '#4F6AE8' }}>{ch.name.charAt(0)}</span>
+                      <span className="w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-bold text-white flex-shrink-0" style={{ backgroundColor: '#4F6AE8' }}>{ch.name.charAt(0)}</span>
                     )}
-                    <span className="font-medium text-[13px]" style={{ color: '#0B0F2E' }}>{ch.name}</span>
+                    <span className="font-medium text-sm" style={{ color: '#0B0F2E' }}>{ch.name}</span>
                   </div>
                 ))}
               </Marquee>

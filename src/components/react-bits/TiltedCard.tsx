@@ -61,8 +61,8 @@ export default function TiltedCard({
         style={{
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transformStyle: 'preserve-3d',
-          borderColor: 'rgba(46,74,173,0.12)',
-          backgroundColor: '#ffffff',
+          borderColor: 'rgba(123,155,219,0.12)',
+          backgroundColor: '#0A1628',
         }}
       >
 
@@ -106,11 +106,11 @@ export default function TiltedCard({
               <span className="text-3xl font-bold" style={{ color: accentColor }}>
                 {price}
               </span>
-              <span className="text-sm" style={{ color: '#7B9BDB' }}> zł/miesiąc</span>
+              <span className="text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}> zł/miesiąc</span>
             </div>
           )}
 
-          <h3 className="text-lg font-bold mb-1" style={{ color: '#0B0F2E' }}>{title}</h3>
+          <h3 className="text-lg font-bold mb-1 text-white">{title}</h3>
 
           {featured && badgeText && (
             <span className="inline-block w-fit px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-white mb-2" style={{ backgroundColor: accentColor }}>
@@ -119,14 +119,14 @@ export default function TiltedCard({
           )}
 
           {description && (
-            <p className={`text-sm mb-4 ${!features || features.length === 0 ? 'flex-1 text-base leading-relaxed' : ''}`} style={{ color: '#7B9BDB' }}>{description}</p>
+            <p className={`text-sm mb-4 ${!features || features.length === 0 ? 'flex-1 text-base leading-relaxed' : ''}`} style={{ color: 'rgba(255,255,255,0.5)' }}>{description}</p>
           )}
 
           <div className="flex-1">
             {features && features.length > 0 && (
               <ul className="space-y-2.5">
                 {features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2 text-sm" style={{ color: '#1A2461' }}>
+                  <li key={index} className="flex items-start gap-2 text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
                     <CheckCircle2
                       className="h-4 w-4 mt-0.5 flex-shrink-0"
                       style={{ color: accentColor }}

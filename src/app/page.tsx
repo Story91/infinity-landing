@@ -156,7 +156,7 @@ const SERVICES = [
     description: 'Konsultacje, audyt procesów i strategia AI dla firm, które chcą zacząć ale nie wiedzą od czego. Pokażemy Ci gdzie AI zaoszczędzi Ci czas i pieniądze, oszacujemy ROI i przygotujemy plan wdrożenia krok po kroku.',
     price: '',
     features: [],
-    accentColor: '#0B0F2E',
+    accentColor: '#4F6AE8',
     featured: false
   },
   {

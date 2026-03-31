@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { 
@@ -480,8 +480,32 @@ function TeamSection2() {
 }
 
 function BenefitsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const cards = sectionRef.current?.querySelectorAll('.bento-card') as NodeListOf<HTMLElement>;
+    if (!cards) return;
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      const dist = Math.hypot(e.clientX - (rect.left + rect.width / 2), e.clientY - (rect.top + rect.height / 2));
+      const maxDist = 400;
+      const intensity = Math.max(0, 1 - dist / maxDist);
+      card.style.setProperty('--glow-x', `${x}%`);
+      card.style.setProperty('--glow-y', `${y}%`);
+      card.style.setProperty('--glow-intensity', intensity.toString());
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const cards = sectionRef.current?.querySelectorAll('.bento-card') as NodeListOf<HTMLElement>;
+    if (!cards) return;
+    cards.forEach(card => card.style.setProperty('--glow-intensity', '0'));
+  }, []);
+
   return (
-    <section className="pt-6 pb-24 relative overflow-hidden" style={{ backgroundColor: '#050B1F' }}>
+    <section ref={sectionRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="pt-6 pb-24 relative overflow-hidden" style={{ backgroundColor: '#050B1F' }}>
       {/* Bottom fade */}
       <div className="absolute inset-x-0 bottom-0 h-40 z-[2]" style={{ background: 'linear-gradient(to bottom, transparent 0%, #0A1628 100%)' }} />
       {/* Animated blobs */}

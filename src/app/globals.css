@@ -97,19 +97,48 @@ section {
 .blob-2 { animation: blobDrift2 24s ease-in-out infinite; }
 .blob-3 { animation: blobDrift3 18s ease-in-out infinite; }
 
-/* Bento cards - dark gradient */
+/* Bento cards - dark gradient with border glow */
 .bento-card {
   background: linear-gradient(135deg, #1a1f3a, #0f1729);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(123, 155, 219, 0.1);
   border-radius: 16px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 300px;
 }
 
 .bento-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(123, 155, 219, 0.2);
+  box-shadow: 0 8px 30px rgba(79, 106, 232, 0.15);
+}
+
+.bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 6px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(123, 155, 219, calc(var(--glow-intensity) * 0.7)) 0%,
+    rgba(79, 106, 232, calc(var(--glow-intensity) * 0.3)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Bento animations positioning - bottom right */

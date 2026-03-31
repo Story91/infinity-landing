@@ -420,49 +420,59 @@ function StatsSection() {
 }
 
 function TeamSection2() {
+  const matteGlow = 'rgba(79,106,232,0.3)';
+  const matteGradient = 'linear-gradient(145deg, #0A1628 0%, #152040 100%)';
   const team = [
-    { name: 'Imię Nazwisko', title: 'CEO & Founder', handle: 'ceo', avatar: 'https://i.pravatar.cc/400?img=68', bio: 'Wizjoner i strateg z 10-letnim doświadczeniem w AI i transformacji cyfrowej.', glow: 'rgba(192, 132, 252, 0.67)', gradient: 'linear-gradient(145deg,#3a2060 0%,#7B9AFF44 100%)' },
-    { name: 'Imię Nazwisko', title: 'Business Development', handle: 'bizdev', avatar: 'https://i.pravatar.cc/400?img=52', bio: 'Buduje relacje z klientami enterprise i rozwija partnerstwa strategiczne.', glow: 'rgba(96, 165, 250, 0.67)', gradient: 'linear-gradient(145deg,#1a3060 0%,#60A5FA44 100%)' },
-    { name: 'Imię Nazwisko', title: 'CTO & Security', handle: 'cto', avatar: 'https://i.pravatar.cc/400?img=14', bio: 'Architekt systemów AI z certyfikacją ISO 27001 i doświadczeniem w cyberbezpieczeństwie.', glow: 'rgba(52, 211, 153, 0.67)', gradient: 'linear-gradient(145deg,#1a4040 0%,#34D39944 100%)' },
-    { name: 'Imię Nazwisko', title: 'Lead Developer', handle: 'leaddev', avatar: 'https://i.pravatar.cc/400?img=33', bio: 'Full-stack developer specjalizujący się w OpenClaw i integracji API.', glow: 'rgba(245, 158, 11, 0.67)', gradient: 'linear-gradient(145deg,#4a3010 0%,#F59E0B44 100%)' },
-    { name: 'Imię Nazwisko', title: 'AI Engineer', handle: 'aiengineer', avatar: 'https://i.pravatar.cc/400?img=12', bio: 'Projektuje i trenuje agentów AI, optymalizuje modele językowe pod klienta.', glow: 'rgba(244, 114, 182, 0.67)', gradient: 'linear-gradient(145deg,#50203a 0%,#F472B644 100%)' },
-    { name: 'Imię Nazwisko', title: 'Product Designer', handle: 'designer', avatar: 'https://i.pravatar.cc/400?img=25', bio: 'Tworzy interfejsy dashboardów AI i doświadczenia użytkownika.', glow: 'rgba(56, 189, 248, 0.67)', gradient: 'linear-gradient(145deg,#103050 0%,#38BDF844 100%)' },
-    { name: 'Imię Nazwisko', title: 'DevOps Engineer', handle: 'devops', avatar: 'https://i.pravatar.cc/400?img=59', bio: 'Zarządza infrastrukturą chmurową i CI/CD dla wdrożeń agentów AI.', glow: 'rgba(167, 139, 250, 0.67)', gradient: 'linear-gradient(145deg,#2a2060 0%,#A78BFA44 100%)' },
-    { name: 'Imię Nazwisko', title: 'Marketing Manager', handle: 'marketing', avatar: 'https://i.pravatar.cc/400?img=47', bio: 'Odpowiada za growth marketing, content i budowanie marki Infinity Tech.', glow: 'rgba(251, 146, 60, 0.67)', gradient: 'linear-gradient(145deg,#4a2a10 0%,#FB923C44 100%)' },
+    { name: 'Imię Nazwisko', title: 'CEO & Founder', handle: 'ceo', avatar: 'https://i.pravatar.cc/400?img=68', bio: 'Wizjoner i strateg z 10-letnim doświadczeniem w AI i transformacji cyfrowej.', glow: matteGlow, gradient: matteGradient },
+    { name: 'Imię Nazwisko', title: 'Business Development', handle: 'bizdev', avatar: 'https://i.pravatar.cc/400?img=52', bio: 'Buduje relacje z klientami enterprise i rozwija partnerstwa strategiczne.', glow: matteGlow, gradient: matteGradient },
+    { name: 'Imię Nazwisko', title: 'CTO & Security', handle: 'cto', avatar: 'https://i.pravatar.cc/400?img=14', bio: 'Architekt systemów AI z certyfikacją ISO 27001 i doświadczeniem w cyberbezpieczeństwie.', glow: matteGlow, gradient: matteGradient },
+    { name: 'Imię Nazwisko', title: 'Lead Developer', handle: 'leaddev', avatar: 'https://i.pravatar.cc/400?img=33', bio: 'Full-stack developer specjalizujący się w OpenClaw i integracji API.', glow: matteGlow, gradient: matteGradient },
+    { name: 'Imię Nazwisko', title: 'AI Engineer', handle: 'aiengineer', avatar: 'https://i.pravatar.cc/400?img=12', bio: 'Projektuje i trenuje agentów AI, optymalizuje modele językowe pod klienta.', glow: matteGlow, gradient: matteGradient },
+    { name: 'Imię Nazwisko', title: 'Product Designer', handle: 'designer', avatar: 'https://i.pravatar.cc/400?img=25', bio: 'Tworzy interfejsy dashboardów AI i doświadczenia użytkownika.', glow: matteGlow, gradient: matteGradient },
   ];
 
   return (
     <section className="py-20" style={{ backgroundColor: '#0A1628' }}>
       <div className="max-w-7xl mx-auto px-6">
-        <FadeIn>
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
-              Nasz <span style={{ color: '#7B9BDB' }}>Zespół</span>
-            </h2>
-            <p className="text-white/50">Ludzie, którzy stoją za Infinity Tech</p>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-center">
+          {/* Left — cards */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {team.map((person, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <ProfileCard
+                  name={person.name}
+                  title={person.title}
+                  handle={person.handle}
+                  status="Infinity Tech"
+                  avatarUrl={person.avatar}
+                  showUserInfo={false}
+                  enableTilt={true}
+                  enableMobileTilt={false}
+                  behindGlowEnabled={true}
+                  behindGlowColor={person.glow}
+                  innerGradient={person.gradient}
+                  bio={person.bio}
+                  contactText="Kontakt"
+                />
+              </FadeIn>
+            ))}
           </div>
-        </FadeIn>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {team.map((person, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <ProfileCard
-                name={person.name}
-                title={person.title}
-                handle={person.handle}
-                status="Infinity Tech"
-                avatarUrl={person.avatar}
-                showUserInfo={false}
-                enableTilt={true}
-                enableMobileTilt={false}
-                behindGlowEnabled={true}
-                behindGlowColor={person.glow}
-                innerGradient={person.gradient}
-                bio={person.bio}
-                contactText="Kontakt"
-              />
-            </FadeIn>
-          ))}
+          {/* Right — motto */}
+          <FadeIn delay={0.3}>
+            <div className="text-center lg:text-left">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 text-white">
+                Nasz <span style={{ color: '#7B9BDB' }}>Zespół</span>
+              </h2>
+              <p className="text-white/50 text-xl mb-7">
+                Ludzie, którzy stoją za Infinity Tech
+              </p>
+              <div className="h-px w-20 bg-[#7B9BDB]/30 mx-auto lg:mx-0 mb-7" />
+              <p className="text-white/70 text-lg leading-relaxed">
+                Łączymy ekspertyzę w AI, inżynierii oprogramowania i strategii biznesowej. Każdy z nas wnosi unikalne doświadczenie, ale łączy nas jedna misja — automatyzować firmy tak, by mogły rosnąć bez granic.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>

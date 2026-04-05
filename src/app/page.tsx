@@ -57,8 +57,9 @@ import ROICalculator from '@/components/ROICalculator';
 import ChatWidget from '@/components/ChatWidget';
 import StarBorder from '@/components/StarBorder';
 import ClickSpark from '@/components/react-bits/ClickSpark';
-import ParticleDivider from '@/components/ParticleDivider';
 import dynamic from 'next/dynamic';
+const Background3D = dynamic(() => import('@/components/Background3D'), { ssr: false });
+const HeroGlobe = dynamic(() => import('@/components/HeroGlobe'), { ssr: false });
 const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), { ssr: false });
 
 // X (Twitter) icon
@@ -294,73 +295,84 @@ const BENEFITS = [
 function HeroSection() {
   return (
     <>
-    <section className="min-h-screen flex flex-col relative overflow-hidden">
-      {/* Video background */}
+    <section
+      className="flex flex-col relative overflow-hidden"
+      style={{
+        minHeight: 'calc(100vh + 250px)',
+        WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%)',
+        maskImage: 'linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%)',
+      }}
+    >
+      {/* Rotating globe video — blue-tinted */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute left-1/2 -translate-x-1/2 min-w-[250%] min-h-full md:min-w-full md:w-full md:left-0 md:translate-x-0 object-cover z-0 bottom-0 md:top-0 md:bottom-auto"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ filter: 'brightness(0.55) saturate(0.15) sepia(1) hue-rotate(190deg)' }}
       >
         <source
-          src="/hero-section.mp4"
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4"
           type="video/mp4"
         />
       </video>
+      {/* Dark blue overlay for brand color matching */}
+      <div className="absolute inset-0 bg-[#0B0F2E]/50 z-[1]" />
 
-      {/* Blue overlay */}
-      <div className="absolute inset-0 bg-[#0B0F2E]/60 mix-blend-multiply z-[1]" />
-
-      {/* Bottom fade — blends video into dark section below */}
-      <div className="absolute inset-x-0 bottom-0 h-40 z-[2]" style={{ background: 'linear-gradient(to bottom, transparent 0%, #0B0F2E 100%)' }} />
-
-      {/* Centered content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-6 py-12 text-center">
-        <div className="text-xs sm:text-sm md:text-xl tracking-wider md:tracking-widest uppercase mb-4 px-2 text-[#8BB8E8]" style={{ fontFamily: 'var(--font-geist)' }}>
-          <SplitText
-            text="Rewolucja AI już trwa — konkurencja nie śpi"
-            tag="span"
-            className="inline"
-            duration={1}
-            delay={40}
-          />
-        </div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight text-white" style={{ fontFamily: 'var(--font-geist)' }}>
-          <SplitText
-            text="Zautomatyzuj firmę"
-            tag="span"
-            className="block mb-2"
-            duration={1}
-            delay={80}
-          />
-          <ShinyText text="z agentami AI" />
-        </h1>
-
-        <FadeIn delay={0.5}>
-          <p className="text-base md:text-lg mb-7 max-w-lg mx-auto text-white/80 px-2">
-            Wykorzystaj potęgę agentów AI OpenCLAW, aby zautomatyzować procesy, zwiększyć efektywność i skupić się na tym, co naprawdę napędza rozwój Twojej firmy.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={0.7}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#kontakt" className="w-full sm:w-auto">
-              <Ripple className="w-full px-6 py-3 md:px-8 md:py-4 text-white text-base md:text-lg bg-[#2E4AAD] hover:bg-[#1A2461] btn-grain border-2 border-[#2E4AAD]">
-                Umów konsultację
-              </Ripple>
-            </a>
-            <a href="/case-studies" className="px-6 py-3 md:px-8 md:py-4 border-2 rounded-full font-semibold text-base md:text-lg transition-all flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10">
-              Dowiedz się więcej
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </div>
-        </FadeIn>
-
+      {/* Fog layers at transition zone */}
+      <div className="absolute inset-x-0 bottom-0 h-[300px] z-[3] pointer-events-none overflow-hidden">
+        <div className="absolute w-[120%] h-[300px] left-[-10%]" style={{ background: 'radial-gradient(ellipse at center, rgba(46,74,173,0.15) 0%, transparent 70%)', filter: 'blur(40px)', animation: 'fogDrift1 20s infinite alternate ease-in-out' }} />
+        <div className="absolute w-[80%] h-[200px] right-[-10%] top-[20px]" style={{ background: 'radial-gradient(ellipse at center, rgba(123,155,219,0.1) 0%, transparent 60%)', filter: 'blur(40px)', animation: 'fogDrift2 25s infinite alternate-reverse ease-in-out' }} />
       </div>
 
-      {/* Bottom section — social icons left + quote centered */}
-      <div className="relative z-10 px-6 md:px-12 lg:px-20 pb-8">
+      {/* All hero content pinned to first 100vh */}
+      <div className="relative z-10 flex flex-col w-full" style={{ height: '100vh' }}>
+        {/* Centered content */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-6 py-12 text-center">
+          <div className="text-xs sm:text-sm md:text-xl tracking-wider md:tracking-widest uppercase mb-4 px-2 text-[#8BB8E8]" style={{ fontFamily: 'var(--font-geist)' }}>
+            <SplitText
+              text="Rewolucja AI już trwa — konkurencja nie śpi"
+              tag="span"
+              className="inline"
+              duration={1}
+              delay={40}
+            />
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight text-white" style={{ fontFamily: 'var(--font-geist)' }}>
+            <SplitText
+              text="Zautomatyzuj firmę"
+              tag="span"
+              className="block mb-2"
+              duration={1}
+              delay={80}
+            />
+            <ShinyText text="z agentami AI" />
+          </h1>
+
+          <FadeIn delay={0.5}>
+            <p className="text-base md:text-lg mb-7 max-w-lg mx-auto text-white/80 px-2">
+              Wykorzystaj potęgę agentów AI OpenCLAW, aby zautomatyzować procesy, zwiększyć efektywność i skupić się na tym, co naprawdę napędza rozwój Twojej firmy.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.7}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#kontakt" className="w-full sm:w-auto">
+                <Ripple className="w-full px-6 py-3 md:px-8 md:py-4 text-white text-base md:text-lg bg-[#2E4AAD] hover:bg-[#1A2461] btn-grain border-2 border-[#2E4AAD]">
+                  Umów konsultację
+                </Ripple>
+              </a>
+              <a href="/case-studies" className="px-6 py-3 md:px-8 md:py-4 border-2 rounded-full font-semibold text-base md:text-lg transition-all flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10">
+                Dowiedz się więcej
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
+          </FadeIn>
+        </div>
+
+        {/* Bottom section — social icons left + quote centered */}
+        <div className="px-6 md:px-12 lg:px-20 pb-8">
         {/* Social icons — bottom left */}
         <div className="liquid-glass flex gap-2 items-center rounded-full px-2 py-1.5 mx-auto md:mx-0 mb-5 md:mb-0 md:absolute md:bottom-8 md:left-[2em] w-fit" style={{ border: '1px solid rgba(255,255,255,0.15)' }}>
           <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
@@ -385,17 +397,17 @@ function HeroSection() {
           </div>
         </div>
       </div>
+      {/* end 100vh wrapper */}
+      </div>
     </section>
 
-    {/* Ambient transition */}
-    <ParticleDivider fromColor="#0B0F2E" toColor="#0A1628" />
     </>
   );
 }
 
 function StatsSection() {
   return (
-    <section className="pt-8 pb-16" style={{ backgroundColor: '#0A1628' }}>
+    <section className="pt-8 pb-16 -mt-[250px] relative z-[5]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map((stat, i) => (
@@ -432,7 +444,7 @@ function TeamSection2() {
   ];
 
   return (
-    <section className="py-20" style={{ backgroundColor: '#0A1628' }}>
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-center">
           {/* Left — cards */}
@@ -505,9 +517,8 @@ function BenefitsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="pt-6 pb-24 relative overflow-hidden" style={{ backgroundColor: '#050B1F' }}>
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-40 z-[2]" style={{ background: 'linear-gradient(to bottom, transparent 0%, #0A1628 100%)' }} />
+    <section ref={sectionRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="pt-6 pb-24 relative overflow-hidden">
+      {/* Bottom fade — disabled for transparent bg */}
       {/* Animated blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="blob-1 absolute rounded-full" style={{ width: '300px', height: '300px', background: '#4F6AE8', opacity: 0.05, filter: 'blur(80px)', top: '10%', left: '-5%' }} />
@@ -610,7 +621,7 @@ function BenefitsSection() {
 
 function TeamSection() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#0A1628' }}>
+    <section className="py-24">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-16">
@@ -641,7 +652,7 @@ function TeamSection() {
 
 function ServicesSection() {
   return (
-    <section className="pt-24 pb-6" style={{ backgroundColor: '#050B1F' }}>
+    <section className="pt-24 pb-6">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-16">
@@ -676,7 +687,7 @@ function TechBentoSection() {
   const allChannels = [...CHANNELS, ...CHANNELS, ...CHANNELS];
 
   return (
-    <section className="py-20" style={{ backgroundColor: '#0A1628' }}>
+    <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-12">
@@ -792,7 +803,7 @@ function TechBentoSection() {
 // Sekcja OpenClaw social proof — Raycast milestones + quotes
 function OpenClawSection() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#050B1F' }}>
+    <section className="py-24">
       <div className="max-w-6xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-14">
@@ -888,7 +899,7 @@ function OpenClawSection() {
 
 function TechnologySection() {
   return (
-    <section className="py-24 text-white relative overflow-hidden" style={{ backgroundColor: '#0A1628' }}>
+    <section className="py-24 text-white relative overflow-hidden">
       <Aurora colorStops={['#2E4AAD', '#7B9BDB', '#2E4AAD']} speed={0.8} blend={0.3} amplitude={1.2} />
       <Particles quantity={30} color="#7B9BDB" speed={0.5} />
       <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -991,7 +1002,7 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24" style={{ backgroundColor: '#0A1628' }}>
+    <section className="py-24">
       <div className="max-w-[800px] mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-12">
@@ -1032,7 +1043,7 @@ function ContactCTASection() {
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
 
   return (
-    <section id="kontakt" style={{ backgroundColor: '#050B1F' }}>
+    <section id="kontakt">
 
       <div>
         {/* Header */}
@@ -1165,7 +1176,7 @@ function ContactCTASection() {
 
 function Footer() {
   return (
-    <footer className="py-16 text-white" style={{ backgroundColor: '#050B1F' }}>
+    <footer className="py-16 text-white">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div>
@@ -1264,7 +1275,10 @@ export default function LandingPage() {
 
   return (
     <ClickSpark sparkColor="#7B9BDB" sparkSize={12} sparkRadius={20} sparkCount={8} duration={500}>
-    <div className="min-h-screen bg-[#050B1F] text-white">
+    <div className="min-h-screen text-white relative">
+      {/* Full-page 3D background */}
+      <Background3D />
+
       {/* Navigation - StaggeredMenu */}
       <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 50, pointerEvents: 'none' }}>
         <StaggeredMenu
@@ -1286,55 +1300,37 @@ export default function LandingPage() {
         />
       </div>
 
-      <main>
+      <main className="relative" style={{ zIndex: 1 }}>
         <div id="start">
           <HeroSection />
         </div>
 
         <StatsSection />
 
-        <ParticleDivider fromColor="#0A1628" toColor="#050B1F" />
-
         <div id="uslugi">
           <ServicesSection />
         </div>
 
-        <ParticleDivider fromColor="#050B1F" toColor="#0A1628" />
-
         <TeamSection2 />
-
-        <ParticleDivider fromColor="#0A1628" toColor="#050B1F" />
 
         <div id="o-nas">
           <BenefitsSection />
         </div>
 
-        <ParticleDivider fromColor="#0A1628" toColor="#0A1628" />
-
         <TechBentoSection />
-
-        <ParticleDivider fromColor="#0A1628" toColor="#050B1F" />
 
         <OpenClawSection />
 
-        <ParticleDivider fromColor="#050B1F" toColor="#0A1628" />
-
         <TechnologySection />
 
-        <ParticleDivider fromColor="#0A1628" toColor="#050B1F" />
-
         <ContactCTASection />
-
-        <ParticleDivider fromColor="#050B1F" toColor="#0A1628" />
 
         <div id="faq">
           <FAQSection />
         </div>
+        <Footer />
       </main>
 
-      <ParticleDivider fromColor="#0A1628" toColor="#050B1F" />
-      <Footer />
-      
       <ChatWidget />
 
     </div>

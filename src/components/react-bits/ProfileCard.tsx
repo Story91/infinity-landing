@@ -37,6 +37,7 @@ interface ProfileCardProps {
   contactText?: string;
   showUserInfo?: boolean;
   onContactClick?: () => void;
+  avatarStyle?: React.CSSProperties;
   // Legacy props for backward compatibility
   role?: string;
   bio?: string;
@@ -64,6 +65,7 @@ const ProfileCardComponent = ({
   contactText = 'Kontakt',
   showUserInfo = true,
   onContactClick,
+  avatarStyle,
   bio,
   // Legacy
   image,
@@ -203,7 +205,7 @@ const ProfileCardComponent = ({
             <div className="pc-glare" />
             <div className="pc-content pc-avatar-content">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="avatar" src={finalAvatar} alt={`${name} avatar`} loading="lazy" onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+              <img className="avatar" src={finalAvatar} alt={`${name} avatar`} loading="lazy" style={avatarStyle} onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
               {showUserInfo && (
                 <div className="pc-user-info">
                   <div className="pc-user-details">

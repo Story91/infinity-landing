@@ -253,42 +253,42 @@ const QUOTE_AVATARS: Record<string, string> = {
 
 const OPENCLAW_QUOTES = [
   {
-    quote: 'OpenClaw is the operating system for personal AI. This is the moment the industry has been waiting for — the beginning of a new renaissance in software.',
+    quote: 'OpenClaw to system operacyjny dla osobistego AI. To moment, na który branża czekała — początek nowego renesansu oprogramowania.',
     author: 'Jensen Huang',
     role: 'CEO NVIDIA'
   },
   {
-    quote: 'Peter Steinberger is a genius with a lot of amazing ideas about the future of very smart agents interacting with each other to do very useful things for people.',
+    quote: 'Peter Steinberger to geniusz z niesamowitymi pomysłami na przyszłość inteligentnych agentów współpracujących ze sobą.',
     author: 'Sam Altman',
     role: 'CEO OpenAI'
   },
   {
-    quote: 'OpenClaw brings people closer to AI and helps create a world where everyone has their own agents.',
+    quote: 'OpenClaw przybliża ludzi do AI i pomaga budować świat, w którym każdy ma własnych agentów.',
     author: 'Peter Steinberger',
     role: 'Twórca OpenClaw'
   },
   {
-    quote: 'OpenClaw opened the next frontier of AI to everyone and became the fastest-growing open source project in history.',
+    quote: 'OpenClaw otworzył nową granicę AI dla wszystkich i stał się najszybciej rosnącym projektem open source w historii.',
     author: 'Jensen Huang',
     role: 'CEO NVIDIA'
   },
   {
-    quote: 'Claude Code and OpenClaw have sparked the agent inflection point — extending AI beyond generation and reasoning into action.',
+    quote: 'Claude Code i OpenClaw wywołały punkt przełomowy agentów — rozszerzając AI poza generowanie i rozumowanie, w stronę działania.',
     author: 'Jensen Huang',
     role: 'CEO NVIDIA'
   },
   {
-    quote: 'AI won\'t replace humans, but those humans who use AI will replace those who don\'t.',
+    quote: 'AI nie zastąpi ludzi, ale ludzie korzystający z AI zastąpią tych, którzy tego nie robią.',
     author: 'Mustafa Suleyman',
     role: 'CEO Microsoft AI'
   },
   {
-    quote: 'I want to create an AI agent that even my mum can use.',
+    quote: 'Chcę stworzyć agenta AI, którego nawet moja mama potrafi używać.',
     author: 'Peter Steinberger',
     role: 'Twórca OpenClaw'
   },
   {
-    quote: 'I love the spirit of everything about OpenClaw.',
+    quote: 'Kocham ducha wszystkiego, co reprezentuje OpenClaw.',
     author: 'Sam Altman',
     role: 'CEO OpenAI'
   },
@@ -364,7 +364,7 @@ function HeroSection() {
       {/* All hero content pinned to first 100vh */}
       <div className="relative z-10 flex flex-col w-full" style={{ height: '100vh' }}>
         {/* Centered content */}
-        <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto px-6 py-12 text-center">
+        <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto px-6 pt-24 pb-12 text-center">
           <div className="text-[0.6rem] sm:text-xs md:text-sm lg:text-xl xl:text-2xl 2xl:text-2xl tracking-wider md:tracking-widest uppercase mb-4 px-4 text-[#8BB8E8] whitespace-nowrap" style={{ fontFamily: 'var(--font-geist)' }}>
             <SplitText
               text="Rewolucja AI już trwa — konkurencja nie śpi"
@@ -848,19 +848,19 @@ function OpenClawSection() {
   }, []);
 
   return (
-    <section className="py-24">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-12 md:py-24">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         <FadeIn>
-          <div className="text-center mb-14">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white">Budujemy na technologii, która zmieniła reguły gry</h2>
+          <div className="text-center mb-8 md:mb-14">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-white">Budujemy na technologii, która zmieniła reguły gry</h2>
             <p className="text-white/50">OpenClaw — od weekendowego projektu do #1 na GitHubie w 60 dni</p>
           </div>
         </FadeIn>
 
         {/* Milestones */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 md:mb-10 items-stretch">
           <FadeIn delay={0} className="h-full">
-            <div className="rc-card rc-glow-1 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(79,95,213,0.1)', maxHeight: '180px' }}>
+            <div className="rc-card rc-glow-1 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(79,95,213,0.1)', maxHeight: '160px' }}>
               <div className="flex items-center gap-2 mb-2 relative z-[2]">
                 <span className="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>★</span>
                 <span className="text-white/60 font-medium text-xs">Developerów na GitHubie</span>
@@ -872,7 +872,7 @@ function OpenClawSection() {
           </FadeIn>
 
           <FadeIn delay={0.15} className="h-full">
-            <div className="rc-card rc-glow-2 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(59,125,216,0.1)', maxHeight: '180px' }}>
+            <div className="rc-card rc-glow-2 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(59,125,216,0.1)', maxHeight: '160px' }}>
               <div className="flex items-center gap-2 mb-2 relative z-[2]">
                 <span className="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>👁</span>
                 <span className="text-white/60 font-medium text-xs">Wyświetleń w social media</span>
@@ -884,7 +884,7 @@ function OpenClawSection() {
           </FadeIn>
 
           <FadeIn delay={0.3} className="h-full">
-            <div className="rc-card rc-glow-3 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(91,79,207,0.1)', maxHeight: '180px' }}>
+            <div className="rc-card rc-glow-3 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(91,79,207,0.1)', maxHeight: '160px' }}>
               <div className="flex items-center gap-2 mb-2 relative z-[2]">
                 <span className="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white" style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>📈</span>
                 <span className="text-white/60 font-medium text-xs">Od zera do #1 na świecie</span>
@@ -898,30 +898,30 @@ function OpenClawSection() {
 
         {/* Auto-scrolling quote carousel */}
         <FadeIn delay={0.5}>
-          <div className="relative overflow-hidden rounded-2xl" style={{ background: 'rgba(15,20,45,0.6)', border: '1px solid rgba(255,255,255,0.06)', minHeight: '240px' }}>
+          <div className="relative overflow-hidden rounded-2xl min-h-[200px] md:min-h-[240px]" style={{ background: 'rgba(15,20,45,0.6)', border: '1px solid rgba(255,255,255,0.06)' }}>
             {OPENCLAW_QUOTES.map((item, i) => (
               <div
                 key={i}
-                className="absolute inset-0 flex flex-col items-center justify-start px-8 md:px-16 pt-8 pb-16 text-center transition-all duration-700 ease-in-out"
+                className="absolute inset-0 flex flex-col items-center justify-start px-4 sm:px-8 md:px-16 pt-5 md:pt-8 pb-12 md:pb-16 text-center transition-all duration-700 ease-in-out"
                 style={{
                   opacity: activeQuote === i ? 1 : 0,
                   transform: activeQuote === i ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.97)',
                   pointerEvents: activeQuote === i ? 'auto' : 'none',
                 }}
               >
-                <span className="text-3xl md:text-4xl leading-none select-none mb-3" style={{ color: 'rgba(123,155,219,0.3)' }}>&ldquo;</span>
-                <p className="italic text-base md:text-lg leading-relaxed text-white/80 max-w-3xl">
+                <span className="text-2xl md:text-4xl leading-none select-none mb-2 md:mb-3" style={{ color: 'rgba(123,155,219,0.3)' }}>&ldquo;</span>
+                <p className="italic text-sm md:text-lg leading-relaxed text-white/80 max-w-3xl">
                   &ldquo;{item.quote}&rdquo;
                 </p>
-                <div className="flex items-center gap-3 mt-5">
+                <div className="flex items-center gap-2 md:gap-3 mt-3 md:mt-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={QUOTE_AVATARS[item.author] || ''}
                     alt={item.author}
                     width={40}
                     height={40}
-                    className="rounded-full flex-shrink-0 object-cover"
-                    style={{ width: 40, height: 40, border: '2px solid rgba(123,155,219,0.25)', filter: 'brightness(0.85) saturate(0.4) sepia(0.15) hue-rotate(190deg)' }}
+                    className="rounded-full flex-shrink-0 object-cover w-8 h-8 md:w-10 md:h-10"
+                    style={{ border: '2px solid rgba(123,155,219,0.25)', filter: 'brightness(0.85) saturate(0.4) sepia(0.15) hue-rotate(190deg)' }}
                   />
                   <div className="flex flex-col items-start">
                     <span className="text-sm font-bold text-white">{item.author}</span>
@@ -961,7 +961,7 @@ function OpenClawSection() {
 
 function TechnologySection() {
   return (
-    <section className="py-24 text-white relative overflow-hidden">
+    <section className="py-12 md:py-24 text-white relative overflow-hidden">
       <Aurora colorStops={['#2E4AAD', '#7B9BDB', '#2E4AAD']} speed={0.8} blend={0.3} amplitude={1.2} />
       <Particles quantity={30} color="#7B9BDB" speed={0.5} />
       <div className="max-w-6xl mx-auto px-6 relative z-10">

@@ -17,12 +17,12 @@ export default function ProgressBar({ currentStep, onStepClick }: ProgressBarPro
     <div className="w-full max-w-2xl mx-auto mb-10">
       <div className="flex items-center justify-between relative">
         {/* Linia łącząca */}
-        <div className="absolute top-5 left-0 right-0 h-0.5 bg-gray-200" />
+        <div className="absolute top-5 left-0 right-0 h-0.5 bg-white/10" />
         <div
           className="absolute top-5 left-0 h-0.5 transition-all duration-500 ease-out"
           style={{
             width: `${(currentStep / (STEPS.length - 1)) * 100}%`,
-            backgroundColor: '#2E4AAD',
+            backgroundColor: '#4F6AE8',
           }}
         />
 
@@ -43,11 +43,11 @@ export default function ProgressBar({ currentStep, onStepClick }: ProgressBarPro
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300"
                 style={{
-                  backgroundColor: isActive || isCompleted ? '#2E4AAD' : '#fff',
-                  color: isActive || isCompleted ? '#fff' : '#7B9BDB',
-                  border: isActive || isCompleted ? '3px solid #2E4AAD' : '3px solid #D6E4FF',
+                  backgroundColor: isActive || isCompleted ? '#2E4AAD' : 'rgba(10,22,40,0.8)',
+                  color: isActive || isCompleted ? '#fff' : 'rgba(123,155,219,0.5)',
+                  border: isActive || isCompleted ? '2px solid #4F6AE8' : '2px solid rgba(123,155,219,0.15)',
                   transform: isActive ? 'scale(1.15)' : 'scale(1)',
-                  boxShadow: isActive ? '0 0 20px rgba(46,74,173,0.3)' : 'none',
+                  boxShadow: isActive ? '0 0 20px rgba(79,106,232,0.4)' : 'none',
                 }}
               >
                 {isCompleted ? (
@@ -60,7 +60,7 @@ export default function ProgressBar({ currentStep, onStepClick }: ProgressBarPro
               </div>
               <span
                 className="text-xs font-medium hidden sm:block transition-colors"
-                style={{ color: isActive ? '#2E4AAD' : isCompleted ? '#0B0F2E' : '#7B9BDB' }}
+                style={{ color: isActive ? '#7B9BDB' : isCompleted ? '#7B9BDB' : 'rgba(255,255,255,0.3)' }}
               >
                 {step.label}
               </span>

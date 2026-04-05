@@ -20,7 +20,7 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
     <div className="space-y-8" id="kalkulator-results">
       {/* Nagłówek */}
       <div className="text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0B0F2E' }}>
+        <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#fff' }}>
           {companyProfile.companyName
             ? `Raport ROI dla ${companyProfile.companyName}`
             : 'Twój raport ROI automatyzacji'}
@@ -53,7 +53,7 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
         className="rounded-2xl p-5 md:p-6"
         style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}
       >
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#0B0F2E' }}>
+        <h3 className="text-lg font-bold mb-4" style={{ color: '#fff' }}>
           Redukcja błędów dzięki AI
         </h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -64,15 +64,15 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
                   className="w-2.5 h-2.5 rounded-full"
                   style={{ backgroundColor: proc.categoryColor }}
                 />
-                <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
+                <span className="text-sm font-medium" style={{ color: '#fff' }}>
                   {proc.categoryName}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 {/* Przed */}
                 <div className="flex-1">
-                  <div className="text-xs mb-1" style={{ color: '#999' }}>Błędy (ludzie)</div>
-                  <div className="h-3 rounded-full bg-gray-100 overflow-hidden">
+                  <div className="text-xs mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Błędy (ludzie)</div>
+                  <div className="h-3 rounded-full bg-white/10 overflow-hidden">
                     <div
                       className="h-full rounded-full"
                       style={{
@@ -90,8 +90,8 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
                 <ArrowRight className="w-4 h-4 flex-shrink-0 mt-3" style={{ color: '#ccc' }} />
                 {/* Po */}
                 <div className="flex-1">
-                  <div className="text-xs mb-1" style={{ color: '#999' }}>Błędy (AI)</div>
-                  <div className="h-3 rounded-full bg-gray-100 overflow-hidden">
+                  <div className="text-xs mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Błędy (AI)</div>
+                  <div className="h-3 rounded-full bg-white/10 overflow-hidden">
                     <div
                       className="h-full rounded-full"
                       style={{
@@ -127,7 +127,7 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
             <Shield className="w-6 h-6" style={{ color: '#2E4AAD' }} />
           </div>
           <div className="flex-1">
-            <h3 className="text-lg font-bold mb-1" style={{ color: '#0B0F2E' }}>
+            <h3 className="text-lg font-bold mb-1" style={{ color: '#fff' }}>
               Ulga podatkowa na robotyzację — 50% odliczenia
             </h3>
             <p className="text-sm" style={{ color: '#7B9BDB' }}>
@@ -181,7 +181,7 @@ export default function ResultsDashboard({ results, companyProfile }: ResultsDas
       </div>
 
       {/* Disclaimer */}
-      <p className="text-xs text-center" style={{ color: '#999' }}>
+      <p className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.4)' }}>
         * Kalkulacje szacunkowe na podstawie średnich rynkowych dla Polski (marzec 2026).
         Dane: GUS, ZUS, Eurostat, badania branżowe. Koszt pracodawcy uwzględnia ZUS (20,48%).
         Realne wyniki mogą się różnić w zależności od specyfiki firmy. AI z czasem uczy się i optymalizuje — wyniki mogą być wyższe.

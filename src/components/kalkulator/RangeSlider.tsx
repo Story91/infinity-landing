@@ -24,7 +24,7 @@ export default function RangeSlider({
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <label className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
+        <label className="text-sm font-medium" style={{ color: '#fff' }}>
           {label}
         </label>
         <span className="text-sm font-bold" style={{ color: '#2E4AAD' }}>
@@ -41,7 +41,7 @@ export default function RangeSlider({
           onChange={(e) => onChange(Number(e.target.value))}
           className="w-full h-2 rounded-lg appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to right, #2E4AAD 0%, #2E4AAD ${percentage}%, #D6E4FF ${percentage}%, #D6E4FF 100%)`,
+            background: `linear-gradient(to right, #2E4AAD 0%, #2E4AAD ${percentage}%, rgba(123,155,219,0.2) ${percentage}%, rgba(123,155,219,0.2) 100%)`,
             accentColor: '#2E4AAD',
           }}
         />

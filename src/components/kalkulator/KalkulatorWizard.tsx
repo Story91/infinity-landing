@@ -172,9 +172,9 @@ export default function KalkulatorWizard() {
             disabled={state.currentStep === 0}
             className="px-6 py-3 rounded-xl text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.7)',
-              color: '#0B0F2E',
-              border: '2px solid #D6E4FF',
+              backgroundColor: 'rgba(123,155,219,0.1)',
+              color: '#fff',
+              border: '1px solid rgba(123,155,219,0.2)',
             }}
           >
             Wstecz

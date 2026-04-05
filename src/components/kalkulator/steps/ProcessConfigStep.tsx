@@ -37,7 +37,7 @@ export default function ProcessConfigStep({
       {/* Lewa kolumna: konfiguracja procesów */}
       <div className="lg:col-span-2 space-y-3">
         <div className="text-center lg:text-left mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#0B0F2E' }}>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#fff' }}>
             Skonfiguruj szczegóły
           </h2>
           <p className="text-sm" style={{ color: '#7B9BDB' }}>
@@ -77,7 +77,7 @@ export default function ProcessConfigStep({
                     <IconComponent className="w-4 h-4" style={{ color: category.color }} />
                   </div>
                   <div>
-                    <span className="font-bold text-sm" style={{ color: '#0B0F2E' }}>
+                    <span className="font-bold text-sm" style={{ color: '#fff' }}>
                       {category.name}
                     </span>
                     <div className="flex items-center gap-3 text-xs" style={{ color: '#7B9BDB' }}>
@@ -99,12 +99,12 @@ export default function ProcessConfigStep({
 
               {/* Treść rozwinięta */}
               {isExpanded && (
-                <div className="px-4 pb-5 space-y-5 border-t" style={{ borderColor: '#D6E4FF' }}>
+                <div className="px-4 pb-5 space-y-5 border-t" style={{ borderColor: 'rgba(123,155,219,0.2)' }}>
                   {/* Liczba pracowników */}
                   <div className="pt-4">
                     <div className="flex items-center gap-2 mb-3">
                       <Users className="w-4 h-4" style={{ color: category.color }} />
-                      <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
+                      <span className="text-sm font-medium" style={{ color: '#fff' }}>
                         Liczba pracowników
                       </span>
                     </div>
@@ -117,7 +117,7 @@ export default function ProcessConfigStep({
                           })
                         }
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold border"
-                        style={{ borderColor: '#D6E4FF', color: '#7B9BDB' }}
+                        style={{ borderColor: 'rgba(123,155,219,0.2)', color: '#7B9BDB' }}
                       >
                         −
                       </button>
@@ -132,7 +132,7 @@ export default function ProcessConfigStep({
                           })
                         }
                         className="w-20 text-center py-1.5 rounded-lg text-sm font-bold border"
-                        style={{ borderColor: '#D6E4FF', color: '#0B0F2E' }}
+                        style={{ borderColor: 'rgba(123,155,219,0.2)', color: '#fff' }}
                       />
                       <button
                         type="button"
@@ -142,7 +142,7 @@ export default function ProcessConfigStep({
                           })
                         }
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold border"
-                        style={{ borderColor: '#D6E4FF', color: '#7B9BDB' }}
+                        style={{ borderColor: 'rgba(123,155,219,0.2)', color: '#7B9BDB' }}
                       >
                         +
                       </button>
@@ -163,7 +163,7 @@ export default function ProcessConfigStep({
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <CheckSquare className="w-4 h-4" style={{ color: category.color }} />
-                      <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
+                      <span className="text-sm font-medium" style={{ color: '#fff' }}>
                         Zadania do automatyzacji
                       </span>
                     </div>
@@ -173,7 +173,7 @@ export default function ProcessConfigStep({
                         return (
                           <label
                             key={task.id}
-                            className="flex items-center gap-2.5 p-2 rounded-lg cursor-pointer transition-colors hover:bg-gray-50"
+                            className="flex items-center gap-2.5 p-2 rounded-lg cursor-pointer transition-colors hover:bg-white/10"
                           >
                             <input
                               type="checkbox"
@@ -187,7 +187,7 @@ export default function ProcessConfigStep({
                               className="w-4 h-4 rounded"
                               style={{ accentColor: category.color }}
                             />
-                            <span className="text-sm" style={{ color: '#0B0F2E' }}>
+                            <span className="text-sm" style={{ color: '#fff' }}>
                               {task.name}
                             </span>
                             <span

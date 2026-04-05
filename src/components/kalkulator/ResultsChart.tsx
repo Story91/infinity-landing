@@ -34,7 +34,7 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
       className="rounded-2xl p-5 md:p-6"
       style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}
     >
-      <h3 className="text-lg font-bold mb-1" style={{ color: '#0B0F2E' }}>
+      <h3 className="text-lg font-bold mb-1" style={{ color: '#fff' }}>
         Obecne koszty vs. po automatyzacji
       </h3>
       <p className="text-xs mb-6" style={{ color: '#7B9BDB' }}>
@@ -56,7 +56,7 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ backgroundColor: proc.categoryColor }}
                   />
-                  <span className="text-sm font-medium" style={{ color: '#0B0F2E' }}>
+                  <span className="text-sm font-medium" style={{ color: '#fff' }}>
                     {proc.categoryName}
                   </span>
                 </div>
@@ -67,10 +67,10 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
 
               {/* Obecne koszty */}
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs w-16 text-right flex-shrink-0" style={{ color: '#999' }}>
+                <span className="text-xs w-16 text-right flex-shrink-0" style={{ color: 'rgba(255,255,255,0.4)' }}>
                   Teraz
                 </span>
-                <div className="flex-1 h-5 rounded-md bg-gray-100 overflow-hidden">
+                <div className="flex-1 h-5 rounded-md bg-white/10 overflow-hidden">
                   <div
                     className="h-full rounded-md transition-all duration-1000 ease-out flex items-center justify-end pr-2"
                     style={{
@@ -88,10 +88,10 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
 
               {/* Po automatyzacji */}
               <div className="flex items-center gap-2">
-                <span className="text-xs w-16 text-right flex-shrink-0" style={{ color: '#999' }}>
+                <span className="text-xs w-16 text-right flex-shrink-0" style={{ color: 'rgba(255,255,255,0.4)' }}>
                   Z AI
                 </span>
-                <div className="flex-1 h-5 rounded-md bg-gray-100 overflow-hidden">
+                <div className="flex-1 h-5 rounded-md bg-white/10 overflow-hidden">
                   <div
                     className="h-full rounded-md transition-all duration-1000 ease-out delay-300 flex items-center justify-end pr-2"
                     style={{
@@ -111,7 +111,7 @@ export default function ResultsChart({ processes }: ResultsChartProps) {
         })}
       </div>
 
-      <div className="flex items-center gap-4 mt-6 pt-4" style={{ borderTop: '1px solid #D6E4FF' }}>
+      <div className="flex items-center gap-4 mt-6 pt-4" style={{ borderTop: '1px solid rgba(123,155,219,0.2)' }}>
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: '#7B9BDB' }} />
           <span className="text-xs" style={{ color: '#7B9BDB' }}>Obecne koszty</span>

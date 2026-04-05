@@ -243,20 +243,55 @@ const TESTIMONIALS = [
 ];
 */
 
-// OpenClaw community quotes
+// OpenClaw quotes — rotating carousel
+const QUOTE_AVATARS: Record<string, string> = {
+  'Jensen Huang': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Jen-Hsun_Huang_2025.jpg/250px-Jen-Hsun_Huang_2025.jpg',
+  'Sam Altman': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg/250px-Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg',
+  'Peter Steinberger': 'https://steipete.me/peter-avatar.jpg',
+  'Mustafa Suleyman': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Mustafa_Suleyman_photo_%28cropped%29.jpg/250px-Mustafa_Suleyman_photo_%28cropped%29.jpg',
+};
+
 const OPENCLAW_QUOTES = [
   {
-    quote: 'Po latach szumu wokół AI, myślałem że nic mnie już nie zaskoczy. Potem zainstalowałem OpenClaw. AI jako współpracownik, nie narzędzie. To przyszłość cyfrowych pracowników.',
-    author: '@lycfyi'
+    quote: 'OpenClaw is the operating system for personal AI. This is the moment the industry has been waiting for — the beginning of a new renaissance in software.',
+    author: 'Jensen Huang',
+    role: 'CEO NVIDIA'
   },
   {
-    quote: 'Fakt, że jest hackowalny i można go hostować on-premise sprawi, że ta technologia ZDOMINUJE tradycyjny SaaS.',
-    author: '@rovensky'
+    quote: 'Peter Steinberger is a genius with a lot of amazing ideas about the future of very smart agents interacting with each other to do very useful things for people.',
+    author: 'Sam Altman',
+    role: 'CEO OpenAI'
   },
   {
-    quote: 'Właśnie uruchomiłam swojego pierwszego osobistego asystenta AI. Na WhatsApp. Pamięć przenosi się między agentami. Osobiste AI staje się realne.',
-    author: '@christinetyip'
-  }
+    quote: 'OpenClaw brings people closer to AI and helps create a world where everyone has their own agents.',
+    author: 'Peter Steinberger',
+    role: 'Twórca OpenClaw'
+  },
+  {
+    quote: 'OpenClaw opened the next frontier of AI to everyone and became the fastest-growing open source project in history.',
+    author: 'Jensen Huang',
+    role: 'CEO NVIDIA'
+  },
+  {
+    quote: 'Claude Code and OpenClaw have sparked the agent inflection point — extending AI beyond generation and reasoning into action.',
+    author: 'Jensen Huang',
+    role: 'CEO NVIDIA'
+  },
+  {
+    quote: 'AI won\'t replace humans, but those humans who use AI will replace those who don\'t.',
+    author: 'Mustafa Suleyman',
+    role: 'CEO Microsoft AI'
+  },
+  {
+    quote: 'I want to create an AI agent that even my mum can use.',
+    author: 'Peter Steinberger',
+    role: 'Twórca OpenClaw'
+  },
+  {
+    quote: 'I love the spirit of everything about OpenClaw.',
+    author: 'Sam Altman',
+    role: 'CEO OpenAI'
+  },
 ];
 
 // Stats
@@ -801,8 +836,17 @@ function TechBentoSection() {
   );
 }
 
-// Sekcja OpenClaw social proof — Raycast milestones + quotes
+// Sekcja OpenClaw social proof — milestones + scrolling quotes
 function OpenClawSection() {
+  const [activeQuote, setActiveQuote] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveQuote(prev => (prev + 1) % OPENCLAW_QUOTES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="py-24">
       <div className="max-w-6xl mx-auto px-6">
@@ -813,8 +857,8 @@ function OpenClawSection() {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 items-stretch">
-          {/* Milestone 1 — 340k+ */}
+        {/* Milestones */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 items-stretch">
           <FadeIn delay={0} className="h-full">
             <div className="rc-card rc-glow-1 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(79,95,213,0.1)', maxHeight: '180px' }}>
               <div className="flex items-center gap-2 mb-2 relative z-[2]">
@@ -824,11 +868,9 @@ function OpenClawSection() {
               <div className="flex-1 flex items-center justify-center relative z-[2]">
                 <span className="text-4xl font-extrabold rc-num">340k+</span>
               </div>
-              <p className="text-xs text-white/40 text-center relative z-[2]">Developerów na GitHubie</p>
             </div>
           </FadeIn>
 
-          {/* Milestone 2 — 500M+ */}
           <FadeIn delay={0.15} className="h-full">
             <div className="rc-card rc-glow-2 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(59,125,216,0.1)', maxHeight: '180px' }}>
               <div className="flex items-center gap-2 mb-2 relative z-[2]">
@@ -838,11 +880,9 @@ function OpenClawSection() {
               <div className="flex-1 flex items-center justify-center relative z-[2]">
                 <span className="text-4xl font-extrabold rc-num">500M+</span>
               </div>
-              <p className="text-xs text-white/40 text-center relative z-[2]">Wyświetleń w social media</p>
             </div>
           </FadeIn>
 
-          {/* Milestone 3 — 1 Tydzień */}
           <FadeIn delay={0.3} className="h-full">
             <div className="rc-card rc-glow-3 rounded-[20px] p-4 flex flex-col overflow-hidden h-full" style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 0 1000px rgba(91,79,207,0.1)', maxHeight: '180px' }}>
               <div className="flex items-center gap-2 mb-2 relative z-[2]">
@@ -852,45 +892,66 @@ function OpenClawSection() {
               <div className="flex-1 flex items-center justify-center relative z-[2]">
                 <span className="text-4xl font-extrabold rc-num">1 Tydzień</span>
               </div>
-              <p className="text-xs text-white/40 text-center relative z-[2]">Od zera do #1 na świecie</p>
             </div>
           </FadeIn>
         </div>
 
-        {/* Row 2 — Quotes */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 items-stretch">
-          {OPENCLAW_QUOTES.map((item, i) => {
-            const overlays = [
-              'rgba(72,88,200,0.08)',
-              'rgba(54,112,208,0.08)',
-              'rgba(82,72,204,0.08)',
-            ];
-            const avatars = [
-              'https://i.pravatar.cc/40?img=12',
-              'https://i.pravatar.cc/40?img=33',
-              'https://i.pravatar.cc/40?img=5',
-            ];
-            return (
-              <FadeIn key={i} delay={0.45 + i * 0.15} className="h-full">
-                <div className={`rc-card rc-glow-${i + 4} rounded-[20px] p-6 flex flex-col justify-between overflow-hidden h-full`} style={{ background: 'rgba(15,20,45,0.9)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: `inset 0 0 0 1000px ${overlays[i]}`, minHeight: '240px' }}>
-                  <div className="relative z-[2]">
-                    <span className="text-4xl leading-none select-none block mb-3" style={{ color: 'rgba(255,255,255,0.15)' }}>&ldquo;</span>
-                    <p className="italic text-[15px] leading-[1.7] text-white/80">&ldquo;{item.quote}&rdquo;</p>
-                  </div>
-                  <div className="flex items-center gap-2.5 mt-4 relative z-[2]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={avatars[i]} alt="avatar" width={40} height={40} className="rounded-full flex-shrink-0" style={{ border: '2px solid rgba(255,255,255,0.15)', filter: 'brightness(0.8) saturate(0.3) sepia(0.2) hue-rotate(190deg)' }} />
-                    <span className="text-sm font-semibold" style={{ color: '#F5EDE4' }}>{item.author}</span>
+        {/* Auto-scrolling quote carousel */}
+        <FadeIn delay={0.5}>
+          <div className="relative overflow-hidden rounded-2xl" style={{ background: 'rgba(15,20,45,0.6)', border: '1px solid rgba(255,255,255,0.06)', minHeight: '240px' }}>
+            {OPENCLAW_QUOTES.map((item, i) => (
+              <div
+                key={i}
+                className="absolute inset-0 flex flex-col items-center justify-start px-8 md:px-16 pt-8 pb-16 text-center transition-all duration-700 ease-in-out"
+                style={{
+                  opacity: activeQuote === i ? 1 : 0,
+                  transform: activeQuote === i ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.97)',
+                  pointerEvents: activeQuote === i ? 'auto' : 'none',
+                }}
+              >
+                <span className="text-3xl md:text-4xl leading-none select-none mb-3" style={{ color: 'rgba(123,155,219,0.3)' }}>&ldquo;</span>
+                <p className="italic text-base md:text-lg leading-relaxed text-white/80 max-w-3xl">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+                <div className="flex items-center gap-3 mt-5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={QUOTE_AVATARS[item.author] || ''}
+                    alt={item.author}
+                    width={40}
+                    height={40}
+                    className="rounded-full flex-shrink-0 object-cover"
+                    style={{ width: 40, height: 40, border: '2px solid rgba(123,155,219,0.25)', filter: 'brightness(0.85) saturate(0.4) sepia(0.15) hue-rotate(190deg)' }}
+                  />
+                  <div className="flex flex-col items-start">
+                    <span className="text-sm font-bold text-white">{item.author}</span>
+                    <span className="text-[11px] text-[#7B9BDB]">{item.role}</span>
                   </div>
                 </div>
-              </FadeIn>
-            );
-          })}
-        </div>
+              </div>
+            ))}
 
-        <FadeIn delay={0.9}>
-          <p className="text-center text-sm text-white/40">
-            🦞 Infinity Tech jest oficjalnym partnerem wdrożeniowym OpenClaw w Polsce.
+            {/* Dot indicators */}
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+              {OPENCLAW_QUOTES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveQuote(i)}
+                  className="w-2 h-2 rounded-full transition-all duration-300"
+                  style={{
+                    backgroundColor: activeQuote === i ? '#7B9BDB' : 'rgba(255,255,255,0.15)',
+                    transform: activeQuote === i ? 'scale(1.3)' : 'scale(1)',
+                    boxShadow: activeQuote === i ? '0 0 8px rgba(123,155,219,0.5)' : 'none',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.7}>
+          <p className="text-center text-sm text-white/40 mt-8">
+            Infinity Tech jest oficjalnym partnerem wdrożeniowym OpenClaw w Polsce.
           </p>
         </FadeIn>
       </div>

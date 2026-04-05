@@ -138,6 +138,12 @@
   color: #ffffff;
 }
 
+/* When menu is open, dark pill on white panel */
+.staggered-menu-wrapper[data-open] .sm-toggle {
+  background: #0B0F2E;
+  color: #ffffff;
+}
+
 .sm-toggle:hover {
   transform: scale(1.05);
   background: #2E4AAD;
@@ -166,8 +172,8 @@
   height: 1em;
   overflow: hidden;
   white-space: nowrap;
-  width: 5em;
-  min-width: 5em;
+  width: 6em;
+  min-width: 6em;
 }
 
 

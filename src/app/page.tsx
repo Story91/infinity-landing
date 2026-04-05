@@ -1258,17 +1258,17 @@ export default function LandingPage() {
 
   const menuItems: { label: string; ariaLabel: string; link: string }[] = [
     { label: 'Start', ariaLabel: 'Przejdź do sekcji start', link: '#start' },
-    { label: 'O nas', ariaLabel: 'Dowiedz się więcej o nas', link: '#o-nas' },
     { label: 'Usługi', ariaLabel: 'Zobacz nasze usługi', link: '#uslugi' },
+    { label: 'O nas', ariaLabel: 'Dowiedz się więcej o nas', link: '#o-nas' },
     { label: 'Kalkulator ROI', ariaLabel: 'Oblicz ROI automatyzacji', link: '/kalkulator' },
-    { label: 'FAQ', ariaLabel: 'Częste pytania', link: '#faq' },
-    { label: 'Kontakt', ariaLabel: 'Skontaktuj się z nami', link: '#kontakt' }
+    { label: 'Kontakt', ariaLabel: 'Skontaktuj się z nami', link: '#kontakt' },
+    { label: 'FAQ', ariaLabel: 'Częste pytania', link: '#faq' }
   ];
 
   const socialItems: { label: string; link: string }[] = [
+    { label: 'X (Twitter)', link: 'https://x.com/InfinityTech_PL' },
     { label: 'LinkedIn', link: 'https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true' },
-    { label: 'Twitter', link: 'https://x.com/InfinityTech_PL' },
-    { label: 'GitHub', link: 'https://github.com' }
+    { label: 'Email', link: 'mailto:contact@infinityteam.io' }
   ];
 
   return (

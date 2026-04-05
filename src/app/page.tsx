@@ -438,7 +438,7 @@ function TeamSection2() {
     { name: 'Cezary Gąsior', title: 'CEO & Founder', handle: 'ceo', avatar: '/images/cezary-gasior.jpg', bio: 'Wizjoner i strateg z doświadczeniem w AI i transformacji cyfrowej.', glow: matteGlow, gradient: matteGradient },
     { name: 'Krzysztof Stoczkowski', title: 'Co-Founder', handle: 'cofounder', avatar: '/images/krzysztof-stoczkowski.png', bio: 'Współzałożyciel Infinity Tech, odpowiada za strategię i rozwój firmy.', glow: matteGlow, gradient: matteGradient },
     { name: 'Tomasz Pędzierski', title: 'Business Development Manager', handle: 'bizdev', avatar: '/images/tomasz-pedzierski.jpg', bio: 'Zarządza rozwojem biznesu i buduje relacje z klientami enterprise.', glow: matteGlow, gradient: matteGradient },
-    { name: 'Artur Seredziuk', title: 'Sales Manager', handle: 'account', avatar: 'https://i.pravatar.cc/400?img=33', bio: 'Zarządza relacjami z klientami i koordynuje wdrożenia AI.', glow: matteGlow, gradient: matteGradient },
+    { name: 'Artur Seredziuk', title: 'Sales Manager', handle: 'account', avatar: '/images/artur-seredziuk.png', bio: 'Zarządza relacjami z klientami i koordynuje wdrożenia AI.', glow: matteGlow, gradient: matteGradient },
     { name: 'Tobias Guanyi Du', title: 'Developer', handle: 'dev', avatar: 'https://i.pravatar.cc/400?img=12', bio: 'Full-stack developer specjalizujący się w OpenClaw i integracji API.', glow: matteGlow, gradient: matteGradient },
     { name: 'Kevin', title: 'Marketing & Growth', handle: 'marketing', avatar: 'https://i.pravatar.cc/400?img=25', bio: 'Odpowiada za strategię marketingową i wzrost organiczny.', glow: matteGlow, gradient: matteGradient },
   ];

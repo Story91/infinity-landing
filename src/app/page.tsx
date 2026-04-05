@@ -364,8 +364,8 @@ function HeroSection() {
       {/* All hero content pinned to first 100vh */}
       <div className="relative z-10 flex flex-col w-full" style={{ height: '100vh' }}>
         {/* Centered content */}
-        <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-6 py-12 text-center">
-          <div className="text-[0.6rem] sm:text-xs md:text-sm lg:text-xl tracking-wider md:tracking-widest uppercase mb-4 px-4 text-[#8BB8E8] whitespace-nowrap" style={{ fontFamily: 'var(--font-geist)' }}>
+        <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto px-6 py-12 text-center">
+          <div className="text-[0.6rem] sm:text-xs md:text-sm lg:text-xl xl:text-2xl 2xl:text-2xl tracking-wider md:tracking-widest uppercase mb-4 px-4 text-[#8BB8E8] whitespace-nowrap" style={{ fontFamily: 'var(--font-geist)' }}>
             <SplitText
               text="Rewolucja AI już trwa — konkurencja nie śpi"
               tag="span"
@@ -374,7 +374,7 @@ function HeroSection() {
               delay={40}
             />
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight text-white" style={{ fontFamily: 'var(--font-geist)' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-5 leading-tight text-white" style={{ fontFamily: 'var(--font-geist)' }}>
             <SplitText
               text="Zautomatyzuj firmę"
               tag="span"
@@ -386,7 +386,7 @@ function HeroSection() {
           </h1>
 
           <FadeIn delay={0.5}>
-            <p className="text-base md:text-lg mb-7 max-w-lg mx-auto text-white/80 px-2">
+            <p className="text-base md:text-lg xl:text-xl 2xl:text-2xl mb-7 max-w-lg xl:max-w-2xl mx-auto text-white/80 px-2">
               Wykorzystaj potęgę agentów AI OpenCLAW, aby zautomatyzować procesy, zwiększyć efektywność i skupić się na tym, co naprawdę napędza rozwój Twojej firmy.
             </p>
           </FadeIn>
@@ -394,11 +394,11 @@ function HeroSection() {
           <FadeIn delay={0.7}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#kontakt" className="w-full sm:w-auto">
-                <Ripple className="w-full px-6 py-3 md:px-8 md:py-4 text-white text-base md:text-lg bg-[#2E4AAD] hover:bg-[#1A2461] btn-grain border-2 border-[#2E4AAD]">
+                <Ripple className="w-full px-6 py-3 md:px-8 md:py-4 xl:px-10 xl:py-5 text-white text-base md:text-lg xl:text-xl bg-[#2E4AAD] hover:bg-[#1A2461] btn-grain border-2 border-[#2E4AAD]">
                   Umów konsultację
                 </Ripple>
               </a>
-              <a href="/case-studies" className="px-6 py-3 md:px-8 md:py-4 border-2 rounded-full font-semibold text-base md:text-lg transition-all flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10">
+              <a href="/case-studies" className="px-6 py-3 md:px-8 md:py-4 xl:px-10 xl:py-5 border-2 rounded-full font-semibold text-base md:text-lg xl:text-xl transition-all flex items-center justify-center gap-2 border-white/30 text-white hover:bg-white/10">
                 Dowiedz się więcej
                 <ArrowRight className="w-5 h-5" />
               </a>

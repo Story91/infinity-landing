@@ -1190,20 +1190,7 @@ function ContactCTASection() {
                         <span className="text-sm text-white/70">Zamość, woj. lubelskie, Polska</span>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md" style={{ backgroundColor: 'rgba(46,74,173,0.15)' }}>
-                        <Shield className="w-3.5 h-3.5 text-[#7B9BDB]" />
-                        <span className="text-[11px] font-medium text-[#7B9BDB]">SSL Secured</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md" style={{ backgroundColor: 'rgba(46,74,173,0.15)' }}>
-                        <Shield className="w-3.5 h-3.5 text-[#7B9BDB]" />
-                        <span className="text-[11px] font-medium text-[#7B9BDB]">RODO/GDPR</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md" style={{ backgroundColor: 'rgba(46,74,173,0.15)' }}>
-                        <Shield className="w-3.5 h-3.5 text-[#7B9BDB]" />
-                        <span className="text-[11px] font-medium text-[#7B9BDB]">ISO 27001</span>
-                      </div>
-                    </div>
+                    {/* SSL/RODO/ISO badges — hidden */}
                   </div>
                 </div>
               </div>

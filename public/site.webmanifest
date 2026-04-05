@@ -1,0 +1,29 @@
+{
+  "id": "/",
+  "name": "Infinity Tech - AI Solutions for Business",
+  "short_name": "Infinity Tech",
+  "description": "Transformujemy Twoją firmę dzięki inteligentnym rozwiązaniom AI. Automatyzacja, optymalizacja i innowacje.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    {
+      "src": "/og.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Infinity Tech - Panel główny"
+    }
+  ],
+  "theme_color": "#050B1F",
+  "background_color": "#050B1F",
+  "categories": ["productivity", "utilities", "business"],
+  "lang": "pl"
+}

@@ -474,7 +474,7 @@ function TeamSection2() {
     { name: 'Krzysztof Stoczkowski', title: 'Co-Founder', handle: 'cofounder', avatar: 'https://i.pravatar.cc/400?img=52', bio: 'Współzałożyciel Infinity Tech, odpowiada za strategię i rozwój firmy.', glow: matteGlow, gradient: matteGradient },
     { name: 'Tomasz Pędzierski', title: 'Co-Founder', handle: 'bizdev', avatar: '/images/tomasz-pedzierski.jpg', bio: 'Współzałożyciel Infinity Tech, buduje relacje z klientami enterprise i rozwija nowe partnerstwa biznesowe.', glow: matteGlow, gradient: matteGradient },
     { name: 'Artur Seredziuk', title: 'Co-Founder', handle: 'account', avatar: '/images/artur-seredziuk.png', bio: 'Współzałożyciel Infinity Tech, odpowiada za sprzedaż i pozyskiwanie klientów.', glow: matteGlow, gradient: matteGradient, avatarStyle: { objectPosition: '50% 5%' } },
-    { name: 'Tobias Guanyi Du', title: 'Developer', handle: 'dev', avatar: 'https://i.pravatar.cc/400?img=57', bio: 'Odpowiada za implementację i rozwój techniczny agentów AI.', glow: matteGlow, gradient: matteGradient },
+    { name: 'Tobias Guanyi Du', title: 'Developer', handle: 'dev', avatar: '/images/tobias-guanyi-du.jpg', bio: 'Odpowiada za implementację i rozwój techniczny agentów AI.', glow: matteGlow, gradient: matteGradient },
     { name: 'Kevin Kanak', title: 'Head of European Expansion', handle: 'expansion', avatar: '/images/kevin-kanak.png', bio: 'Odpowiada za ekspansję Infinity Tech na rynki Europy Centralnej.', glow: matteGlow, gradient: matteGradient },
   ];
 
@@ -1190,7 +1190,20 @@ function ContactCTASection() {
                         <span className="text-sm text-white/70">Zamość, woj. lubelskie, Polska</span>
                       </div>
                     </div>
-                    {/* SSL/RODO/ISO badges — hidden */}
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md" style={{ backgroundColor: 'rgba(46,74,173,0.15)' }}>
+                        <Shield className="w-3.5 h-3.5 text-[#7B9BDB]" />
+                        <span className="text-[11px] font-medium text-[#7B9BDB]">SSL Secured</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md" style={{ backgroundColor: 'rgba(46,74,173,0.15)' }}>
+                        <Shield className="w-3.5 h-3.5 text-[#7B9BDB]" />
+                        <span className="text-[11px] font-medium text-[#7B9BDB]">RODO/GDPR</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md" style={{ backgroundColor: 'rgba(46,74,173,0.15)' }}>
+                        <Shield className="w-3.5 h-3.5 text-[#7B9BDB]" />
+                        <span className="text-[11px] font-medium text-[#7B9BDB]">ISO 27001</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

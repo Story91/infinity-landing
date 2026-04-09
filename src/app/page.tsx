@@ -188,24 +188,26 @@ const TECH_STACK = [
   { name: 'MiniMax', desc: 'AI Models' },
 ];
 
-// Kanały integracji
-const CHANNELS: { name: string; path?: string }[] = [
-  { name: 'WhatsApp', path: siWhatsapp.path },
-  { name: 'Telegram', path: siTelegram.path },
-  { name: 'Slack' },
-  { name: 'Discord', path: siDiscord.path },
-  { name: 'Google Chat', path: siGooglemessages.path },
-  { name: 'Signal', path: siSignal.path },
+// Kanały integracji — Slack SVG path (not in simple-icons v16)
+const SLACK_PATH = 'M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521 2.52A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.312z';
+
+const CHANNELS: { name: string; path?: string; color?: string }[] = [
+  { name: 'WhatsApp', path: siWhatsapp.path, color: '#25D366' },
+  { name: 'Telegram', path: siTelegram.path, color: '#26A5E4' },
+  { name: 'Slack', path: SLACK_PATH, color: '#E01E5A' },
+  { name: 'Discord', path: siDiscord.path, color: '#5865F2' },
+  { name: 'Google Chat', path: siGooglemessages.path, color: '#1A73E8' },
+  { name: 'Signal', path: siSignal.path, color: '#3B45FD' },
   { name: 'iMessage' },
   { name: 'MS Teams' },
-  { name: 'Matrix', path: siMatrix.path },
-  { name: 'LINE', path: siLine.path },
-  { name: 'Mattermost', path: siMattermost.path },
-  { name: 'Nextcloud', path: siNextcloud.path },
+  { name: 'Matrix', path: siMatrix.path, color: '#e0e0e0' },
+  { name: 'LINE', path: siLine.path, color: '#00C300' },
+  { name: 'Mattermost', path: siMattermost.path, color: '#0058CC' },
+  { name: 'Nextcloud', path: siNextcloud.path, color: '#0082C9' },
   { name: 'Nostr' },
-  { name: 'Twitch', path: siTwitch.path },
+  { name: 'Twitch', path: siTwitch.path, color: '#9146FF' },
   { name: 'Zalo' },
-  { name: 'WeChat', path: siWechat.path },
+  { name: 'WeChat', path: siWechat.path, color: '#07C160' },
   { name: 'WebChat' },
   { name: 'IRC' },
   { name: 'Feishu' },
@@ -822,11 +824,7 @@ function TechBentoSection() {
                 {allChannels.map((ch, i) => (
                   <div key={i} className="flex items-center gap-2 mx-4 whitespace-nowrap">
                     {ch.path ? (
-                      <svg className="flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="#7B9BDB" role="img" aria-label={ch.name}><path d={ch.path} /></svg>
-                    ) : ch.name === 'Slack' ? (
-                      <svg className="flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="#7B9BDB"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521 2.52A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.312z"/></svg>
-                    ) : ch.name === 'MS Teams' ? (
-                      <svg className="flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="#7B9BDB"><path d="M20.625 8.5h-1.5V6.25a1.875 1.875 0 0 0-1.875-1.875h-.375a2.625 2.625 0 1 0-3.75-1.453V4.5H9.75A1.875 1.875 0 0 0 7.875 6.375V13.5a1.875 1.875 0 0 0 1.875 1.875h5.625A1.875 1.875 0 0 0 17.25 13.5v-.75h1.5a1.125 1.125 0 0 0 1.125-1.125v-2A1.125 1.125 0 0 0 20.625 8.5zM17.25 3.375a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25zM6 8.5H2.25A1.125 1.125 0 0 0 1.125 9.625v4.5A1.125 1.125 0 0 0 2.25 15.25h1.5v2.625a.375.375 0 0 0 .638.265L6.75 15.25H7.5V9.625A1.125 1.125 0 0 0 6 8.5z"/></svg>
+                      <svg className="flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill={ch.color || '#7B9BDB'} role="img" aria-label={ch.name}><path d={ch.path} /></svg>
                     ) : (
                       <span className="w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-bold text-white flex-shrink-0" style={{ backgroundColor: '#4F6AE8' }}>{ch.name.charAt(0)}</span>
                     )}

@@ -252,8 +252,8 @@ const TESTIMONIALS = [
 // OpenClaw quotes — rotating carousel
 const QUOTE_AVATARS: Record<string, string> = {
   'Jensen Huang': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Jen-Hsun_Huang_2025.jpg/250px-Jen-Hsun_Huang_2025.jpg',
-  'Sam Altman': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg/250px-Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg',
-  'Peter Steinberger': 'https://steipete.me/peter-avatar.jpg',
+  'Sam Altman': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Sam_Altman_CropEdit.jpg/250px-Sam_Altman_CropEdit.jpg',
+  'Peter Steinberger': 'https://avatars.githubusercontent.com/steipete',
   'Mustafa Suleyman': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Mustafa_Suleyman_photo_%28cropped%29.jpg/250px-Mustafa_Suleyman_photo_%28cropped%29.jpg',
 };
 
@@ -921,15 +921,29 @@ function OpenClawSection() {
                   &ldquo;{item.quote}&rdquo;
                 </p>
                 <div className="flex items-center gap-2 md:gap-3 mt-3 md:mt-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={QUOTE_AVATARS[item.author] || ''}
-                    alt={item.author}
-                    width={40}
-                    height={40}
-                    className="rounded-full flex-shrink-0 object-cover w-8 h-8 md:w-10 md:h-10"
-                    style={{ border: '2px solid rgba(123,155,219,0.25)', filter: 'brightness(0.85) saturate(0.4) sepia(0.15) hue-rotate(190deg)' }}
-                  />
+                  {QUOTE_AVATARS[item.author] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={QUOTE_AVATARS[item.author]}
+                      alt={item.author}
+                      width={40}
+                      height={40}
+                      className="rounded-full flex-shrink-0 object-cover w-8 h-8 md:w-10 md:h-10"
+                      style={{ border: '2px solid rgba(123,155,219,0.25)', filter: 'brightness(0.85) saturate(0.4) sepia(0.15) hue-rotate(190deg)' }}
+                      onError={(e) => {
+                        const el = e.currentTarget;
+                        el.style.display = 'none';
+                        const fb = el.nextElementSibling as HTMLElement | null;
+                        if (fb) fb.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  <span
+                    className="rounded-full flex-shrink-0 items-center justify-center text-xs font-bold text-white w-8 h-8 md:w-10 md:h-10"
+                    style={{ backgroundColor: '#2E4AAD', border: '2px solid rgba(123,155,219,0.25)', display: QUOTE_AVATARS[item.author] ? 'none' : 'flex' }}
+                  >
+                    {item.author.split(' ').map(w => w[0]).join('').slice(0, 2)}
+                  </span>
                   <div className="flex flex-col items-start">
                     <span className="text-sm font-bold text-white">{item.author}</span>
                     <span className="text-[11px] text-[#7B9BDB]">{item.role}</span>

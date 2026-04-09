@@ -63,7 +63,7 @@ Blog ma budować autorytet marki OpenCLAW i Infinity Tech, wspierać SEO, oraz d
 1. Fetch z 4 źródeł równolegle (`Promise.all`)
 2. Deduplikacja po tytule
 3. Batch do GPT-4o-mini: generuje polskie streszczenie (2-3 zdania) dla każdego newsa
-4. Wynik zapisywany do in-memory cache (`Map`) z TTL 2h
+4. Wynik zapisywany do in-memory cache (`Map`) z TTL 2h — cache resetuje się przy cold start (akceptowalne dla tego use case)
 5. Kolejne requesty w oknie 2h serwowane z cache (zero kosztów OpenAI)
 
 **Koszt OpenAI:** ~$0.001 per batch × 12 odświeżeń/dzień ≈ $0.36/mies.
@@ -94,7 +94,7 @@ Blog ma budować autorytet marki OpenCLAW i Infinity Tech, wspierać SEO, oraz d
 
 - Fetch z Notion po `slug` polu
 - Renderowanie bogatej treści Notion (nagłówki, listy, kod, obrazy)
-- Użycie biblioteki `notion-to-md` lub własny renderer bloków
+- Użycie biblioteki `notion-to-md` do konwersji bloków Notion → Markdown → HTML
 - ISR `revalidate: 3600`
 - Full SEO: title, description, OG image z CoverImage
 
@@ -128,6 +128,36 @@ GUARDIAN_API_KEY=...          # darmowy klucz z open-platform.theguardian.com
 ## Nawigacja
 
 Dodać link "Blog" do głównej nawigacji na stronie głównej (`src/app/page.tsx`) — aktualnie blog jest widoczny tylko w footerze.
+
+---
+
+## Wymagania stylistyczne — dopasowanie do reszty strony
+
+Blog musi wyglądać jak część tej samej witryny, nie osobna strona. Wszystkie 7 zmian są obowiązkowe:
+
+| # | Element | Obecny stan (ŹLE) | Docelowy stan |
+|---|---|---|---|
+| 1 | Nawigacja | Własna, jasna nawigacja bloga | Usunąć — użyć tej samej co na głównej (dark navy `#0B0F2E`, logo, backdrop-blur) |
+| 2 | Tło strony | `bg-white` | `bg-[#0B0F2E]` (ciemny navy) |
+| 3 | Karty artykułów | Białe karty z `border border-[#D6E4FF]` | `SpotlightCard` (już w projekcie: `src/components/react-bits/SpotlightCard.tsx`) z ciemnym gradientem |
+| 4 | Filtry kategorii | Jasnoniebieski pasek `bg-[#D6E4FF]` | Ciemny pasek z gradientem navy, przyciski styl `border border-[#2E4AAD]` |
+| 5 | Animacje tła | Brak | Dodać `<Particles>` lub `<Beams>` (już w projekcie) w tle sekcji hero |
+| 6 | Kolory tekstu | Ciemny tekst `#0B0F2E`, `#1A2461` | Jasny: `white`, `#D6E4FF`, `#7B9BDB` — tak jak reszta strony |
+| 7 | Sidebar karty | Białe tło, jasny styl | Ciemne karty (`bg-[#0B0F2E]` / `bg-[#1A2461]`) — wzór: blok "Obserwuj nas" który już jest poprawny |
+
+**Paleta kolorów do użycia** (ta sama co główna strona):
+- Tło główne: `#0B0F2E`
+- Tło kart: `#1A2461` / gradient `from-[#1A2461] to-[#0B0F2E]`
+- Akcent niebieski: `#2E4AAD`, `#4F6AE8`, `#7B9BDB`
+- Tekst jasny: `white`, `#D6E4FF`
+- Tekst drugorzędny: `#7B9BDB`
+- Border: `border-[#2E4AAD]` / `border-[#1A2461]`
+
+**Komponenty do użycia** (wszystkie już istnieją w projekcie):
+- `SpotlightCard` — karty artykułów
+- `FadeIn` — animacje wejścia sekcji
+- `Particles` lub `Beams` — tło sekcji hero
+- `Aurora` — opcjonalnie do sekcji newsów
 
 ---
 

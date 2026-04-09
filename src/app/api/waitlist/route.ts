@@ -39,6 +39,8 @@ export async function POST(request: Request) {
     const to = process.env.WAITLIST_TO || 'contact@infinityteam.io';
     const from = process.env.WAITLIST_FROM || 'Infinity Tech <waitlist@infinityteam.io>';
 
+    console.log('[waitlist] apiKey present:', !!apiKey, '| from:', from, '| to:', to);
+
     if (!apiKey) {
       console.warn('[waitlist] RESEND_API_KEY missing — signup received but not sent:', cleanEmail, '/', signupSource);
       return NextResponse.json({ ok: true, delivered: false });
@@ -57,9 +59,12 @@ export async function POST(request: Request) {
     // 2. Potwierdzenie dla użytkownika
     const confirmationHtml = `
       <div style="font-family: -apple-system, system-ui, sans-serif; max-width: 520px; margin: 0 auto; background: #0A1628; border-radius: 16px; overflow: hidden;">
-        <div style="background: linear-gradient(135deg, #2E4AAD, #4F6AE8); padding: 32px 32px 24px;">
-          <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">Infinity Tech</h1>
-          <p style="margin: 6px 0 0; color: rgba(255,255,255,0.7); font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase;">Desktop App — Waitlist</p>
+        <div style="background: linear-gradient(135deg, #2E4AAD, #4F6AE8); padding: 28px 32px 24px; display: flex; align-items: center; gap: 16px;">
+          <img src="https://infinityteam.io/infinity-logo.png" alt="Infinity Tech" width="48" height="48" style="display: block; border-radius: 10px; flex-shrink: 0;" />
+          <div>
+            <h1 style="margin: 0; color: #ffffff; font-size: 20px; font-weight: 700;">Infinity Tech</h1>
+            <p style="margin: 4px 0 0; color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;">Desktop App — Waitlist</p>
+          </div>
         </div>
         <div style="padding: 32px;">
           <h2 style="margin: 0 0 12px; color: #ffffff; font-size: 20px;">Jesteś na liście!</h2>

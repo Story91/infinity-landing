@@ -125,7 +125,7 @@ ${items.map(i => `{"id": "${i.id}", "title": ${JSON.stringify(i.title)}}`).join(
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const timeout = setTimeout(() => controller.abort(), 30000);
     const response = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],

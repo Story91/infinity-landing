@@ -35,25 +35,15 @@ const INITIAL_COUNT = 12;
 const HERO_INTERVAL_MS = 8000;
 
 interface AiNewsPageProps {
-  initialNews?: NewsItem[];
+  initialNews: NewsItem[];
 }
 
-export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
-  const [news, setNews] = useState<NewsItem[]>(initialNews);
-  const [loading, setLoading] = useState(initialNews.length === 0);
+export default function AiNewsPage({ initialNews }: AiNewsPageProps) {
+  const [news] = useState<NewsItem[]>(initialNews);
   const [activeFilter, setActiveFilter] = useState<SourceFilter>('Wszystkie');
   const [searchQuery, setSearchQuery] = useState('');
   const [showAll, setShowAll] = useState(false);
   const [heroIndex, setHeroIndex] = useState(0);
-
-  // Only fetch client-side if no initial data was provided
-  useEffect(() => {
-    if (initialNews.length > 0) return;
-    fetch('/api/news')
-      .then(r => r.json())
-      .then((data: NewsItem[]) => { setNews(data); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, [initialNews.length]);
 
   // Hero auto-rotation
   useEffect(() => {
@@ -99,14 +89,6 @@ export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
       setEmailStatus(res.ok ? 'sent' : 'error');
     } catch { setEmailStatus('error'); }
   }, [email]);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-10 h-10 border-2 border-[#7B9BDB] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
 
   if (!news.length) {
     return (

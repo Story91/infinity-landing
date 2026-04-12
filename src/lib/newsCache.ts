@@ -269,14 +269,9 @@ async function fetchAndTranslate(): Promise<NewsItem[]> {
     return true;
   });
 
-  // Save raw immediately
-  const rawCached: NewsItem[] = unique.map(item => ({ ...item, excerpt: item.title }));
-  setCache({ data: rawCached, timestamp: Date.now() - CACHE_TTL_MS + 300000 });
-
-  // Translate
+  // Translate and cache
   const translated = await summarizeWithOpenAI(unique);
   setCache({ data: translated, timestamp: Date.now() });
-
   return translated;
 }
 

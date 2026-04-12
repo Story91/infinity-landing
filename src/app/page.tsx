@@ -1345,7 +1345,7 @@ function Footer() {
             <h4 className="font-semibold mb-4 text-white/90">Na skróty</h4>
             <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-[#7B9BDB]">
               <a href="#start" className="hover:text-white transition-colors text-sm">Start</a>
-              <a href="/blog" className="hover:text-white transition-colors text-sm">Blog</a>
+              <a href="/swiat-ai" className="hover:text-white transition-colors text-sm">Świat AI</a>
               <a href="#o-nas" className="hover:text-white transition-colors text-sm">O nas</a>
               <a href="/case-studies" className="hover:text-white transition-colors text-sm">Case Studies</a>
               <a href="#uslugi" className="hover:text-white transition-colors text-sm">Co robimy</a>
@@ -1428,6 +1428,7 @@ export default function LandingPage() {
     { label: 'Usługi', ariaLabel: 'Zobacz nasze usługi', link: '#uslugi' },
     { label: 'O nas', ariaLabel: 'Dowiedz się więcej o nas', link: '#o-nas' },
     { label: 'Kalkulator ROI', ariaLabel: 'Oblicz ROI automatyzacji', link: '/kalkulator' },
+    { label: 'Świat AI', ariaLabel: 'Przejdź do newsów AI', link: '/swiat-ai' },
     { label: 'Kontakt', ariaLabel: 'Skontaktuj się z nami', link: '#kontakt' },
     { label: 'FAQ', ariaLabel: 'Częste pytania', link: '#faq' }
   ];

@@ -15,12 +15,12 @@ import TextType from '@/components/react-bits/TextType';
 import type { NewsItem } from '@/lib/newsCache';
 
 const SOURCE_META = {
-  TechCrunch:  { label: 'TechCrunch', Icon: Zap,         color: '#22C55E' },
-  TheVerge:    { label: 'The Verge',  Icon: Cpu,          color: '#A78BFA' },
-  Wired:       { label: 'Wired',      Icon: Newspaper,    color: '#F59E0B' },
+  TechCrunch:  { label: 'TechCrunch', Icon: Zap,         color: '#7B9BDB' },
+  TheVerge:    { label: 'The Verge',  Icon: Cpu,          color: '#7B9BDB' },
+  Wired:       { label: 'Wired',      Icon: Newspaper,    color: '#7B9BDB' },
   DevTo:       { label: 'Dev.to',     Icon: Code,         color: '#7B9BDB' },
-  Guardian:    { label: 'Guardian',   Icon: Globe,        color: '#4F6AE8' },
-  Arxiv:       { label: 'Arxiv',      Icon: BookOpen,     color: '#059669' },
+  Guardian:    { label: 'Guardian',   Icon: Globe,        color: '#7B9BDB' },
+  Arxiv:       { label: 'Arxiv',      Icon: BookOpen,     color: '#7B9BDB' },
 } as const;
 
 const DEFAULT_META = { label: 'News', Icon: Globe, color: '#7B9BDB' };

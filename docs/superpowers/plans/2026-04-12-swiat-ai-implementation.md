@@ -1,7 +1,90 @@
+# Świat AI Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Zamienić sekcję "Blog" na automatyczną stronę newsów AI "/swiat-ai" z hero rotacją, filtrami źródeł, wyszukiwarką, gridem 12 kart + "pokaż więcej" i sidebarem.
+
+**Architecture:** Server Component `swiat-ai/page.tsx` z ISR renderuje shell (nav, metadata, footer). Client Component `AiNewsPage.tsx` fetchuje `/api/news`, obsługuje hero rotację, filtry, search, grid z "pokaż więcej" i sidebar. Pipeline newsów (`newsCache.ts`) i endpoint (`/api/news`) bez zmian.
+
+**Tech Stack:** Next.js 14 App Router, Tailwind CSS, lucide-react, istniejące komponenty react-bits (FadeIn, Particles)
+
+---
+
+## File Map
+
+| Plik | Akcja | Odpowiedzialność |
+|---|---|---|
+| `src/components/AiNewsPage.tsx` | CREATE | Client component: hero z rotacją, search, filtry, grid 12 kart + "pokaż więcej", sidebar (popularne, newsletter, obserwuj nas) |
+| `src/app/swiat-ai/page.tsx` | CREATE | Server Component z ISR, metadata SEO, nav, footer, import AiNewsPage |
+| `src/app/page.tsx` | EDIT | menuItems: "Blog" → "Świat AI", footer: "Blog" → "Świat AI" |
+| `src/app/blog/page.tsx` | DELETE | Zastąpiony przez /swiat-ai |
+| `src/app/blog/[slug]/page.tsx` | DELETE | Nie potrzebny |
+| `src/components/blog/BlogContent.tsx` | DELETE | Zastąpiony przez AiNewsPage |
+| `src/components/NewsSection.tsx` | DELETE | Wchłonięty do AiNewsPage |
+| `src/lib/notion.ts` | DELETE | Brak integracji Notion |
+| `package.json` | EDIT | Usunięcie nieużywanych zależności |
+
+---
+
+## Task 1: Usuń stare pliki blogowe i zależności
+
+**Files:**
+- Delete: `src/app/blog/page.tsx`
+- Delete: `src/app/blog/[slug]/page.tsx`
+- Delete: `src/components/blog/BlogContent.tsx`
+- Delete: `src/components/NewsSection.tsx`
+- Delete: `src/lib/notion.ts`
+- Modify: `package.json`
+
+- [ ] **Krok 1: Usuń pliki**
+
+```bash
+cd "C:/Users/nadru/OneDrive/Dokumenty/Infinity Org/infinity-landing"
+rm -rf src/app/blog
+rm src/components/blog/BlogContent.tsx
+rmdir src/components/blog
+rm src/components/NewsSection.tsx
+rm src/lib/notion.ts
+```
+
+- [ ] **Krok 2: Odinstaluj nieużywane zależności**
+
+```bash
+npm uninstall @notionhq/client notion-to-md react-markdown
+```
+
+Uwaga: `@tailwindcss/typography` zostawiamy — jest devDependency i nie szkodzi, a może się przydać w przyszłości.
+
+- [ ] **Krok 3: Sprawdź TypeScript**
+
+```bash
+npx tsc --noEmit
+```
+
+Oczekiwane: błędy w `src/app/page.tsx` (referencja do "Blog" w menu — naprawimy w Task 4). Brak błędów w pozostałych plikach.
+
+- [ ] **Krok 4: Commit**
+
+```bash
+git add -A
+git commit -m "chore: remove blog files, Notion integration and unused dependencies"
+```
+
+---
+
+## Task 2: Utwórz `src/components/AiNewsPage.tsx`
+
+Client component obsługujący całą interaktywną część strony: hero z auto-rotacją, wyszukiwarka, filtry źródeł, grid 12 kart + "pokaż więcej", sidebar.
+
+**Files:**
+- Create: `src/components/AiNewsPage.tsx`
+
+- [ ] **Krok 1: Utwórz plik**
+
+```typescript
 // src/components/AiNewsPage.tsx
 'use client';
 
-import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import {
   ExternalLink, TrendingUp, Code, Globe, BookOpen,
@@ -104,10 +187,14 @@ export default function AiNewsPage() {
   return (
     <>
       {/* HEADER */}
-      <div className="text-center pt-24 md:pt-28 pb-4 md:pb-6 px-4 md:px-6">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-2 md:mb-3 tracking-tight">Świat AI</h1>
-        <p className="text-[#7B9BDB] text-sm md:text-lg mb-3 md:mb-4">Najnowsze wiadomości ze świata sztucznej inteligencji</p>
-        <div className="flex justify-center gap-3 md:gap-4 flex-wrap text-[10px] md:text-xs">
+      <div className="text-center pt-28 pb-6 px-6">
+        <div className="inline-flex items-center gap-2 bg-[#1A2461]/80 px-4 py-1.5 rounded-full border border-[#2E4AAD] mb-4">
+          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_6px_#4ade80]" />
+          <span className="text-[#D6E4FF] text-sm font-semibold tracking-wide">LIVE</span>
+        </div>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">Świat AI</h1>
+        <p className="text-[#7B9BDB] text-base md:text-lg mb-4">Najnowsze wiadomości ze świata sztucznej inteligencji</p>
+        <div className="flex justify-center gap-4 flex-wrap text-xs">
           {Object.entries(SOURCE_META).map(([key, meta]) => (
             <span key={key} style={{ color: meta.color }} className="flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: meta.color }} />
@@ -120,14 +207,14 @@ export default function AiNewsPage() {
       {/* HERO */}
       {heroItem && (
         <FadeIn>
-          <section className="px-4 md:px-6 pb-6 md:pb-8 max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-stretch">
+          <section className="px-6 pb-8 max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-6 items-stretch">
               {/* Big hero card */}
               <a
                 href={heroItem.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-[2] bg-gradient-to-br from-[#1A2461]/90 to-[#2E4AAD]/60 p-5 md:p-8 rounded-2xl border border-[#4F6AE8]/40 relative overflow-hidden group"
+                className="flex-[2] bg-gradient-to-br from-[#1A2461]/90 to-[#2E4AAD]/60 p-8 rounded-2xl border border-[#4F6AE8]/40 relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-40 h-40 bg-[#4F6AE8]/10 rounded-full blur-3xl" />
                 <div className="relative z-10">
@@ -147,10 +234,10 @@ export default function AiNewsPage() {
                       {new Date(heroItem.publishedAt).toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' })}
                     </span>
                   </div>
-                  <h2 className="text-xl md:text-3xl font-bold text-white leading-tight mb-3 md:mb-4 group-hover:text-[#D6E4FF] transition-colors">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4 group-hover:text-[#D6E4FF] transition-colors">
                     {heroItem.title}
                   </h2>
-                  <p className="text-[#B8C9E8] text-sm md:text-base leading-relaxed mb-4 md:mb-6 max-w-2xl">
+                  <p className="text-[#B8C9E8] text-base leading-relaxed mb-6 max-w-2xl">
                     {heroItem.excerpt}
                   </p>
                   <span className="text-[#4F6AE8] text-sm font-medium group-hover:text-white transition-colors">
@@ -209,8 +296,8 @@ export default function AiNewsPage() {
       )}
 
       {/* SEARCH + FILTERS */}
-      <div className="border-y border-[#1A2461] py-3 md:py-4 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-3 md:gap-4 items-stretch md:items-center justify-between">
+      <div className="border-y border-[#1A2461] py-4 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-4 items-center justify-between">
           <div className="relative w-full md:w-80">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#7B9BDB]" />
             <input
@@ -221,7 +308,7 @@ export default function AiNewsPage() {
               className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#1A2461]/50 border border-[#2E4AAD]/40 text-white text-sm placeholder-[#7B9BDB] focus:border-[#4F6AE8] focus:ring-1 focus:ring-[#4F6AE8] outline-none transition-all"
             />
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-1 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap scrollbar-hide">
+          <div className="flex gap-2 flex-wrap overflow-x-auto">
             {FILTERS.map(filter => (
               <button
                 key={filter}
@@ -241,12 +328,12 @@ export default function AiNewsPage() {
       </div>
 
       {/* MAIN CONTENT: Grid + Sidebar */}
-      <section className="py-6 md:py-10 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto flex flex-col xl:flex-row gap-8 md:gap-10">
+      <section className="py-10 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col xl:flex-row gap-10">
 
           {/* Grid */}
           <div className="xl:w-3/4">
-            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 flex items-center gap-2 text-white">
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-white">
               <Tag className="w-6 h-6 text-[#7B9BDB]" />
               {activeFilter === 'Wszystkie' ? 'Wszystkie newsy' : SOURCE_META[activeFilter]?.label ?? activeFilter}
               <span className="text-sm font-normal text-[#7B9BDB]">({filtered.length})</span>
@@ -254,7 +341,7 @@ export default function AiNewsPage() {
 
             {visibleItems.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {visibleItems.map((item, index) => {
                     const meta = SOURCE_META[item.source];
                     const Icon = meta.Icon;
@@ -264,41 +351,27 @@ export default function AiNewsPage() {
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex flex-col h-full rounded-xl bg-[#1A2461]/40 border border-[#2E4AAD]/30 hover:border-[#4F6AE8] hover:bg-[#1A2461]/70 transition-all duration-300 overflow-hidden"
+                          className="group flex flex-col h-full p-5 rounded-xl bg-[#1A2461]/40 border border-[#2E4AAD]/30 hover:border-[#4F6AE8] hover:bg-[#1A2461]/70 transition-all duration-300"
                         >
-                          {/* Cover image or gradient placeholder */}
-                          <div
-                            className="h-32 md:h-36 flex items-center justify-center relative overflow-hidden"
-                            style={item.image ? {} : { background: `linear-gradient(135deg, ${meta.color}15, ${meta.color}05)` }}
-                          >
-                            {item.image ? (
-                              <img src={item.image} alt="" className="w-full h-full object-cover" loading="lazy" />
-                            ) : (
-                              <Icon className="w-10 h-10 opacity-20" style={{ color: meta.color }} />
-                            )}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F2E]/60 via-transparent to-transparent" />
-                            <div className="absolute top-3 left-3 flex items-center gap-2">
-                              <span
-                                className="flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full backdrop-blur-sm"
-                                style={{ background: `${meta.color}30`, color: meta.color, border: `1px solid ${meta.color}40` }}
-                              >
-                                <Icon className="w-3 h-3" />
-                                {meta.label}
-                              </span>
-                            </div>
-                            <ExternalLink className="absolute top-3 right-3 w-3.5 h-3.5 text-[#7B9BDB] opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="flex items-center justify-between mb-3">
+                            <span
+                              className="flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                              style={{ background: `${meta.color}20`, color: meta.color, border: `1px solid ${meta.color}30` }}
+                            >
+                              <Icon className="w-3 h-3" />
+                              {meta.label}
+                            </span>
+                            <ExternalLink className="w-3.5 h-3.5 text-[#7B9BDB] opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
-                          <div className="p-5 flex flex-col flex-1">
-                            <h3 className="text-sm font-bold text-white mb-2 line-clamp-2 group-hover:text-[#D6E4FF] transition-colors">
-                              {item.title}
-                            </h3>
-                            <p className="text-xs text-[#7B9BDB] leading-relaxed line-clamp-3 flex-1">
-                              {item.excerpt}
-                            </p>
-                            <p className="text-[10px] text-[#2E4AAD] mt-3 pt-3 border-t border-[#2E4AAD]/25">
-                              {new Date(item.publishedAt).toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', year: 'numeric' })}
-                            </p>
-                          </div>
+                          <h3 className="text-sm font-bold text-white mb-2 line-clamp-2 group-hover:text-[#D6E4FF] transition-colors">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs text-[#7B9BDB] leading-relaxed line-clamp-4 flex-1">
+                            {item.excerpt}
+                          </p>
+                          <p className="text-[10px] text-[#2E4AAD] mt-3 pt-3 border-t border-[#2E4AAD]/25">
+                            {new Date(item.publishedAt).toLocaleDateString('pl-PL', { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </p>
                         </a>
                       </FadeIn>
                     );
@@ -306,10 +379,10 @@ export default function AiNewsPage() {
                 </div>
 
                 {hasMore && (
-                  <div className="text-center mt-6 md:mt-8">
+                  <div className="text-center mt-8">
                     <button
                       onClick={() => setShowAll(true)}
-                      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#2E4AAD] to-[#4F6AE8] text-white w-full md:w-auto px-8 py-3 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-[#2E4AAD]/40 transition-all"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-[#2E4AAD] to-[#4F6AE8] text-white px-8 py-3 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-[#2E4AAD]/40 transition-all"
                     >
                       Pokaż więcej newsów <ChevronDown className="w-4 h-4" />
                     </button>
@@ -330,7 +403,7 @@ export default function AiNewsPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="xl:w-1/4 grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-4 md:gap-6">
+          <div className="xl:w-1/4 space-y-6">
 
             {/* Popularne */}
             <div className="bg-[#1A2461]/40 rounded-xl p-5 border border-[#2E4AAD]/30">
@@ -417,3 +490,244 @@ export default function AiNewsPage() {
     </>
   );
 }
+```
+
+Uwaga: ten plik importuje `React` z `createElement` — dodaj import na górze:
+
+```typescript
+import React from 'react';
+```
+
+Dodaj go jako pierwszą linię po `'use client';`.
+
+- [ ] **Krok 2: Sprawdź TypeScript**
+
+```bash
+npx tsc --noEmit
+```
+
+Oczekiwane: zero błędów w tym pliku (mogą być w page.tsx z powodu starego "Blog").
+
+- [ ] **Krok 3: Commit**
+
+```bash
+git add src/components/AiNewsPage.tsx
+git commit -m "feat(swiat-ai): add AiNewsPage client component with hero rotation, filters, grid and sidebar"
+```
+
+---
+
+## Task 3: Utwórz `src/app/swiat-ai/page.tsx`
+
+Server component z ISR, SEO metadata, nawigacją i footerem.
+
+**Files:**
+- Create: `src/app/swiat-ai/page.tsx`
+
+- [ ] **Krok 1: Utwórz katalog i plik**
+
+```bash
+mkdir -p "src/app/swiat-ai"
+```
+
+```typescript
+// src/app/swiat-ai/page.tsx
+import { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowLeft, Mail, Phone, MapPin, Linkedin, Twitter, Youtube } from 'lucide-react';
+import AiNewsPage from '@/components/AiNewsPage';
+
+export const revalidate = 7200; // 2h — synced z news cache TTL
+
+export const metadata: Metadata = {
+  title: 'Świat AI | Infinity Tech',
+  description: 'Najnowsze wiadomości ze świata sztucznej inteligencji. Automatyczny feed z HackerNews, Dev.to, The Guardian i Arxiv.',
+  openGraph: {
+    title: 'Świat AI | Infinity Tech',
+    description: 'Najnowsze wiadomości ze świata AI — automatycznie, po polsku.',
+    type: 'website',
+  },
+};
+
+export default function SwiatAiPage() {
+  return (
+    <div className="min-h-screen bg-[#0B0F2E]">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0B0F2E]/90 backdrop-blur-lg border-b border-[#1A2461]">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <Image src="/logo.png" alt="Infinity Tech" width={42} height={42} className="object-contain" />
+            <span className="text-xl md:text-2xl font-bold text-white">INFINITY TECH</span>
+          </Link>
+          <Link href="/" className="flex items-center gap-2 text-[#7B9BDB] hover:text-white transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            <span className="hidden sm:inline">Powrót</span>
+          </Link>
+        </div>
+      </nav>
+
+      {/* AI News Content */}
+      <AiNewsPage />
+
+      {/* Footer */}
+      <footer className="py-16 bg-[#050B1F] border-t border-[#1A2461] text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <div className="text-2xl font-bold text-[#D6E4FF] mb-4">Infinity Tech</div>
+              <p className="text-[#7B9BDB] mb-6">Tworzymy przyszłość biznesu z AI.</p>
+              <div className="flex gap-4">
+                {[Linkedin, Twitter, Youtube].map((Icon, i) => (
+                  <a key={i} href="#" className="w-10 h-10 rounded-full bg-[#1A2461] border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">
+                    <Icon className="w-5 h-5 text-[#7B9BDB]" />
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-white">Na skróty</h4>
+              <ul className="space-y-2 text-[#7B9BDB]">
+                <li><Link href="/" className="hover:text-white transition-colors">Start</Link></li>
+                <li><Link href="/swiat-ai" className="hover:text-white transition-colors">Świat AI</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-white">Usługi</h4>
+              <ul className="space-y-2 text-[#7B9BDB]">
+                <li><a href="#" className="hover:text-white transition-colors">AI Agenci</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Automatyzacja</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Consulting</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-white">Kontakt</h4>
+              <ul className="space-y-2 text-[#7B9BDB]">
+                <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> contact@infinityteam.io</li>
+                <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> +48 123 456 789</li>
+                <li className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Warszawa, Polska</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-[#1A2461] pt-8 text-center text-[#7B9BDB]">
+            <p>&copy; {new Date().getFullYear()} Infinity Tech.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+```
+
+- [ ] **Krok 2: Sprawdź TypeScript**
+
+```bash
+npx tsc --noEmit
+```
+
+Oczekiwane: zero błędów.
+
+- [ ] **Krok 3: Commit**
+
+```bash
+git add src/app/swiat-ai/page.tsx
+git commit -m "feat(swiat-ai): add server component page with ISR, SEO metadata, nav and footer"
+```
+
+---
+
+## Task 4: Zaktualizuj nawigację na stronie głównej
+
+**Files:**
+- Modify: `src/app/page.tsx` (linie ~1426-1434 i ~1348)
+
+- [ ] **Krok 1: Zmień menuItems**
+
+W `src/app/page.tsx` znajdź (linia ~1431):
+
+```typescript
+    { label: 'Blog', ariaLabel: 'Przejdź do bloga', link: '/blog' },
+```
+
+Zamień na:
+
+```typescript
+    { label: 'Świat AI', ariaLabel: 'Przejdź do newsów AI', link: '/swiat-ai' },
+```
+
+- [ ] **Krok 2: Zmień footer**
+
+W `src/app/page.tsx` znajdź (linia ~1348):
+
+```html
+<a href="/blog" className="hover:text-white transition-colors text-sm">Blog</a>
+```
+
+Zamień na:
+
+```html
+<a href="/swiat-ai" className="hover:text-white transition-colors text-sm">Świat AI</a>
+```
+
+- [ ] **Krok 3: Sprawdź TypeScript**
+
+```bash
+npx tsc --noEmit
+```
+
+Oczekiwane: zero błędów.
+
+- [ ] **Krok 4: Zweryfikuj w przeglądarce**
+
+Otwórz `http://localhost:3001`:
+- [ ] Menu hamburger zawiera "Świat AI"
+- [ ] Kliknięcie "Świat AI" prowadzi do `/swiat-ai`
+- [ ] Footer zawiera "Świat AI"
+
+Otwórz `http://localhost:3001/swiat-ai`:
+- [ ] Strona renderuje newsy
+- [ ] Hero sekcja z auto-rotacją
+- [ ] Filtry źródeł działają
+- [ ] Wyszukiwarka działa
+- [ ] Grid 12 kart + "Pokaż więcej"
+- [ ] Sidebar: Popularne, Newsletter, Obserwuj nas
+- [ ] Newsletter "Zapisz się" wysyła request do `/api/waitlist`
+
+- [ ] **Krok 5: Commit**
+
+```bash
+git add src/app/page.tsx
+git commit -m "feat(swiat-ai): update main nav and footer links from Blog to Świat AI"
+```
+
+---
+
+## Task 5: Tło 3D (AIDesigner)
+
+**Files:**
+- Modify: `src/app/swiat-ai/page.tsx` lub `src/components/AiNewsPage.tsx`
+
+- [ ] **Krok 1: Wygeneruj tło przez AIDesigner**
+
+Użyj AIDesigner skill (`aidesigner-frontend`) do wygenerowania animowanego tła 3D:
+- Motyw: AI/tech/kosmiczny, ciemny
+- Inne niż na stronie głównej
+- Subtelne, nie przytłaczające contentu
+- Warstwa pod całą treścią (position absolute, z-index 0)
+
+- [ ] **Krok 2: Zintegruj tło ze stroną**
+
+Dodaj wygenerowany komponent tła do `src/app/swiat-ai/page.tsx` jako warstwa pod `<AiNewsPage />`.
+
+- [ ] **Krok 3: Sprawdź w przeglądarce**
+
+- [ ] Tło widoczne za contentem
+- [ ] Content czytelny (tło nie przytłacza)
+- [ ] Animacja płynna
+
+- [ ] **Krok 4: Commit**
+
+```bash
+git add -A
+git commit -m "feat(swiat-ai): add 3D animated background via AIDesigner"
+```

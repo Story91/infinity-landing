@@ -124,18 +124,19 @@ Tytuły:
 ${items.map(i => `{"id": "${i.id}", "title": ${JSON.stringify(i.title)}}`).join('\n')}`;
 
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 30000);
+    console.log('[newsCache] Calling OpenAI to translate', items.length, 'items...');
     const response = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       response_format: { type: 'json_object' },
       max_tokens: 3000,
-    }, { signal: controller.signal as any });
-    clearTimeout(timeout);
+      timeout: 30000,
+    });
+    console.log('[newsCache] OpenAI responded successfully');
 
     const parsed = JSON.parse(response.choices[0].message.content ?? '{}');
     const summaries: { id: string; title_pl: string; excerpt: string }[] = parsed.items ?? [];
+    console.log('[newsCache] Got', summaries.length, 'translations');
 
     return items.map(item => {
       const s = summaries.find(s => s.id === item.id);

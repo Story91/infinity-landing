@@ -23,7 +23,7 @@ export default function SwiatAiPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0B0F2E]/90 backdrop-blur-lg border-b border-[#1A2461]">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Infinity Tech" width={42} height={42} className="object-contain" />
+            <Image src="/logo.png" alt="Infinity Tech" width={42} height={42} className="object-contain brightness-0 invert" />
             <span className="text-xl md:text-2xl font-bold text-white">INFINITY TECH</span>
           </Link>
           <Link href="/" className="flex items-center gap-2 text-[#7B9BDB] hover:text-white transition-colors">

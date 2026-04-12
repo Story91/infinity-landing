@@ -2,8 +2,10 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Mail, Phone, MapPin, Linkedin, Twitter, Youtube } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import AiNewsPage from '@/components/AiNewsPage';
-import FloatingLines from '@/components/FloatingLines';
+
+const FloatingLines = dynamic(() => import('@/components/FloatingLines'), { ssr: false });
 
 export const revalidate = 7200;
 

@@ -22,7 +22,7 @@ const newsCache = new Map<string, CacheEntry>();
 async function fetchHackerNews(): Promise<Omit<NewsItem, 'excerpt'>[]> {
   const topIds: number[] = await fetch(
     'https://hacker-news.firebaseio.com/v0/topstories.json',
-    { next: { revalidate: 0 } }
+    { next: { revalidate: 0 }, signal: AbortSignal.timeout(8000) }
   ).then(r => r.json());
 
   const results: Omit<NewsItem, 'excerpt'>[] = [];
@@ -32,7 +32,7 @@ async function fetchHackerNews(): Promise<Omit<NewsItem, 'excerpt'>[]> {
     if (results.length >= 10) break;
     const batch = await Promise.all(
       topIds.slice(i, i + 10).map(id =>
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r => r.json())
+        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { signal: AbortSignal.timeout(5000) }).then(r => r.json())
       )
     );
     const aiStories = batch.filter((item: any) =>
@@ -52,7 +52,8 @@ async function fetchHackerNews(): Promise<Omit<NewsItem, 'excerpt'>[]> {
 
 async function fetchDevTo(): Promise<Omit<NewsItem, 'excerpt'>[]> {
   const articles: any[] = await fetch(
-    'https://dev.to/api/articles?tag=ai&per_page=8&top=1'
+    'https://dev.to/api/articles?tag=ai&per_page=8&top=1',
+    { signal: AbortSignal.timeout(8000) }
   ).then(r => r.json());
 
   return articles.map((a: any) => ({
@@ -70,7 +71,8 @@ async function fetchGuardian(): Promise<Omit<NewsItem, 'excerpt'>[]> {
   if (!key) return [];
 
   const data: any = await fetch(
-    `https://content.guardianapis.com/search?q=artificial+intelligence&api-key=${key}&page-size=8&order-by=newest&show-fields=thumbnail`
+    `https://content.guardianapis.com/search?q=artificial+intelligence&api-key=${key}&page-size=8&order-by=newest&show-fields=thumbnail`,
+    { signal: AbortSignal.timeout(8000) }
   ).then(r => r.json());
 
   return (data.response?.results ?? []).map((r: any) => ({
@@ -85,7 +87,8 @@ async function fetchGuardian(): Promise<Omit<NewsItem, 'excerpt'>[]> {
 
 async function fetchArxiv(): Promise<Omit<NewsItem, 'excerpt'>[]> {
   const xml = await fetch(
-    'https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=5'
+    'https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=5',
+    { signal: AbortSignal.timeout(8000) }
   ).then(r => r.text());
 
   const entries = xml.match(/<entry>([\s\S]*?)<\/entry>/g) ?? [];
@@ -121,12 +124,15 @@ Tytuły:
 ${items.map(i => `{"id": "${i.id}", "title": ${JSON.stringify(i.title)}}`).join('\n')}`;
 
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
     const response = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       response_format: { type: 'json_object' },
       max_tokens: 3000,
-    });
+    }, { signal: controller.signal as any });
+    clearTimeout(timeout);
 
     const parsed = JSON.parse(response.choices[0].message.content ?? '{}');
     const summaries: { id: string; title_pl: string; excerpt: string }[] = parsed.items ?? [];

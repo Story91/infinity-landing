@@ -23,6 +23,11 @@ const SOURCE_META = {
   Arxiv:       { label: 'Arxiv',      Icon: BookOpen,     color: '#059669' },
 } as const;
 
+const DEFAULT_META = { label: 'News', Icon: Globe, color: '#7B9BDB' };
+function getMeta(source: string) {
+  return (SOURCE_META as any)[source] ?? DEFAULT_META;
+}
+
 type SourceFilter = 'Wszystkie' | 'TechCrunch' | 'TheVerge' | 'Wired' | 'DevTo' | 'Guardian' | 'Arxiv';
 const FILTERS: SourceFilter[] = ['Wszystkie', 'TechCrunch', 'TheVerge', 'Wired', 'DevTo', 'Guardian', 'Arxiv'];
 
@@ -173,13 +178,13 @@ export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
                     <span
                       className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full"
                       style={{
-                        background: `${SOURCE_META[heroItem.source].color}20`,
-                        color: SOURCE_META[heroItem.source].color,
-                        border: `1px solid ${SOURCE_META[heroItem.source].color}40`,
+                        background: `${getMeta(heroItem.source).color}20`,
+                        color: getMeta(heroItem.source).color,
+                        border: `1px solid ${getMeta(heroItem.source).color}40`,
                       }}
                     >
-                      {React.createElement(SOURCE_META[heroItem.source].Icon, { className: 'w-3 h-3' })}
-                      {SOURCE_META[heroItem.source].label}
+                      {React.createElement(getMeta(heroItem.source).Icon, { className: 'w-3 h-3' })}
+                      {getMeta(heroItem.source).label}
                     </span>
                     <span className="text-[#4F6AE8] text-xs">
                       {new Date(heroItem.publishedAt).toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -210,7 +215,7 @@ export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
               {/* 2 smaller cards — hidden on mobile */}
               <div className="flex-1 hidden lg:flex flex-col gap-4">
                 {news.slice(1, 3).filter(n => n !== heroItem).concat(news.slice(3)).slice(0, 2).map(item => {
-                  const meta = SOURCE_META[item.source];
+                  const meta = getMeta(item.source);
                   return (
                     <a
                       key={item.id}
@@ -269,9 +274,9 @@ export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
                     ? 'bg-[#2E4AAD] text-white shadow-lg shadow-[#2E4AAD]/30'
                     : 'bg-[#1A2461]/50 border border-[#2E4AAD]/40 hover:bg-[#1A2461] hover:border-[#4F6AE8]'
                 }`}
-                style={activeFilter === filter ? {} : { color: filter === 'Wszystkie' ? '#D6E4FF' : SOURCE_META[filter]?.color ?? '#D6E4FF' }}
+                style={activeFilter === filter ? {} : { color: filter === 'Wszystkie' ? '#D6E4FF' : getMeta(filter).color ?? '#D6E4FF' }}
               >
-                {filter === 'Wszystkie' ? 'Wszystkie' : SOURCE_META[filter]?.label ?? filter}
+                {filter === 'Wszystkie' ? 'Wszystkie' : getMeta(filter).label ?? filter}
               </button>
             ))}
           </div>
@@ -286,7 +291,7 @@ export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
           <div className="xl:w-3/4">
             <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 flex items-center gap-2 text-white">
               <Tag className="w-6 h-6 text-[#7B9BDB]" />
-              {activeFilter === 'Wszystkie' ? 'Wszystkie newsy' : SOURCE_META[activeFilter]?.label ?? activeFilter}
+              {activeFilter === 'Wszystkie' ? 'Wszystkie newsy' : getMeta(activeFilter).label ?? activeFilter}
               <span className="text-sm font-normal text-[#7B9BDB]">({filtered.length})</span>
             </h2>
 
@@ -294,7 +299,7 @@ export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
                   {visibleItems.map((item, index) => {
-                    const meta = SOURCE_META[item.source];
+                    const meta = getMeta(item.source);
                     const Icon = meta.Icon;
                     return (
                       <FadeIn key={item.id} delay={index * 0.03}>
@@ -388,7 +393,7 @@ export default function AiNewsPage({ initialNews = [] }: AiNewsPageProps) {
                       <h4 className="font-medium text-[11px] text-[#D6E4FF] group-hover:text-white transition-colors line-clamp-2 leading-snug">
                         {item.title}
                       </h4>
-                      <p className="text-[9px] text-[#7B9BDB] mt-0.5">{SOURCE_META[item.source].label}</p>
+                      <p className="text-[9px] text-[#7B9BDB] mt-0.5">{getMeta(item.source).label}</p>
                     </div>
                   </a>
                 ))}

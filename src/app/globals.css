@@ -6,6 +6,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
 :root {
   --foreground-rgb: 15, 23, 42;
   --background-rgb: 5, 11, 31;

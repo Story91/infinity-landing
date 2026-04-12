@@ -16,6 +16,7 @@ interface CacheEntry {
 }
 
 const CACHE_TTL_MS = 2 * 60 * 60 * 1000; // 2h
+const CACHE_KEY = 'news-feed';
 const newsCache = new Map<string, CacheEntry>();
 
 async function fetchHackerNews(): Promise<Omit<NewsItem, 'excerpt'>[]> {
@@ -103,42 +104,6 @@ async function fetchArxiv(): Promise<Omit<NewsItem, 'excerpt'>[]> {
   });
 }
 
-async function fetchOgImage(url: string): Promise<string> {
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 2000);
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'Range': 'bytes=0-15000' },
-    });
-    clearTimeout(timeout);
-    const html = await res.text();
-    const ogMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i)
-      || html.match(/<meta\s+content=["']([^"']+)["']\s+property=["']og:image["']/i);
-    return ogMatch?.[1] ?? '';
-  } catch {
-    return '';
-  }
-}
-
-async function enrichWithImages(
-  items: Omit<NewsItem, 'excerpt'>[]
-): Promise<Omit<NewsItem, 'excerpt'>[]> {
-  const needsImage = items.filter(i => !i.image);
-  if (!needsImage.length) return items;
-
-  const images = await Promise.allSettled(
-    needsImage.map(i => fetchOgImage(i.url))
-  );
-
-  let idx = 0;
-  return items.map(item => {
-    if (item.image) return item;
-    const result = images[idx++];
-    return { ...item, image: result?.status === 'fulfilled' ? result.value : '' };
-  });
-}
-
 async function summarizeWithOpenAI(
   items: Omit<NewsItem, 'excerpt'>[]
 ): Promise<NewsItem[]> {
@@ -180,14 +145,7 @@ ${items.map(i => `{"id": "${i.id}", "title": ${JSON.stringify(i.title)}}`).join(
   }
 }
 
-export async function getNewsWithCache(): Promise<NewsItem[]> {
-  const CACHE_KEY = 'news-feed';
-  const cached = newsCache.get(CACHE_KEY);
-
-  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
-    return cached.data;
-  }
-
+async function refreshCache(): Promise<NewsItem[]> {
   const [hn, devto, guardian, arxiv] = await Promise.allSettled([
     fetchHackerNews(),
     fetchDevTo(),
@@ -211,8 +169,28 @@ export async function getNewsWithCache(): Promise<NewsItem[]> {
     return true;
   });
 
-  const withImages = await enrichWithImages(unique);
-  const withSummaries = await summarizeWithOpenAI(withImages);
+  const withSummaries = await summarizeWithOpenAI(unique);
   newsCache.set(CACHE_KEY, { data: withSummaries, timestamp: Date.now() });
   return withSummaries;
+}
+
+let refreshing = false;
+
+export async function getNewsWithCache(): Promise<NewsItem[]> {
+  const cached = newsCache.get(CACHE_KEY);
+
+  // Fresh cache — return immediately
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
+  // Stale cache exists — return stale data immediately, refresh in background
+  if (cached && !refreshing) {
+    refreshing = true;
+    refreshCache().finally(() => { refreshing = false; });
+    return cached.data;
+  }
+
+  // No cache at all (cold start) — must wait
+  return refreshCache();
 }

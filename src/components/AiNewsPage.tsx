@@ -10,6 +10,8 @@ import {
 } from 'lucide-react';
 import FadeIn from '@/components/react-bits/FadeIn';
 import GlareHover from '@/components/GlareHover';
+import BlurText from '@/components/BlurText';
+import TextType from '@/components/react-bits/TextType';
 import type { NewsItem } from '@/lib/newsCache';
 
 const SOURCE_META = {
@@ -68,7 +70,7 @@ export default function AiNewsPage() {
   const hasMore = gridItems.length > INITIAL_COUNT && !showAll;
 
   // Top 3 for sidebar (first 3 from HackerNews — community-ranked)
-  const popularItems = news.filter(n => n.source === 'HackerNews').slice(0, 3);
+  const popularItems = news.slice(0, 5);
 
   // Newsletter submit
   const [email, setEmail] = useState('');
@@ -105,16 +107,44 @@ export default function AiNewsPage() {
   return (
     <>
       {/* HEADER */}
-      <div className="text-center pt-24 md:pt-28 pb-4 md:pb-6 px-4 md:px-6">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-2 md:mb-3 tracking-tight">Świat AI</h1>
-        <p className="text-[#7B9BDB] text-sm md:text-lg mb-3 md:mb-4">Najnowsze wiadomości ze świata sztucznej inteligencji</p>
-        <div className="flex justify-center gap-3 md:gap-4 flex-wrap text-[10px] md:text-xs">
-          {Object.entries(SOURCE_META).map(([key, meta]) => (
-            <span key={key} style={{ color: meta.color }} className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: meta.color }} />
-              {meta.label}
-            </span>
-          ))}
+      <div className="text-center pt-6 md:pt-10 pb-8 md:pb-12 px-4 md:px-6">
+        <BlurText
+          text="Świat AI"
+          delay={150}
+          animateBy="letters"
+          direction="top"
+          className="text-3xl md:text-5xl font-extrabold text-white mb-2 md:mb-3 tracking-tight"
+          stepDuration={0.3}
+        />
+        <TextType
+          texts={[
+            'Najnowsze wiadomości ze świata sztucznej inteligencji',
+            'Automatyczne newsy z HackerNews, Dev.to, Guardian i Arxiv',
+            'Codziennie świeże treści — przetłumaczone na polski',
+          ]}
+          speed={40}
+          deleteSpeed={25}
+          pauseDuration={3000}
+          className="text-[#7B9BDB] text-sm md:text-base mb-8 md:mb-10 min-h-[28px] font-mono tracking-wide"
+        />
+        <div className="flex justify-center gap-1.5 md:gap-3 flex-wrap px-2">
+          {Object.entries(SOURCE_META).map(([key, meta]) => {
+            const Icon = meta.Icon;
+            return (
+              <span
+                key={key}
+                className="flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-lg text-[9px] md:text-xs font-medium backdrop-blur-sm"
+                style={{
+                  background: `${meta.color}15`,
+                  color: meta.color,
+                  border: `1px solid ${meta.color}30`,
+                }}
+              >
+                <Icon className="w-3 h-3" />
+                {meta.label}
+              </span>
+            );
+          })}
         </div>
       </div>
 
@@ -170,8 +200,8 @@ export default function AiNewsPage() {
                 </div>
               </a>
 
-              {/* 2 smaller cards */}
-              <div className="flex-1 flex flex-col gap-4">
+              {/* 2 smaller cards — hidden on mobile */}
+              <div className="flex-1 hidden lg:flex flex-col gap-4">
                 {news.slice(1, 3).filter(n => n !== heroItem).concat(news.slice(3)).slice(0, 2).map(item => {
                   const meta = SOURCE_META[item.source];
                   return (
@@ -333,30 +363,25 @@ export default function AiNewsPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="xl:w-1/4 grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-4 md:gap-6">
+          <div className="xl:w-1/4 flex flex-col gap-4 md:gap-6">
 
             {/* Popularne */}
-            <div className="bg-[#1A2461]/70 backdrop-blur-xl rounded-2xl p-5 border border-[#7B9BDB]/20 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.12)]">
-              <div className="flex items-center gap-3 mb-5 pb-4 border-b border-[#2E4AAD]/25">
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#2E4AAD] to-[#4F6AE8] flex items-center justify-center">
-                  <TrendingUp className="w-4 h-4 text-white" />
+            <div className="w-full h-fit bg-[#1A2461]/70 backdrop-blur-xl rounded-2xl p-5 border border-[#7B9BDB]/20 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.12)]">
+              <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#2E4AAD]/25">
+                <div className="w-7 h-7 rounded-md bg-gradient-to-br from-[#2E4AAD] to-[#4F6AE8] flex items-center justify-center">
+                  <TrendingUp className="w-3.5 h-3.5 text-white" />
                 </div>
-                <div>
-                  <h3 className="font-bold text-white text-sm">Popularne</h3>
-                  <p className="text-[10px] text-[#7B9BDB]">Najczęściej klikane</p>
-                </div>
+                <h3 className="font-bold text-white text-sm">Popularne</h3>
               </div>
-              <div className="space-y-4">
-                {popularItems.map(item => (
-                  <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-3 group">
-                    <div className="w-16 h-12 rounded-lg bg-[#2E4AAD]/20 border border-[#2E4AAD]/30 flex items-center justify-center flex-shrink-0">
-                      {React.createElement(SOURCE_META[item.source].Icon, { className: 'w-4 h-4', style: { color: SOURCE_META[item.source].color } })}
-                    </div>
+              <div className="space-y-2.5">
+                {popularItems.map((item, i) => (
+                  <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="flex gap-2.5 group items-start">
+                    <span className="text-[#2E4AAD] font-bold text-xs mt-0.5 w-4 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-xs text-[#D6E4FF] group-hover:text-white transition-colors line-clamp-2">
+                      <h4 className="font-medium text-[11px] text-[#D6E4FF] group-hover:text-white transition-colors line-clamp-2 leading-snug">
                         {item.title}
                       </h4>
-                      <p className="text-[10px] text-[#7B9BDB] mt-1">{SOURCE_META[item.source].label}</p>
+                      <p className="text-[9px] text-[#7B9BDB] mt-0.5">{SOURCE_META[item.source].label}</p>
                     </div>
                   </a>
                 ))}
@@ -364,7 +389,7 @@ export default function AiNewsPage() {
             </div>
 
             {/* Newsletter */}
-            <div className="bg-[#1A2461]/70 backdrop-blur-xl rounded-2xl p-6 border border-[#7B9BDB]/20 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.12)] text-white">
+            <div className="w-full h-fit bg-[#1A2461]/70 backdrop-blur-xl rounded-2xl p-6 border border-[#7B9BDB]/20 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.12)] text-white">
               <div className="w-10 h-10 rounded-lg bg-[#2E4AAD]/40 flex items-center justify-center mb-3">
                 <Mail className="w-5 h-5 text-[#7B9BDB]" />
               </div>
@@ -394,7 +419,7 @@ export default function AiNewsPage() {
             </div>
 
             {/* Obserwuj nas */}
-            <div className="bg-[#1A2461]/70 backdrop-blur-xl rounded-2xl p-6 border border-[#7B9BDB]/20 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.12)] text-white text-center">
+            <div className="w-full h-fit bg-[#1A2461]/70 backdrop-blur-xl rounded-2xl p-6 border border-[#7B9BDB]/20 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.12)] text-white text-center">
               <h3 className="font-bold text-sm mb-1">Obserwuj nas</h3>
               <p className="text-[#7B9BDB] text-xs mb-4">Dołącz do społeczności AI</p>
               <div className="flex justify-center gap-3">

@@ -37,12 +37,12 @@ export default function SwiatAiPage() {
         />
       </div>
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent border-b border-transparent">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Infinity Tech" width={42} height={42} className="object-contain brightness-0 invert" />
-            <span className="text-xl md:text-2xl font-bold text-white">INFINITY TECH</span>
+      {/* Navigation — static, stays in hero only */}
+      <nav className="relative z-20 bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 md:gap-3">
+            <Image src="/logo.png" alt="Infinity Tech" width={32} height={32} className="object-contain brightness-0 invert md:w-[42px] md:h-[42px]" />
+            <span className="text-lg md:text-2xl font-bold text-white">INFINITY TECH</span>
           </Link>
           <Link href="/" className="flex items-center gap-2 text-[#7B9BDB] hover:text-white transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -57,12 +57,12 @@ export default function SwiatAiPage() {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 py-16 border-t border-[#1A2461]/30 text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
+      <footer className="relative z-10 py-10 md:py-16 border-t border-[#1A2461]/30 text-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-12">
             <div>
-              <div className="text-2xl font-bold text-[#D6E4FF] mb-4">Infinity Tech</div>
-              <p className="text-[#7B9BDB] mb-6">Tworzymy przyszłość biznesu z AI.</p>
+              <div className="text-xl md:text-2xl font-bold text-[#D6E4FF] mb-3 md:mb-4">Infinity Tech</div>
+              <p className="text-[#7B9BDB] text-sm mb-4 md:mb-6">Tworzymy przyszłość biznesu z AI.</p>
               <div className="flex gap-4">
                 {[Linkedin, Twitter, Youtube].map((Icon, i) => (
                   <a key={i} href="#" className="w-10 h-10 rounded-full bg-[#1A2461] border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">

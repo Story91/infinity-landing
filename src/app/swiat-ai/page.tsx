@@ -26,8 +26,8 @@ export default async function SwiatAiPage() {
 
   return (
     <div className="min-h-screen bg-[#0B0F2E] relative">
-      {/* Animated Floating Lines Background — hidden on mobile */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none hidden md:block" style={{ zIndex: 0 }}>
+      {/* Animated Floating Lines Background */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
         <FloatingLines
           enabledWaves={['top', 'middle', 'bottom']}
           lineCount={[4, 5, 3]}

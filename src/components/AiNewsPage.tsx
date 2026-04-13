@@ -76,9 +76,10 @@ export default function AiNewsPage({ initialNews }: AiNewsPageProps) {
 
   // Newsletter submit
   const [email, setEmail] = useState('');
+  const [newsletterConsent, setNewsletterConsent] = useState(false);
   const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const handleNewsletter = useCallback(async () => {
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) return;
+    if (!email || !/^\S+@\S+\.\S+$/.test(email) || !newsletterConsent) return;
     setEmailStatus('sending');
     try {
       const res = await fetch('/api/waitlist', {
@@ -88,7 +89,7 @@ export default function AiNewsPage({ initialNews }: AiNewsPageProps) {
       });
       setEmailStatus(res.ok ? 'sent' : 'error');
     } catch { setEmailStatus('error'); }
-  }, [email]);
+  }, [email, newsletterConsent]);
 
   if (!news.length) {
     return (
@@ -402,11 +403,23 @@ export default function AiNewsPage({ initialNews }: AiNewsPageProps) {
                   />
                   <button
                     onClick={handleNewsletter}
-                    disabled={emailStatus === 'sending'}
+                    disabled={emailStatus === 'sending' || !newsletterConsent}
                     className="w-full py-2.5 bg-[#2E4AAD] hover:bg-[#4F6AE8] disabled:opacity-50 text-white text-sm font-bold rounded-xl transition-colors"
                   >
                     {emailStatus === 'sending' ? 'Wysyłanie...' : 'Zapisz się'}
                   </button>
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={newsletterConsent}
+                      onChange={e => setNewsletterConsent(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 rounded border-[#2E4AAD] bg-[#0B0F2E]/60 accent-[#4F6AE8] flex-shrink-0"
+                    />
+                    <span className="text-[10px] text-[#7B9BDB] leading-snug">
+                      Wyrażam zgodę na otrzymywanie informacji handlowych drogą elektroniczną od Infinity Tech. Zapoznałem/am się z{' '}
+                      <a href="/polityka-prywatnosci" className="text-[#4F6AE8] hover:underline">Polityką Prywatności</a>.
+                    </span>
+                  </label>
                   {emailStatus === 'error' && <p className="text-red-400 text-xs">Błąd. Spróbuj ponownie.</p>}
                 </div>
               )}

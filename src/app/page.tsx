@@ -68,6 +68,22 @@ const Background3D = dynamic(() => import('@/components/Background3D'), { ssr: f
 const HeroGlobe = dynamic(() => import('@/components/HeroGlobe'), { ssr: false });
 const StaggeredMenu = dynamic(() => import('@/components/StaggeredMenu'), { ssr: false });
 
+function handleMailto(e: React.MouseEvent) {
+  e.preventDefault();
+  const email = 'contact@infinityteam.io';
+  const w = window.open(`mailto:${email}`, '_self');
+  // fallback — if mailto didn't trigger, copy to clipboard
+  setTimeout(() => {
+    if (!document.hidden) {
+      navigator.clipboard.writeText(email).then(() => {
+        alert(`Adres email skopiowany do schowka: ${email}`);
+      }).catch(() => {
+        prompt('Skopiuj adres email:', email);
+      });
+    }
+  }, 500);
+}
+
 // X (Twitter) icon
 function XIcon({ className = '' }: { className?: string }) {
   return (
@@ -425,7 +441,7 @@ function HeroSection() {
           <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
             <Linkedin className="w-4 h-4" />
           </a>
-          <a href="mailto:contact@infinityteam.io" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
+          <a href="mailto:contact@infinityteam.io" onClick={handleMailto} className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
             <Mail className="w-4 h-4" />
           </a>
         </div>

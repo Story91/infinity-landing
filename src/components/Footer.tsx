@@ -11,6 +11,21 @@ function XIcon({ className = '' }: { className?: string }) {
   );
 }
 
+function handleMailto(e: React.MouseEvent) {
+  e.preventDefault();
+  const email = 'contact@infinityteam.io';
+  window.open(`mailto:${email}`, '_self');
+  setTimeout(() => {
+    if (!document.hidden) {
+      navigator.clipboard.writeText(email).then(() => {
+        alert(`Adres email skopiowany do schowka: ${email}`);
+      }).catch(() => {
+        prompt('Skopiuj adres email:', email);
+      });
+    }
+  }, 500);
+}
+
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterConsent, setNewsletterConsent] = useState(false);
@@ -50,7 +65,7 @@ export default function Footer() {
               <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:contact@infinityteam.io" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+              <a href="mailto:contact@infinityteam.io" onClick={handleMailto} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
             </div>

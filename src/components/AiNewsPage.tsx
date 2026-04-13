@@ -22,6 +22,21 @@ import BlurText from '@/components/BlurText';
 import TextType from '@/components/react-bits/TextType';
 import type { NewsItem } from '@/lib/newsCache';
 
+function handleMailto(e: React.MouseEvent) {
+  e.preventDefault();
+  const email = 'contact@infinityteam.io';
+  window.open(`mailto:${email}`, '_self');
+  setTimeout(() => {
+    if (!document.hidden) {
+      navigator.clipboard.writeText(email).then(() => {
+        alert(`Adres email skopiowany do schowka: ${email}`);
+      }).catch(() => {
+        prompt('Skopiuj adres email:', email);
+      });
+    }
+  }, 500);
+}
+
 const SOURCE_META = {
   TechCrunch:  { label: 'TechCrunch', Icon: Zap,         color: '#7B9BDB' },
   TheVerge:    { label: 'The Verge',  Icon: Cpu,          color: '#7B9BDB' },
@@ -444,7 +459,7 @@ export default function AiNewsPage({ initialNews }: AiNewsPageProps) {
                 <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0B0F2E]/60 border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">
                   <XIcon className="w-4 h-4 text-[#7B9BDB]" />
                 </a>
-                <a href="mailto:contact@infinityteam.io" className="w-10 h-10 rounded-full bg-[#0B0F2E]/60 border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">
+                <a href="mailto:contact@infinityteam.io" onClick={handleMailto} className="w-10 h-10 rounded-full bg-[#0B0F2E]/60 border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">
                   <Mail className="w-4 h-4 text-[#7B9BDB]" />
                 </a>
               </div>

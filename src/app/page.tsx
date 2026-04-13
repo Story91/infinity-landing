@@ -40,6 +40,7 @@ import {
 import {
   siWhatsapp, siTelegram, siDiscord, siGooglemessages, siSignal,
   siMatrix, siLine, siMattermost, siNextcloud, siTwitch, siWechat,
+  siImessage, siZalo,
 } from 'simple-icons';
 
 import SplitText from '@/components/react-bits/SplitText';
@@ -173,8 +174,11 @@ const TECH_STACK = [
   { name: 'MiniMax', desc: 'AI Models' },
 ];
 
-// Kanały integracji — Slack SVG path (not in simple-icons v16)
+// Kanały integracji — custom SVG paths for icons not in simple-icons
 const SLACK_PATH = 'M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521 2.52A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.521h-6.312z';
+const MS_TEAMS_PATH = 'M20.625 8.5h-6.25A1.125 1.125 0 0 0 13.25 9.625v6.25A1.125 1.125 0 0 0 14.375 17h6.25A1.125 1.125 0 0 0 21.75 15.875v-6.25A1.125 1.125 0 0 0 20.625 8.5zM23 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3.25-.5a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5zM22.5 8a2.5 2.5 0 0 1 1.5.5V11l-.002.07A1.5 1.5 0 0 1 22.5 12.5h-.25v3.375A2.125 2.125 0 0 1 20.125 18h-3.05a4.5 4.5 0 0 1-4.075 2.6 4.5 4.5 0 0 1-4.5-4.5h-.125A1.125 1.125 0 0 1 7.25 15V9a1.125 1.125 0 0 1 1.125-1.125h.125a4.5 4.5 0 0 1 4.5-4.5 4.49 4.49 0 0 1 3.25 1.4A2.74 2.74 0 0 1 19.75 6.5h.75a2.49 2.49 0 0 1 2 1z';
+const NOSTR_PATH = 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3.611 16.708c-1.182.295-2.2-.05-3.058-.72-.14-.11-.271-.232-.406-.348-.018.018-.036.032-.053.05l-.002.001c-.698.736-1.544.982-2.525.827-1.168-.184-1.937-.895-2.338-2.001a4.078 4.078 0 0 1-.165-.629c-.018-.117-.005-.181.147-.195.703-.063 1.405-.142 2.108-.21.077-.007.121.019.138.098.122.558.368 1.044.912 1.313.353.174.706.148 1.009-.103.343-.284.37-.664.115-1.013-.174-.239-.412-.41-.665-.562-.608-.367-1.248-.678-1.848-1.055-1.031-.648-1.536-1.568-1.386-2.808.167-1.378 1.063-2.21 2.323-2.598.16-.05.324-.085.49-.108.028-.004.073.004.082-.044h3.1c.005.039.046.037.073.043 1.168.233 1.882.934 2.258 2.043.054.157.09.32.123.482.016.08-.008.12-.097.128-.698.058-1.395.127-2.093.192-.079.007-.116-.025-.134-.103-.11-.472-.326-.887-.797-1.108-.337-.159-.673-.138-.967.08-.37.275-.406.668-.132 1.033.174.232.406.4.654.547.612.363 1.256.673 1.858 1.049 1.116.696 1.58 1.713 1.367 3.01-.21 1.273-1.025 2.082-2.238 2.484z';
+const FEISHU_PATH = 'M2.727 1.554c2.488 1.272 5.464 1.272 5.464 1.272L3.46 9.888s-2.79-4.124-.733-8.334zM12.6 22.072c-2.773.408-5.518-1.02-5.518-1.02l8.156-5.08s.69 4.84-2.638 6.1zM21.36 3.744c-.814 2.692-3.388 4.66-3.388 4.66L12.34 1.076s4.896-1.02 9.02 2.668zM7.728 14.34c-.924-2.64.444-5.448.444-5.448l6.264 7.044s-4.536 1.764-6.708-1.596z';
 
 const CHANNELS: { name: string; path?: string; color?: string }[] = [
   { name: 'WhatsApp', path: siWhatsapp.path, color: '#25D366' },
@@ -183,19 +187,17 @@ const CHANNELS: { name: string; path?: string; color?: string }[] = [
   { name: 'Discord', path: siDiscord.path, color: '#5865F2' },
   { name: 'Google Chat', path: siGooglemessages.path, color: '#1A73E8' },
   { name: 'Signal', path: siSignal.path, color: '#3B45FD' },
-  { name: 'iMessage' },
-  { name: 'MS Teams' },
-  { name: 'Matrix', path: siMatrix.path, color: '#e0e0e0' },
+  { name: 'iMessage', path: siImessage.path, color: '#34DA50' },
+  { name: 'MS Teams', path: MS_TEAMS_PATH, color: '#6264A7' },
+  { name: 'Matrix', path: siMatrix.path, color: '#FFFFFF' },
   { name: 'LINE', path: siLine.path, color: '#00C300' },
   { name: 'Mattermost', path: siMattermost.path, color: '#0058CC' },
   { name: 'Nextcloud', path: siNextcloud.path, color: '#0082C9' },
-  { name: 'Nostr' },
+  { name: 'Nostr', path: NOSTR_PATH, color: '#8E30EB' },
   { name: 'Twitch', path: siTwitch.path, color: '#9146FF' },
-  { name: 'Zalo' },
+  { name: 'Zalo', path: siZalo.path, color: '#0068FF' },
   { name: 'WeChat', path: siWechat.path, color: '#07C160' },
-  { name: 'WebChat' },
-  { name: 'IRC' },
-  { name: 'Feishu' },
+  { name: 'Feishu', path: FEISHU_PATH, color: '#3370FF' },
 ];
 
 // OpenClaw quotes — rotating carousel

@@ -601,11 +601,30 @@ export const StaggeredMenu = ({
           </ul>
           {displaySocials && socialItems && socialItems.length > 0 && (
             <div className="sm-socials" aria-label="Social links">
-              <h3 className="sm-socials-title">Socials</h3>
+              <h3 className="sm-socials-title">Bądźmy w kontakcie</h3>
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((s, i) => (
                   <li key={s.label + i} className="sm-socials-item">
-                    <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link">
+                    <a
+                      href={s.link}
+                      target={s.link.startsWith('mailto:') ? undefined : '_blank'}
+                      rel={s.link.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                      onClick={s.link.startsWith('mailto:') ? (e: React.MouseEvent) => {
+                        e.preventDefault();
+                        const email = s.link.replace('mailto:', '');
+                        window.open(s.link, '_self');
+                        setTimeout(() => {
+                          if (!document.hidden) {
+                            navigator.clipboard.writeText(email).then(() => {
+                              alert(`Adres email skopiowany do schowka: ${email}`);
+                            }).catch(() => {
+                              prompt('Skopiuj adres email:', email);
+                            });
+                          }
+                        }, 500);
+                      } : undefined}
+                      className="sm-socials-link"
+                    >
                       {s.label}
                     </a>
                   </li>

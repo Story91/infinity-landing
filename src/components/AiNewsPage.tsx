@@ -5,9 +5,17 @@ import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import {
   ExternalLink, Zap, Code, Globe, BookOpen, Cpu, Newspaper, TrendingUp,
-  Search, Tag, Mail, Linkedin, Twitter, Youtube,
+  Search, Tag, Mail, Linkedin,
   ChevronDown,
 } from 'lucide-react';
+
+function XIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
 import FadeIn from '@/components/react-bits/FadeIn';
 import GlareHover from '@/components/GlareHover';
 import BlurText from '@/components/BlurText';
@@ -430,19 +438,15 @@ export default function AiNewsPage({ initialNews }: AiNewsPageProps) {
               <h3 className="font-bold text-sm mb-1">Obserwuj nas</h3>
               <p className="text-[#7B9BDB] text-xs mb-4">Dołącz do społeczności AI</p>
               <div className="flex justify-center gap-3">
-                {[
-                  { Icon: Linkedin, href: '#' },
-                  { Icon: Twitter, href: '#' },
-                  { Icon: Youtube, href: '#' },
-                ].map(({ Icon, href }, i) => (
-                  <a
-                    key={i}
-                    href={href}
-                    className="w-10 h-10 rounded-full bg-[#0B0F2E]/60 border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all"
-                  >
-                    <Icon className="w-4 h-4 text-[#7B9BDB]" />
-                  </a>
-                ))}
+                <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0B0F2E]/60 border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">
+                  <Linkedin className="w-4 h-4 text-[#7B9BDB]" />
+                </a>
+                <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#0B0F2E]/60 border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">
+                  <XIcon className="w-4 h-4 text-[#7B9BDB]" />
+                </a>
+                <a href="mailto:contact@infinityteam.io" className="w-10 h-10 rounded-full bg-[#0B0F2E]/60 border border-[#2E4AAD]/40 flex items-center justify-center hover:border-[#4F6AE8] hover:bg-[#2E4AAD]/20 transition-all">
+                  <Mail className="w-4 h-4 text-[#7B9BDB]" />
+                </a>
               </div>
             </div>
 

@@ -124,18 +124,18 @@ async function fetchWired(): Promise<Omit<NewsItem, 'excerpt'>[]> {
 
 async function fetchDevTo(): Promise<Omit<NewsItem, 'excerpt'>[]> {
   try {
-    const articles: any[] = await fetch(
+    const articles = await fetch(
       'https://dev.to/api/articles?tag=ai&per_page=8&top=1',
       { signal: AbortSignal.timeout(8000) }
-    ).then(r => r.json());
+    ).then(r => r.json()) as Array<{ id: number; title: string; url: string; published_at: string; cover_image?: string; social_image?: string }>;
 
-    return articles.map((a: any) => ({
+    return articles.map(a => ({
       id: `devto-${a.id}`,
-      title: a.title as string,
-      url: a.url as string,
+      title: a.title,
+      url: a.url,
       source: 'DevTo' as const,
-      publishedAt: a.published_at as string,
-      image: (a.cover_image as string) || (a.social_image as string) || '',
+      publishedAt: a.published_at,
+      image: a.cover_image || a.social_image || '',
     }));
   } catch {
     return [];
@@ -147,18 +147,18 @@ async function fetchGuardian(): Promise<Omit<NewsItem, 'excerpt'>[]> {
   if (!key) return [];
 
   try {
-    const data: any = await fetch(
+    const data = await fetch(
       `https://content.guardianapis.com/search?q=artificial+intelligence&api-key=${key}&page-size=8&order-by=newest&show-fields=thumbnail`,
       { signal: AbortSignal.timeout(8000) }
-    ).then(r => r.json());
+    ).then(r => r.json()) as { response?: { results?: Array<{ id: string; webTitle: string; webUrl: string; webPublicationDate: string; fields?: { thumbnail?: string } }> } };
 
-    return (data.response?.results ?? []).map((r: any) => ({
+    return (data.response?.results ?? []).map(r => ({
       id: `guardian-${r.id}`,
-      title: r.webTitle as string,
-      url: r.webUrl as string,
+      title: r.webTitle,
+      url: r.webUrl,
       source: 'Guardian' as const,
-      publishedAt: r.webPublicationDate as string,
-      image: (r.fields?.thumbnail as string) || '',
+      publishedAt: r.webPublicationDate,
+      image: r.fields?.thumbnail || '',
     }));
   } catch {
     return [];
@@ -210,7 +210,6 @@ Tytuły:
 ${items.map(i => `{"id": "${i.id}", "title": ${JSON.stringify(i.title)}}`).join('\n')}`;
 
   try {
-    console.log('[newsCache] Translating', items.length, 'items...');
     const response = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
@@ -220,7 +219,6 @@ ${items.map(i => `{"id": "${i.id}", "title": ${JSON.stringify(i.title)}}`).join(
 
     const parsed = JSON.parse(response.choices[0].message.content ?? '{}');
     const summaries: { id: string; title_pl: string; excerpt: string }[] = parsed.items ?? [];
-    console.log('[newsCache] Got', summaries.length, 'translations');
 
     return items.map(item => {
       const s = summaries.find(s => s.id === item.id);

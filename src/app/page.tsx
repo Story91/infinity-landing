@@ -93,38 +93,6 @@ function XIcon({ className = '' }: { className?: string }) {
   );
 }
 
-// Dane zespołu
-const TEAM_MEMBERS = [
-  {
-    name: 'Jan Kowalski',
-    role: 'CEO & Founder',
-    bio: 'Ekspert AI z 10-letnim doświadczeniem w transformacji cyfrowej przedsiębiorstw.',
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=400',
-    linkedin: 'https://linkedin.com'
-  },
-  {
-    name: 'Anna Nowak',
-    role: 'CTO',
-    bio: 'Specjalistka ds. uczenia maszynowego i architektury systemów AI.',
-    image: 'https://images.pexels.com/photos/3183190/pexels-photo-3183190.jpeg?auto=compress&cs=tinysrgb&w=400',
-    linkedin: 'https://linkedin.com'
-  },
-  {
-    name: 'Piotr Wiśniewski',
-    role: 'AI Engineer',
-    bio: 'Inżynier OpenCLAW z certyfikacją w zakresie agentów AI.',
-    image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400',
-    linkedin: 'https://linkedin.com'
-  },
-  {
-    name: 'Maria Lewandowska',
-    role: 'Business Development',
-    bio: 'Ekspertka ds. transformacji cyfrowej z doświadczeniem w enterprise.',
-    image: 'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=400',
-    linkedin: 'https://linkedin.com'
-  }
-];
-
 // FAQ
 const FAQ_ITEMS = [
   {
@@ -229,44 +197,6 @@ const CHANNELS: { name: string; path?: string; color?: string }[] = [
   { name: 'IRC' },
   { name: 'Feishu' },
 ];
-
-// Referencje/Testimonials (wyłączone — do użycia gdy będą prawdziwe referencje)
-/*
-const TESTIMONIALS = [
-  {
-    name: 'Anna Kowalska',
-    role: 'CEO',
-    company: 'TechCorp Polska',
-    avatar: 'https://images.pexels.com/photos/3183190/pexels-photo-3183190.jpeg?auto=compress&cs=tinysrgb&w=150',
-    quote: 'Dzięki Infinity Tech zautomatyzowaliśmy 70% procesów HR. Oszczędzamy 40 godzin tygodniowo.',
-    result: '40h/tydzień'
-  },
-  {
-    name: 'Piotr Nowak',
-    role: 'Dyrektor Marketingu',
-    company: 'MediaMax',
-    avatar: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=150',
-    quote: 'Nasz zespół marketingu teraz tworzy 5x więcej treści. AI przejął nudne zadania.',
-    result: '5x więcej treści'
-  },
-  {
-    name: 'Maria Wiśniewska',
-    role: 'Head of Sales',
-    company: 'FinanceHub',
-    avatar: 'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=150',
-    quote: 'Konwersja wzrosła o 150%. Lead response time skrócił się z 4h do 30 sekund.',
-    result: '+150% konwersji'
-  },
-  {
-    name: 'Jan Lewandowski',
-    role: 'COO',
-    company: 'LogiTrans',
-    avatar: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=150',
-    quote: 'ROI osiągnęliśmy w 3 miesiące. System sam obsługuje 80% zapytań klientów.',
-    result: 'ROI w 3 miesiące'
-  }
-];
-*/
 
 // OpenClaw quotes — rotating carousel
 const QUOTE_AVATARS: Record<string, string> = {
@@ -435,13 +365,13 @@ function HeroSection() {
         <div className="px-6 md:px-12 lg:px-20 pb-8">
         {/* Social icons — bottom left */}
         <div className="liquid-glass flex gap-2 items-center rounded-full px-2 py-1.5 mx-auto md:mx-0 mb-5 md:mb-0 md:absolute md:bottom-8 md:left-[2em] w-fit" style={{ border: '1px solid rgba(255,255,255,0.15)' }}>
-          <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
+          <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
             <XIcon className="w-4 h-4" />
           </a>
-          <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
+          <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
             <Linkedin className="w-4 h-4" />
           </a>
-          <a href="mailto:contact@infinityteam.io" onClick={handleMailto} className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
+          <a href="mailto:contact@infinityteam.io" onClick={handleMailto} aria-label="Wyślij email" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 transition-all">
             <Mail className="w-4 h-4" />
           </a>
         </div>
@@ -676,37 +606,6 @@ function BenefitsSection() {
           </FadeIn>
         </div>
 
-      </div>
-    </section>
-  );
-}
-
-function TeamSection() {
-  return (
-    <section className="py-24">
-      <div className="max-w-6xl mx-auto px-6">
-        <FadeIn>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Poznaj Nasz Zespół</h2>
-            <p className="text-xl text-white/50 max-w-2xl mx-auto">
-              Eksperci AI z wieloletnim doświadczeniem w transformacji cyfrowej przedsiębiorstw
-            </p>
-          </div>
-        </FadeIn>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {TEAM_MEMBERS.map((member, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <ProfileCard
-                name={member.name}
-                role={member.role}
-                bio={member.bio}
-                image={member.image}
-                linkedin={member.linkedin}
-              />
-            </FadeIn>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -1139,6 +1038,7 @@ function FAQSection() {
 
 function ContactCTASection() {
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
+  const [contactConsent, setContactConsent] = useState(false);
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -1245,15 +1145,22 @@ function ContactCTASection() {
                       {submitState === 'error' && submitError && (
                         <p className="text-xs text-red-400 text-center">{submitError}</p>
                       )}
-                      <p className="text-[10px] leading-tight text-white/40">
-                        Wysyłając formularz, akceptujesz{' '}
-                        <a href="/regulamin" className="underline hover:text-white/70">Regulamin</a> i potwierdzasz
-                        zapoznanie się z{' '}
-                        <a href="/polityka-prywatnosci" className="underline hover:text-white/70">Polityką Prywatności</a>.
-                      </p>
+                      <label className="flex items-start gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={contactConsent}
+                          onChange={e => setContactConsent(e.target.checked)}
+                          className="mt-0.5 w-4 h-4 rounded accent-[#2E4AAD] flex-shrink-0"
+                        />
+                        <span className="text-[10px] leading-tight text-white/40">
+                          Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie. Zapoznałem/am się z{' '}
+                          <a href="/polityka-prywatnosci" className="underline hover:text-white/70">Polityką Prywatności</a> i akceptuję{' '}
+                          <a href="/regulamin" className="underline hover:text-white/70">Regulamin</a>.
+                        </span>
+                      </label>
                       <button
                         type="submit"
-                        disabled={submitState === 'submitting'}
+                        disabled={submitState === 'submitting' || !contactConsent}
                         className="w-full py-2.5 bg-[#2E4AAD] hover:bg-[#1A2461] text-white text-sm font-medium flex items-center justify-center gap-2 rounded-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {submitState === 'submitting' ? (

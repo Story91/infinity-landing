@@ -59,13 +59,13 @@ export default function Footer() {
               Tworzymy przyszłość biznesu z AI. Automatyzujemy, optymalizujemy, transformujemy.
             </p>
             <div className="flex gap-3">
-              <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+              <a href="https://x.com/InfinityTech_PL" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <XIcon className="w-5 h-5" />
               </a>
-              <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+              <a href="https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:contact@infinityteam.io" onClick={handleMailto} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+              <a href="mailto:contact@infinityteam.io" onClick={handleMailto} aria-label="Wyślij email" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
             </div>

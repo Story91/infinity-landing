@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { escapeHtml, rateLimit } from '@/lib/api-utils';
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
@@ -23,6 +24,11 @@ async function sendEmail(apiKey: string, payload: object): Promise<{ ok: boolean
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (!rateLimit(ip, 5, 60_000)) {
+      return NextResponse.json({ error: 'Zbyt wiele zapytań. Spróbuj ponownie za chwilę.' }, { status: 429 });
+    }
+
     const { name, email, phone, message } = await request.json();
 
     if (typeof email !== 'string' || !EMAIL_RE.test(email.trim())) {
@@ -37,23 +43,28 @@ export async function POST(request: Request) {
     const cleanPhone = typeof phone === 'string' ? phone.trim() : '';
     const cleanMessage = message.trim();
 
+    const safeEmail = escapeHtml(cleanEmail);
+    const safeName = escapeHtml(cleanName);
+    const safePhone = escapeHtml(cleanPhone);
+    const safeMessage = escapeHtml(cleanMessage);
+
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.WAITLIST_TO || 'contact@infinityteam.io';
     const from = process.env.WAITLIST_FROM || 'Infinity Tech <waitlist@infinityteam.io>';
 
     if (!apiKey) {
-      console.warn('[contact] RESEND_API_KEY missing — message received but not sent:', cleanEmail);
+      console.warn('[contact] RESEND_API_KEY missing');
       return NextResponse.json({ ok: true, delivered: false });
     }
 
     const notificationHtml = `
       <div style="font-family: -apple-system, system-ui, sans-serif; padding: 16px;">
         <h2 style="margin: 0 0 12px; color: #0A1628;">Nowa wiadomość z formularza kontaktowego</h2>
-        ${cleanName ? `<p style="margin: 0 0 8px; color: #334155;"><strong>Imię i nazwisko:</strong> ${cleanName}</p>` : ''}
-        <p style="margin: 0 0 8px; color: #334155;"><strong>Email:</strong> <a href="mailto:${cleanEmail}">${cleanEmail}</a></p>
-        ${cleanPhone ? `<p style="margin: 0 0 8px; color: #334155;"><strong>Telefon:</strong> ${cleanPhone}</p>` : ''}
+        ${safeName ? `<p style="margin: 0 0 8px; color: #334155;"><strong>Imię i nazwisko:</strong> ${safeName}</p>` : ''}
+        <p style="margin: 0 0 8px; color: #334155;"><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+        ${safePhone ? `<p style="margin: 0 0 8px; color: #334155;"><strong>Telefon:</strong> ${safePhone}</p>` : ''}
         <p style="margin: 0 0 8px; color: #334155;"><strong>Wiadomość:</strong></p>
-        <p style="margin: 0 0 16px; color: #334155; white-space: pre-wrap; background: #f8fafc; padding: 12px; border-radius: 8px;">${cleanMessage}</p>
+        <p style="margin: 0 0 16px; color: #334155; white-space: pre-wrap; background: #f8fafc; padding: 12px; border-radius: 8px;">${safeMessage}</p>
         <p style="margin: 16px 0 0; color: #64748b; font-size: 12px;">Zgłoszenie wysłane z landing page infinityteam.io</p>
       </div>
     `;
@@ -68,13 +79,13 @@ export async function POST(request: Request) {
           </div>
         </div>
         <div style="padding: 32px;">
-          <h2 style="margin: 0 0 12px; color: #ffffff; font-size: 20px;">Dziękujemy za wiadomość${cleanName ? ', ' + cleanName.split(' ')[0] : ''}!</h2>
+          <h2 style="margin: 0 0 12px; color: #ffffff; font-size: 20px;">Dziękujemy za wiadomość${safeName ? ', ' + escapeHtml(cleanName.split(' ')[0]) : ''}!</h2>
           <p style="margin: 0 0 16px; color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.6;">
             Otrzymaliśmy Twoją wiadomość i odezwiemy się najszybciej jak to możliwe — zazwyczaj w ciągu 24 godzin roboczych.
           </p>
           <div style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 16px; margin-bottom: 24px;">
             <p style="margin: 0 0 6px; color: rgba(255,255,255,0.4); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Twoja wiadomość</p>
-            <p style="margin: 0; color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${cleanMessage}</p>
+            <p style="margin: 0; color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${safeMessage}</p>
           </div>
           <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 8px;">
             <p style="margin: 0; color: rgba(255,255,255,0.4); font-size: 12px;">
@@ -106,7 +117,7 @@ export async function POST(request: Request) {
     }
 
     if (!confirmation.ok) {
-      console.warn('[contact] confirmation email failed for', cleanEmail);
+      console.warn('[contact] confirmation email failed');
     }
 
     return NextResponse.json({ ok: true, delivered: true });

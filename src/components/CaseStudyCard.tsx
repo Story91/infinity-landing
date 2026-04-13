@@ -93,10 +93,10 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
 
         {/* CTA */}
         <a
-          href={`/case-studies/${caseStudy.id}`}
+          href="/#kontakt"
           className="inline-flex items-center gap-2 text-[#2E4AAD] font-medium hover:gap-3 transition-all"
         >
-          Czytaj więcej <ArrowRight className="w-4 h-4" />
+          Skontaktuj się z nami <ArrowRight className="w-4 h-4" />
         </a>
       </div>
     </div>

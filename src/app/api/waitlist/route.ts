@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { escapeHtml, rateLimit } from '@/lib/api-utils';
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
@@ -23,6 +24,11 @@ async function sendEmail(apiKey: string, payload: object): Promise<{ ok: boolean
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (!rateLimit(ip, 5, 60_000)) {
+      return NextResponse.json({ error: 'Zbyt wiele zapytań. Spróbuj ponownie za chwilę.' }, { status: 429 });
+    }
+
     const { email, source } = await request.json();
 
     if (typeof email !== 'string' || !EMAIL_RE.test(email.trim())) {
@@ -35,28 +41,27 @@ export async function POST(request: Request) {
     const cleanEmail = email.trim();
     const signupSource = typeof source === 'string' && source ? source : 'Desktop App waitlist';
 
+    const safeEmail = escapeHtml(cleanEmail);
+    const safeSource = escapeHtml(signupSource);
+
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.WAITLIST_TO || 'contact@infinityteam.io';
     const from = process.env.WAITLIST_FROM || 'Infinity Tech <waitlist@infinityteam.io>';
 
-    console.log('[waitlist] apiKey present:', !!apiKey, '| from:', from, '| to:', to);
-
     if (!apiKey) {
-      console.warn('[waitlist] RESEND_API_KEY missing — signup received but not sent:', cleanEmail, '/', signupSource);
+      console.warn('[waitlist] RESEND_API_KEY missing');
       return NextResponse.json({ ok: true, delivered: false });
     }
 
-    // 1. Powiadomienie dla nas
     const notificationHtml = `
       <div style="font-family: -apple-system, system-ui, sans-serif; padding: 16px;">
         <h2 style="margin: 0 0 12px; color: #0A1628;">Nowy zapis na waitlist</h2>
-        <p style="margin: 0 0 8px; color: #334155;"><strong>Źródło:</strong> ${signupSource}</p>
-        <p style="margin: 0 0 8px; color: #334155;"><strong>Email:</strong> <a href="mailto:${cleanEmail}">${cleanEmail}</a></p>
+        <p style="margin: 0 0 8px; color: #334155;"><strong>Źródło:</strong> ${safeSource}</p>
+        <p style="margin: 0 0 8px; color: #334155;"><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
         <p style="margin: 16px 0 0; color: #64748b; font-size: 12px;">Zgłoszenie wysłane z landing page infinityteam.io</p>
       </div>
     `;
 
-    // 2. Potwierdzenie dla użytkownika
     const confirmationHtml = `
       <div style="font-family: -apple-system, system-ui, sans-serif; max-width: 520px; margin: 0 auto; background: #0A1628; border-radius: 16px; overflow: hidden;">
         <div style="background: linear-gradient(135deg, #2E4AAD, #4F6AE8); padding: 28px 32px 24px; display: flex; align-items: center; gap: 16px;">
@@ -106,9 +111,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Potwierdzenie do użytkownika jest opcjonalne — nie blokujemy sukcesu jeśli nie doszło
     if (!confirmation.ok) {
-      console.warn('[waitlist] confirmation email failed for', cleanEmail);
+      console.warn('[waitlist] confirmation email failed');
     }
 
     return NextResponse.json({ ok: true, delivered: true });

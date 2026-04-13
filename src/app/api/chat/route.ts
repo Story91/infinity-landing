@@ -1,12 +1,18 @@
 import { NextResponse } from 'next/server';
+import { rateLimit } from '@/lib/api-utils';
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (!rateLimit(ip, 15, 60_000)) {
+      return NextResponse.json({ error: 'Zbyt wiele zapytań. Spróbuj ponownie za chwilę.' }, { status: 429 });
+    }
+
     const { message } = await request.json();
 
-    if (!message) {
+    if (!message || typeof message !== 'string' || message.trim().length > 1000) {
       return NextResponse.json(
-        { error: 'Wiadomość jest wymagana' },
+        { error: 'Wiadomość jest wymagana (max 1000 znaków)' },
         { status: 400 }
       );
     }
@@ -14,16 +20,15 @@ export async function POST(request: Request) {
     const apiKey = process.env.OPENAI_API_KEY;
 
     if (!apiKey) {
-      // Fallback response when no API key is configured
       const fallbackResponses = [
         'Dziękuję za wiadomość! Aby uzyskać więcej informacji o naszych usługach AI, proszę o kontakt mailowy: contact@infinityteam.io',
         'Chętnie opowiem więcej o naszych rozwiązaniach AI. Zapraszamy do kontaktu telefonicznego lub mailowego!',
         'Nasze rozwiązania AI pomagają firmom automatyzować procesy i oszczędzać czas. Więcej szczegółów na naszej stronie!',
         'Świetnie, że się zainteresowałeś! Umów bezpłatną konsultację, a przedstawimy Ci dopasowane rozwiązanie.'
       ];
-      
+
       const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
-      
+
       return NextResponse.json({ response: randomResponse });
     }
 
@@ -56,7 +61,7 @@ Odpowiadaj krótko i zwięźle (max 2-3 zdania).`
           },
           {
             role: 'user',
-            content: message
+            content: message.trim()
           }
         ],
         max_tokens: 150,

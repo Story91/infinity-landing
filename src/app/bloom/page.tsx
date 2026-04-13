@@ -132,10 +132,15 @@ export default function BloomPage() {
           {/* Top bar */}
           <div className="flex items-center justify-between">
             <div className="liquid-glass rounded-full px-3 py-2 flex items-center gap-2">
-              {[Twitter, Linkedin, Instagram].map((Icon, i) => (
+              {[
+                { Icon: Linkedin, href: 'https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true' },
+                { Icon: Instagram, href: 'https://x.com/InfinityTech_PL' },
+              ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white hover:text-white/80 transition-colors"
                 >
                   <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">

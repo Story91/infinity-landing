@@ -188,12 +188,22 @@ export default function PrivacyPolicyPage() {
               <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#7B9BDB] underline hover:text-white">Polityka prywatności OpenAI</a>.
             </p>
 
-            <h3 className="text-white text-lg font-semibold mb-3">Google LLC (czcionki i mapy)</h3>
-            <p>
-              Serwis korzysta z Google Fonts (ładowanie czcionek) oraz osadzenia Google Maps w sekcji
-              kontaktowej. Google może rejestrować dane techniczne (adres IP, informacje o przeglądarce)
-              w ramach działania tych usług. Siedziba: Stany Zjednoczone.{' '}
+            <h3 className="text-white text-lg font-semibold mb-3">Google LLC (mapy)</h3>
+            <p className="mb-6">
+              Serwis korzysta z osadzenia Google Maps w sekcji kontaktowej. Google może
+              rejestrować dane techniczne (adres IP, informacje o przeglądarce) oraz zapisywać
+              pliki cookies w ramach działania tej usługi. Czcionki używane w Serwisie są
+              hostowane lokalnie i nie wymagają połączenia z serwerami Google.
+              Siedziba: Stany Zjednoczone.{' '}
               <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[#7B9BDB] underline hover:text-white">Polityka prywatności Google</a>.
+            </p>
+
+            <h3 className="text-white text-lg font-semibold mb-3">Vercel, Inc. (hosting)</h3>
+            <p>
+              Serwis jest hostowany na platformie Vercel. W ramach świadczenia usługi hostingowej
+              Vercel może przetwarzać dane techniczne, takie jak adres IP, informacje o przeglądarce
+              oraz logi dostępu. Siedziba: Stany Zjednoczone.{' '}
+              <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#7B9BDB] underline hover:text-white">Polityka prywatności Vercel</a>.
             </p>
           </section>
 
@@ -202,7 +212,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-white text-xl md:text-2xl font-bold mb-4">5. Transfer danych poza Europejski Obszar Gospodarczy</h2>
             <p>
               W związku z korzystaniem z usług podmiotów mających siedzibę w Stanach Zjednoczonych
-              (Resend, OpenAI, Google), Twoje dane mogą być przekazywane poza Europejski Obszar
+              (Resend, OpenAI, Google, Vercel), Twoje dane mogą być przekazywane poza Europejski Obszar
               Gospodarczy. Każdy transfer odbywa się na podstawie odpowiednich zabezpieczeń prawnych:
               standardowych klauzul umownych (SCC) zatwierdzonych przez Komisję Europejską zgodnie
               z art. 46 ust. 2 RODO lub decyzji Komisji Europejskiej stwierdzającej odpowiedni
@@ -258,9 +268,9 @@ export default function PrivacyPolicyPage() {
               zachowań użytkowników.
             </p>
             <p>
-              Usługi zewnętrzne osadzone w Serwisie (Google Maps, Google Fonts) mogą ustawiać
-              własne pliki cookies techniczne niezbędne do ich działania. Szczegółowe informacje
-              znajdziesz w politykach prywatności tych usług, wskazanych w sekcji 4.
+              Usługa Google Maps osadzona w Serwisie może ustawiać własne pliki cookies.
+              Szczegółowe informacje znajdziesz w polityce prywatności Google, wskazanej
+              w sekcji 4.
             </p>
           </section>
 
@@ -309,7 +319,7 @@ export default function PrivacyPolicyPage() {
               Na podstawie RODO przysługuje Ci szereg praw dotyczących Twoich danych osobowych.
               Możesz z nich skorzystać w dowolnym momencie, kontaktując się z nami na adres{' '}
               <a href="mailto:contact@infinityteam.io" className="text-[#7B9BDB] underline hover:text-white">contact@infinityteam.io</a>.
-              Odpowiemy na Twoje żądanie bez zbędnej zwłoki, nie później niż w terminie 30 dni.
+              Odpowiemy na Twoje żądanie bez zbędnej zwłoki, nie później niż w terminie miesiąca.
             </p>
 
             <div className="space-y-4">

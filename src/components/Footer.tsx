@@ -13,12 +13,13 @@ function XIcon({ className = '' }: { className?: string }) {
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterConsent, setNewsletterConsent] = useState(false);
   const [newsletterStep, setNewsletterStep] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
 
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
     const email = newsletterEmail.trim();
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) return;
+    if (!email || !/^\S+@\S+\.\S+$/.test(email) || !newsletterConsent) return;
     setNewsletterStep('submitting');
     try {
       const res = await fetch('/api/waitlist', {
@@ -91,7 +92,7 @@ export default function Footer() {
                   />
                   <button
                     type="submit"
-                    disabled={newsletterStep === 'submitting'}
+                    disabled={newsletterStep === 'submitting' || !newsletterConsent}
                     className="px-4 py-3 bg-[#2E4AAD] rounded-r-lg hover:bg-[#1A2461] transition-colors disabled:opacity-60"
                   >
                     {newsletterStep === 'submitting' ? (
@@ -101,6 +102,19 @@ export default function Footer() {
                     )}
                   </button>
                 </div>
+                <label className="flex items-start gap-2 mt-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={newsletterConsent}
+                    onChange={(e) => setNewsletterConsent(e.target.checked)}
+                    className="mt-0.5 accent-[#2E4AAD] shrink-0"
+                  />
+                  <span className="text-[10px] leading-tight text-[#7B9BDB]">
+                    Wyrażam zgodę na otrzymywanie informacji handlowych drogą elektroniczną
+                    od Infinity Tech. Zapoznałem/am się z{' '}
+                    <a href="/polityka-prywatnosci" className="underline hover:text-white">Polityką Prywatności</a>.
+                  </span>
+                </label>
                 {newsletterStep === 'error' && (
                   <p className="mt-1 text-xs text-red-400">Spróbuj ponownie.</p>
                 )}

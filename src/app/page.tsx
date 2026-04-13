@@ -1229,6 +1229,12 @@ function ContactCTASection() {
                       {submitState === 'error' && submitError && (
                         <p className="text-xs text-red-400 text-center">{submitError}</p>
                       )}
+                      <p className="text-[10px] leading-tight text-white/40">
+                        Wysyłając formularz, akceptujesz{' '}
+                        <a href="/regulamin" className="underline hover:text-white/70">Regulamin</a> i potwierdzasz
+                        zapoznanie się z{' '}
+                        <a href="/polityka-prywatnosci" className="underline hover:text-white/70">Polityką Prywatności</a>.
+                      </p>
                       <button
                         type="submit"
                         disabled={submitState === 'submitting'}

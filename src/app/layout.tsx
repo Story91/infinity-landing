@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta' });
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains', weight: ['400', '500', '600', '700', '800'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://infinityteam.io'),
@@ -57,13 +59,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" style={{ '--font-geist': GeistSans.style.fontFamily, '--font-inter': inter.style.fontFamily, '--font-jakarta': plusJakarta.style.fontFamily } as React.CSSProperties}>
+    <html lang="pl" style={{ '--font-geist': GeistSans.style.fontFamily, '--font-inter': inter.style.fontFamily, '--font-jakarta': plusJakarta.style.fontFamily, '--font-jetbrains': jetbrainsMono.style.fontFamily } as React.CSSProperties}>
       <head>
         <meta name="theme-color" content="#050B1F" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className={`antialiased ${inter.variable} ${plusJakarta.variable}`}>{children}</body>
+      <body className={`antialiased ${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}>
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

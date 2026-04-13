@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Clock, DollarSign, TrendingUp, Users, Mail, Phone, MapPin, Linkedin, Twitter, Youtube, Send, Github } from 'lucide-react';
+import { ArrowLeft, Clock, DollarSign, TrendingUp, Users } from 'lucide-react';
+import Footer from '@/components/Footer';
 import FadeIn from '@/components/react-bits/FadeIn';
 import AnimatedGradient from '@/components/react-bits/AnimatedGradient';
 import Aurora from '@/components/react-bits/Aurora';
@@ -157,78 +158,9 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 bg-[#0B0F2E] text-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
-            <div>
-              <div className="text-2xl font-bold gradient-text mb-4">Infinity Tech</div>
-              <p className="text-[#7B9BDB] mb-6">
-                Tworzymy przyszłość biznesu z AI. Automatyzujemy, optymalizujemy, transformujemy.
-              </p>
-              <div className="flex gap-4">
-                <a href="https://linkedin.com/company/infinitytech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-700 transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="https://x.com/infinitytech_pl" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-black transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="https://youtube.com/@infinitytech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-red-600 transition-colors">
-                  <Youtube className="w-5 h-5" />
-                </a>
-                <a href="https://wa.me/infinitytech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-green-500 transition-colors">
-                  <Send className="w-5 h-5" />
-                </a>
-                <a href="https://t.me/infinitytech" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-sky-500 transition-colors">
-                  <Send className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Na skróty</h4>
-              <ul className="space-y-2 text-[#7B9BDB]">
-                <li><a href="/" className="hover:text-white transition-colors">Start</a></li>
-                <li><a href="/#o-nas" className="hover:text-white transition-colors">O nas</a></li>
-                <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
-                {/* <li><a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a></li> */}
-                <li><a href="/#kontakt" className="hover:text-white transition-colors">Kontakt</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Usługi</h4>
-              <ul className="space-y-2 text-[#7B9BDB]">
-                <li><a href="/agents" className="hover:text-white transition-colors">AI Agenci</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Automatyzacja</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Consulting</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Integracje</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4">Kontakt</h4>
-              <ul className="space-y-2 text-[#7B9BDB]">
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  contact@infinityteam.io
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  +48 123 456 789
-                </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  Warszawa, Polska
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-slate-800 pt-8 text-center text-[#7B9BDB]">
-            <p>&copy; {new Date().getFullYear()} Infinity Tech. Wszystkie prawa zastrzeżone.</p>
-          </div>
-        </div>
-      </footer>
+      <div className="bg-[#0B0F2E]">
+        <Footer />
+      </div>
     </div>
   );
 }

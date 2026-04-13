@@ -112,8 +112,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[#7B9BDB] text-sm">&copy; 2026 Infinity Tech. Wszelkie prawa zastrzeżone.</p>
           <div className="flex gap-6 text-sm text-[#7B9BDB]">
-            <a href="#" className="hover:text-white transition-colors">Polityka Prywatności</a>
-            <a href="#" className="hover:text-white transition-colors">Regulamin</a>
+            <a href="/polityka-prywatnosci" className="hover:text-white transition-colors">Polityka Prywatności</a>
+            <a href="/regulamin" className="hover:text-white transition-colors">Regulamin</a>
           </div>
         </div>
       </div>

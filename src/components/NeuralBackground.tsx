@@ -4,8 +4,8 @@ export default function NeuralBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
       {/* Ambient gradient glows */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#2E4AAD]/8 rounded-full blur-[120px] animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#4F6AE8]/6 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-0 left-1/4 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#2E4AAD]/8 rounded-full blur-[80px] md:blur-[120px] animate-pulse-slow" />
+      <div className="absolute bottom-1/4 right-1/4 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-[#4F6AE8]/6 rounded-full blur-[60px] md:blur-[100px] animate-pulse-slow" style={{ animationDelay: '2s' }} />
 
       {/* Animated flowing lines */}
       {Array.from({ length: 8 }).map((_, i) => (

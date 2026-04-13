@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <defs>
+    <radialGradient id="chipGlow" cx="50%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="#4F6AE8" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0B0F2E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="chipFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A2461"/>
+      <stop offset="100%" stop-color="#0f1840"/>
+    </linearGradient>
+    <filter id="chipBlur">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="200" fill="#0B0F2E"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="200" cy="100" rx="150" ry="90" fill="#4F6AE8" opacity="0.05" filter="url(#chipBlur)"/>
+
+  <!-- Circuit traces - horizontal -->
+  <g stroke="#2E4AAD" stroke-width="1" opacity="0.3">
+    <!-- Left traces -->
+    <line x1="30" y1="55" x2="155" y2="55"/>
+    <line x1="50" y1="70" x2="155" y2="70"/>
+    <line x1="40" y1="85" x2="155" y2="85"/>
+    <line x1="60" y1="100" x2="155" y2="100"/>
+    <line x1="40" y1="115" x2="155" y2="115"/>
+    <line x1="50" y1="130" x2="155" y2="130"/>
+    <line x1="30" y1="145" x2="155" y2="145"/>
+    <!-- Right traces -->
+    <line x1="245" y1="55" x2="370" y2="55"/>
+    <line x1="245" y1="70" x2="350" y2="70"/>
+    <line x1="245" y1="85" x2="360" y2="85"/>
+    <line x1="245" y1="100" x2="340" y2="100"/>
+    <line x1="245" y1="115" x2="360" y2="115"/>
+    <line x1="245" y1="130" x2="350" y2="130"/>
+    <line x1="245" y1="145" x2="370" y2="145"/>
+  </g>
+
+  <!-- Circuit traces - vertical -->
+  <g stroke="#2E4AAD" stroke-width="1" opacity="0.3">
+    <!-- Top traces -->
+    <line x1="170" y1="10" x2="170" y2="45"/>
+    <line x1="185" y1="20" x2="185" y2="45"/>
+    <line x1="200" y1="5" x2="200" y2="45"/>
+    <line x1="215" y1="20" x2="215" y2="45"/>
+    <line x1="230" y1="10" x2="230" y2="45"/>
+    <!-- Bottom traces -->
+    <line x1="170" y1="155" x2="170" y2="190"/>
+    <line x1="185" y1="155" x2="185" y2="180"/>
+    <line x1="200" y1="155" x2="200" y2="195"/>
+    <line x1="215" y1="155" x2="215" y2="180"/>
+    <line x1="230" y1="155" x2="230" y2="190"/>
+  </g>
+
+  <!-- Trace endpoints (pins) -->
+  <g fill="#4F6AE8" opacity="0.6">
+    <!-- Left pins -->
+    <rect x="28" y="53" width="6" height="4" rx="1"/>
+    <rect x="48" y="68" width="6" height="4" rx="1"/>
+    <rect x="38" y="83" width="6" height="4" rx="1"/>
+    <rect x="58" y="98" width="6" height="4" rx="1"/>
+    <rect x="38" y="113" width="6" height="4" rx="1"/>
+    <rect x="48" y="128" width="6" height="4" rx="1"/>
+    <rect x="28" y="143" width="6" height="4" rx="1"/>
+    <!-- Right pins -->
+    <rect x="366" y="53" width="6" height="4" rx="1"/>
+    <rect x="346" y="68" width="6" height="4" rx="1"/>
+    <rect x="356" y="83" width="6" height="4" rx="1"/>
+    <rect x="336" y="98" width="6" height="4" rx="1"/>
+    <rect x="356" y="113" width="6" height="4" rx="1"/>
+    <rect x="346" y="128" width="6" height="4" rx="1"/>
+    <rect x="366" y="143" width="6" height="4" rx="1"/>
+    <!-- Top pins -->
+    <rect x="168" y="8" width="4" height="6" rx="1"/>
+    <rect x="183" y="18" width="4" height="6" rx="1"/>
+    <rect x="198" y="3" width="4" height="6" rx="1"/>
+    <rect x="213" y="18" width="4" height="6" rx="1"/>
+    <rect x="228" y="8" width="4" height="6" rx="1"/>
+    <!-- Bottom pins -->
+    <rect x="168" y="186" width="4" height="6" rx="1"/>
+    <rect x="183" y="176" width="4" height="6" rx="1"/>
+    <rect x="198" y="191" width="4" height="6" rx="1"/>
+    <rect x="213" y="176" width="4" height="6" rx="1"/>
+    <rect x="228" y="186" width="4" height="6" rx="1"/>
+  </g>
+
+  <!-- Active/glowing traces -->
+  <g stroke="#7B9BDB" stroke-width="1.2" opacity="0.6">
+    <line x1="50" y1="70" x2="155" y2="70"/>
+    <line x1="245" y1="85" x2="360" y2="85"/>
+    <line x1="200" y1="5" x2="200" y2="45"/>
+    <line x1="200" y1="155" x2="200" y2="195"/>
+  </g>
+
+  <!-- Chip body - outer -->
+  <rect x="152" y="42" width="96" height="116" rx="6" fill="url(#chipFace)" stroke="#4F6AE8" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Chip body - inner border -->
+  <rect x="158" y="48" width="84" height="104" rx="4" fill="none" stroke="#2E4AAD" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Chip die / core -->
+  <rect x="172" y="65" width="56" height="56" rx="3" fill="#0B0F2E" stroke="#4F6AE8" stroke-width="1" opacity="0.8"/>
+
+  <!-- Core inner pattern -->
+  <g opacity="0.4">
+    <rect x="178" y="71" width="20" height="20" rx="1" fill="none" stroke="#4F6AE8" stroke-width="0.6"/>
+    <rect x="202" y="71" width="20" height="20" rx="1" fill="none" stroke="#4F6AE8" stroke-width="0.6"/>
+    <rect x="178" y="95" width="20" height="20" rx="1" fill="none" stroke="#4F6AE8" stroke-width="0.6"/>
+    <rect x="202" y="95" width="20" height="20" rx="1" fill="none" stroke="#4F6AE8" stroke-width="0.6"/>
+  </g>
+
+  <!-- Core dots -->
+  <g fill="#7B9BDB" opacity="0.7">
+    <circle cx="188" cy="81" r="2.5"/>
+    <circle cx="212" cy="81" r="2"/>
+    <circle cx="188" cy="105" r="2"/>
+    <circle cx="212" cy="105" r="2.5"/>
+  </g>
+
+  <!-- Central core glow -->
+  <circle cx="200" cy="93" r="18" fill="#4F6AE8" opacity="0.08" filter="url(#chipBlur)"/>
+  <circle cx="200" cy="93" r="6" fill="#4F6AE8" opacity="0.15"/>
+  <circle cx="200" cy="93" r="2.5" fill="#D6E4FF" opacity="0.6"/>
+
+  <!-- Chip label area -->
+  <rect x="170" y="128" width="60" height="14" rx="2" fill="#0B0F2E" opacity="0.6"/>
+  <g fill="#2E4AAD" font-family="monospace" font-size="7" opacity="0.5">
+    <text x="176" y="138">AI-X1 PRO</text>
+  </g>
+
+  <!-- Corner markers -->
+  <circle cx="162" cy="52" r="2" fill="#2E4AAD" opacity="0.5"/>
+
+  <!-- Data flow particles on traces -->
+  <circle cx="100" cy="70" r="1.5" fill="#7B9BDB" opacity="0.7"/>
+  <circle cx="120" cy="85" r="1" fill="#4F6AE8" opacity="0.5"/>
+  <circle cx="300" cy="85" r="1.5" fill="#7B9BDB" opacity="0.7"/>
+  <circle cx="280" cy="100" r="1" fill="#4F6AE8" opacity="0.5"/>
+  <circle cx="200" cy="25" r="1.5" fill="#7B9BDB" opacity="0.6"/>
+  <circle cx="200" cy="175" r="1.5" fill="#7B9BDB" opacity="0.6"/>
+</svg>

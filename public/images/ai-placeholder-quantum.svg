@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <defs>
+    <radialGradient id="qGlow" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#4F6AE8" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0B0F2E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D6E4FF" stop-opacity="0.8"/>
+      <stop offset="30%" stop-color="#7B9BDB" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#4F6AE8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="qBlur">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="qBlur2">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="200" fill="#0B0F2E"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="200" cy="100" rx="130" ry="80" fill="#4F6AE8" opacity="0.06" filter="url(#qBlur)"/>
+
+  <!-- Orbit rings -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Orbit 1 - large tilted ellipse -->
+    <ellipse cx="200" cy="100" rx="110" ry="45" transform="rotate(-15 200 100)" stroke="#2E4AAD" stroke-width="1" opacity="0.35"/>
+    <!-- Orbit 2 - medium, opposite tilt -->
+    <ellipse cx="200" cy="100" rx="90" ry="55" transform="rotate(25 200 100)" stroke="#4F6AE8" stroke-width="1.2" opacity="0.3"/>
+    <!-- Orbit 3 - vertical-ish -->
+    <ellipse cx="200" cy="100" rx="35" ry="80" transform="rotate(5 200 100)" stroke="#2E4AAD" stroke-width="0.8" opacity="0.25"/>
+    <!-- Orbit 4 - small circle -->
+    <circle cx="200" cy="100" r="30" stroke="#4F6AE8" stroke-width="0.6" opacity="0.2"/>
+  </g>
+
+  <!-- Glowing orbit highlights -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M140 78 Q170 65 200 68 Q230 72 260 85" stroke="#7B9BDB" stroke-width="1.5" opacity="0.4"/>
+    <path d="M175 45 Q190 55 200 70 Q210 85 215 105" stroke="#7B9BDB" stroke-width="1.2" opacity="0.3"/>
+  </g>
+
+  <!-- Central core -->
+  <circle cx="200" cy="100" r="14" fill="#4F6AE8" opacity="0.1" filter="url(#qBlur2)"/>
+  <circle cx="200" cy="100" r="8" fill="#1A2461" stroke="#4F6AE8" stroke-width="1.5"/>
+  <circle cx="200" cy="100" r="5" fill="url(#coreGlow)"/>
+  <circle cx="200" cy="100" r="2.5" fill="#D6E4FF" opacity="0.9"/>
+  <circle cx="200" cy="100" r="20" fill="url(#qGlow)" opacity="0.4"/>
+
+  <!-- Orbiting particles - on orbit 1 -->
+  <circle cx="110" cy="75" r="4" fill="#1A2461" stroke="#7B9BDB" stroke-width="1.2"/>
+  <circle cx="110" cy="75" r="2" fill="#7B9BDB" opacity="0.8"/>
+  <circle cx="110" cy="75" r="8" fill="#7B9BDB" opacity="0.08" filter="url(#qBlur2)"/>
+
+  <circle cx="290" cy="118" r="3.5" fill="#1A2461" stroke="#4F6AE8" stroke-width="1"/>
+  <circle cx="290" cy="118" r="1.8" fill="#4F6AE8" opacity="0.7"/>
+
+  <!-- Orbiting particles - on orbit 2 -->
+  <circle cx="135" cy="135" r="3" fill="#1A2461" stroke="#4F6AE8" stroke-width="1"/>
+  <circle cx="135" cy="135" r="1.5" fill="#4F6AE8" opacity="0.7"/>
+  <circle cx="135" cy="135" r="7" fill="#4F6AE8" opacity="0.06" filter="url(#qBlur2)"/>
+
+  <circle cx="268" cy="62" r="4.5" fill="#1A2461" stroke="#7B9BDB" stroke-width="1.5"/>
+  <circle cx="268" cy="62" r="2.5" fill="#D6E4FF" opacity="0.6"/>
+  <circle cx="268" cy="62" r="10" fill="#7B9BDB" opacity="0.06" filter="url(#qBlur2)"/>
+
+  <!-- Orbiting particles - on orbit 3 -->
+  <circle cx="195" cy="22" r="3" fill="#1A2461" stroke="#7B9BDB" stroke-width="1"/>
+  <circle cx="195" cy="22" r="1.5" fill="#7B9BDB" opacity="0.6"/>
+
+  <circle cx="207" cy="178" r="3.5" fill="#1A2461" stroke="#4F6AE8" stroke-width="1"/>
+  <circle cx="207" cy="178" r="1.8" fill="#4F6AE8" opacity="0.6"/>
+  <circle cx="207" cy="178" r="8" fill="#4F6AE8" opacity="0.05" filter="url(#qBlur2)"/>
+
+  <!-- Orbiting particles - on orbit 4 -->
+  <circle cx="218" cy="72" r="2.5" fill="#1A2461" stroke="#D6E4FF" stroke-width="1"/>
+  <circle cx="218" cy="72" r="1.2" fill="#D6E4FF" opacity="0.8"/>
+
+  <circle cx="178" cy="125" r="2.5" fill="#1A2461" stroke="#4F6AE8" stroke-width="1"/>
+  <circle cx="178" cy="125" r="1.2" fill="#4F6AE8" opacity="0.7"/>
+
+  <!-- Energy connection lines between particles -->
+  <g stroke="#4F6AE8" stroke-width="0.5" opacity="0.15" stroke-dasharray="3 4">
+    <line x1="110" y1="75" x2="200" y2="100"/>
+    <line x1="268" y1="62" x2="200" y2="100"/>
+    <line x1="135" y1="135" x2="200" y2="100"/>
+    <line x1="290" y1="118" x2="200" y2="100"/>
+    <line x1="195" y1="22" x2="200" y2="100"/>
+    <line x1="207" y1="178" x2="200" y2="100"/>
+  </g>
+
+  <!-- Distant stars/particles -->
+  <circle cx="40" cy="30" r="1" fill="#7B9BDB" opacity="0.3"/>
+  <circle cx="360" cy="25" r="1.2" fill="#4F6AE8" opacity="0.25"/>
+  <circle cx="50" cy="170" r="0.8" fill="#2E4AAD" opacity="0.4"/>
+  <circle cx="370" cy="175" r="1" fill="#7B9BDB" opacity="0.3"/>
+  <circle cx="30" cy="100" r="0.6" fill="#4F6AE8" opacity="0.35"/>
+  <circle cx="380" cy="95" r="0.7" fill="#2E4AAD" opacity="0.3"/>
+  <circle cx="70" cy="55" r="0.5" fill="#7B9BDB" opacity="0.2"/>
+  <circle cx="340" cy="150" r="0.5" fill="#4F6AE8" opacity="0.2"/>
+  <circle cx="85" cy="140" r="0.7" fill="#2E4AAD" opacity="0.25"/>
+  <circle cx="320" cy="40" r="0.6" fill="#7B9BDB" opacity="0.2"/>
+</svg>

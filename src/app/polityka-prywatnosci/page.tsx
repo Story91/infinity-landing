@@ -132,7 +132,8 @@ export default function PrivacyPolicyPage() {
               i Rady (UE) 2016/679 (RODO). Poniższa tabela przedstawia cele przetwarzania i odpowiadające
               im podstawy prawne.
             </p>
-            <div className="overflow-x-auto mb-4">
+            {/* Table - desktop */}
+            <div className="hidden md:block overflow-x-auto mb-4">
               <table className="w-full text-sm border border-white/10 rounded-xl overflow-hidden">
                 <thead>
                   <tr className="bg-white/5">
@@ -159,6 +160,20 @@ export default function PrivacyPolicyPage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+            {/* Cards - mobile */}
+            <div className="md:hidden space-y-3 mb-4">
+              {[
+                { cel: 'Odpowiedź na zapytanie z formularza kontaktowego', podstawa: 'Art. 6 ust. 1 lit. b RODO (podjęcie działań przed zawarciem umowy) lub lit. f (prawnie uzasadniony interes — obsługa zapytań)' },
+                { cel: 'Wysyłka newslettera i powiadomień o produktach', podstawa: 'Art. 6 ust. 1 lit. a RODO (Twoja zgoda)' },
+                { cel: 'Obsługa czatu AI (generowanie odpowiedzi)', podstawa: 'Art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes — obsługa klienta)' },
+                { cel: 'Zapewnienie bezpieczeństwa i prawidłowego działania Serwisu (logi)', podstawa: 'Art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes — bezpieczeństwo)' },
+              ].map((row, i) => (
+                <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/10 text-sm space-y-2">
+                  <p className="text-white font-semibold">{row.cel}</p>
+                  <p className="text-white/70">{row.podstawa}</p>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -228,7 +243,8 @@ export default function PrivacyPolicyPage() {
               Przechowujemy Twoje dane osobowe wyłącznie przez czas niezbędny do realizacji celów,
               dla których zostały zebrane.
             </p>
-            <div className="overflow-x-auto">
+            {/* Table - desktop */}
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm border border-white/10 rounded-xl overflow-hidden">
                 <thead>
                   <tr className="bg-white/5">
@@ -255,6 +271,20 @@ export default function PrivacyPolicyPage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+            {/* Cards - mobile */}
+            <div className="md:hidden space-y-3">
+              {[
+                { rodzaj: 'Formularz kontaktowy', okres: 'Do 2 lat od ostatniego kontaktu, chyba że dalsze przechowywanie jest wymagane prawem' },
+                { rodzaj: 'Newsletter / lista oczekujących', okres: 'Do momentu cofnięcia zgody (wypisania się)' },
+                { rodzaj: 'Chat AI', okres: 'Brak przechowywania — dane istnieją wyłącznie w trakcie sesji przeglądarki' },
+                { rodzaj: 'Logi serwera', okres: 'Do 30 dni' },
+              ].map((row, i) => (
+                <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/10 text-sm space-y-2">
+                  <p className="text-white font-semibold">{row.rodzaj}</p>
+                  <p className="text-white/70">{row.okres}</p>
+                </div>
+              ))}
             </div>
           </section>
 

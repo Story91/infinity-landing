@@ -51,6 +51,21 @@ function getMeta(source: string) {
   return (SOURCE_META as any)[source] ?? DEFAULT_META;
 }
 
+const AI_PLACEHOLDERS = [
+  '/images/ai-placeholder-neural.svg',
+  '/images/ai-placeholder-chip.svg',
+  '/images/ai-placeholder-data.svg',
+  '/images/ai-placeholder-quantum.svg',
+];
+
+function getPlaceholder(title: string): string {
+  let hash = 0;
+  for (let i = 0; i < title.length; i++) {
+    hash = ((hash << 5) - hash + title.charCodeAt(i)) | 0;
+  }
+  return AI_PLACEHOLDERS[Math.abs(hash) % AI_PLACEHOLDERS.length];
+}
+
 type SourceFilter = 'Wszystkie' | 'TechCrunch' | 'TheVerge' | 'Wired' | 'DevTo' | 'Guardian' | 'Arxiv';
 const FILTERS: SourceFilter[] = ['Wszystkie', 'TechCrunch', 'TheVerge', 'Wired', 'DevTo', 'Guardian', 'Arxiv'];
 
@@ -316,16 +331,14 @@ export default function AiNewsPage({ initialNews }: AiNewsPageProps) {
                           rel="noopener noreferrer"
                           className="group relative flex flex-col h-full rounded-2xl bg-[#1A2461]/70 backdrop-blur-xl border border-[#7B9BDB]/20 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.12)] hover:border-[#4F6AE8]/50 hover:shadow-[0_12px_32px_-4px_rgba(0,0,0,0.4),0_0_24px_rgba(79,106,232,0.25),inset_0_1px_0_rgba(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-400 overflow-hidden"
                         >
-                          {/* Cover image or gradient placeholder */}
-                          <div
-                            className="h-32 md:h-36 flex items-center justify-center relative overflow-hidden"
-                            style={item.image ? {} : { background: `linear-gradient(135deg, ${meta.color}15, ${meta.color}05)` }}
-                          >
-                            {item.image ? (
-                              <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                            ) : (
-                              <Icon className="w-10 h-10 opacity-20" style={{ color: meta.color }} />
-                            )}
+                          {/* Cover image or placeholder graphic */}
+                          <div className="h-32 md:h-36 flex items-center justify-center relative overflow-hidden">
+                            <img
+                              src={item.image || getPlaceholder(item.title)}
+                              alt={item.title}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              loading="lazy"
+                            />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F2E]/60 via-transparent to-transparent" />
                             <div className="absolute top-3 left-3 flex items-center gap-2">
                               <span

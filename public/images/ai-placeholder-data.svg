@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <defs>
+    <radialGradient id="dataGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4F6AE8" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0B0F2E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="streamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4F6AE8" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#4F6AE8" stop-opacity="0.6"/>
+      <stop offset="70%" stop-color="#7B9BDB" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7B9BDB" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="streamGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2E4AAD" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#2E4AAD" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#4F6AE8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#4F6AE8" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="dataBlur">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="200" fill="#0B0F2E"/>
+  <rect width="400" height="200" fill="url(#dataGlow)"/>
+
+  <!-- Data streams - flowing curves -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Main streams -->
+    <path d="M0 40 Q80 30 160 50 Q240 70 320 45 Q360 35 400 42" stroke="url(#streamGrad)" stroke-width="2" opacity="0.5"/>
+    <path d="M0 70 Q100 60 180 80 Q260 100 340 75 Q380 65 400 70" stroke="url(#streamGrad2)" stroke-width="1.5" opacity="0.4"/>
+    <path d="M0 100 Q60 110 140 95 Q220 80 300 105 Q360 115 400 100" stroke="url(#streamGrad)" stroke-width="2.5" opacity="0.35"/>
+    <path d="M0 130 Q90 120 170 140 Q250 155 330 130 Q370 120 400 128" stroke="url(#streamGrad2)" stroke-width="1.5" opacity="0.4"/>
+    <path d="M0 160 Q80 170 160 155 Q240 140 320 165 Q370 175 400 160" stroke="url(#streamGrad)" stroke-width="2" opacity="0.3"/>
+  </g>
+
+  <!-- Data particles on streams -->
+  <g>
+    <!-- Stream 1 particles -->
+    <circle cx="80" cy="35" r="2.5" fill="#7B9BDB" opacity="0.7"/>
+    <circle cx="160" cy="50" r="1.5" fill="#4F6AE8" opacity="0.5"/>
+    <circle cx="240" cy="58" r="3" fill="#D6E4FF" opacity="0.4"/>
+    <circle cx="320" cy="45" r="2" fill="#7B9BDB" opacity="0.6"/>
+
+    <!-- Stream 2 particles -->
+    <circle cx="120" cy="65" r="1.5" fill="#4F6AE8" opacity="0.5"/>
+    <circle cx="220" cy="88" r="2" fill="#7B9BDB" opacity="0.4"/>
+    <circle cx="340" cy="75" r="1.5" fill="#4F6AE8" opacity="0.6"/>
+
+    <!-- Stream 3 particles (main) -->
+    <circle cx="60" cy="107" r="3" fill="#7B9BDB" opacity="0.5"/>
+    <circle cx="140" cy="95" r="4" fill="#4F6AE8" opacity="0.3"/>
+    <circle cx="140" cy="95" r="2" fill="#D6E4FF" opacity="0.6"/>
+    <circle cx="200" cy="88" r="3.5" fill="#7B9BDB" opacity="0.4"/>
+    <circle cx="200" cy="88" r="1.5" fill="#D6E4FF" opacity="0.7"/>
+    <circle cx="300" cy="105" r="3" fill="#4F6AE8" opacity="0.4"/>
+    <circle cx="360" cy="115" r="2" fill="#7B9BDB" opacity="0.5"/>
+
+    <!-- Stream 4 particles -->
+    <circle cx="90" cy="122" r="1.5" fill="#4F6AE8" opacity="0.4"/>
+    <circle cx="170" cy="140" r="2.5" fill="#7B9BDB" opacity="0.5"/>
+    <circle cx="280" cy="143" r="2" fill="#4F6AE8" opacity="0.4"/>
+
+    <!-- Stream 5 particles -->
+    <circle cx="50" cy="168" r="2" fill="#7B9BDB" opacity="0.4"/>
+    <circle cx="160" cy="155" r="1.5" fill="#4F6AE8" opacity="0.5"/>
+    <circle cx="320" cy="165" r="2.5" fill="#7B9BDB" opacity="0.3"/>
+  </g>
+
+  <!-- Vertical data bars / columns -->
+  <g opacity="0.15">
+    <rect x="45" y="30" width="3" height="140" rx="1.5" fill="#4F6AE8"/>
+    <rect x="95" y="45" width="2" height="110" rx="1" fill="#7B9BDB"/>
+    <rect x="145" y="25" width="3" height="155" rx="1.5" fill="#2E4AAD"/>
+    <rect x="195" y="35" width="4" height="130" rx="2" fill="#4F6AE8"/>
+    <rect x="245" y="40" width="2" height="120" rx="1" fill="#7B9BDB"/>
+    <rect x="295" y="30" width="3" height="140" rx="1.5" fill="#2E4AAD"/>
+    <rect x="345" y="45" width="2" height="110" rx="1" fill="#4F6AE8"/>
+  </g>
+
+  <!-- Binary text decoration -->
+  <g fill="#2E4AAD" font-family="monospace" font-size="8" opacity="0.15">
+    <text x="20" y="18">01101001</text>
+    <text x="130" y="188">10110100</text>
+    <text x="290" y="15">11001010</text>
+    <text x="320" y="192">01010110</text>
+  </g>
+
+  <!-- Central focus glow -->
+  <ellipse cx="200" cy="95" rx="60" ry="35" fill="#4F6AE8" opacity="0.06" filter="url(#dataBlur)"/>
+
+  <!-- Floating small particles -->
+  <circle cx="25" cy="90" r="1" fill="#7B9BDB" opacity="0.5"/>
+  <circle cx="375" cy="100" r="1" fill="#7B9BDB" opacity="0.5"/>
+  <circle cx="185" cy="15" r="0.8" fill="#4F6AE8" opacity="0.4"/>
+  <circle cx="210" cy="185" r="0.8" fill="#4F6AE8" opacity="0.4"/>
+</svg>

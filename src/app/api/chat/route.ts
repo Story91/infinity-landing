@@ -48,7 +48,7 @@ Firma oferuje:
 
 Kluczowe informacje:
 - Email: contact@infinityteam.io
-- Lokalizacja: Warszawa, Polska
+- Lokalizacja: Zamość, woj. lubelskie, Polska
 - Język: Polski (odpowiadaj po polsku)
 - Ton: profesjonalny, ale przyjazny
 

@@ -757,8 +757,8 @@ function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Infinity Tech</div>
           <div className="flex gap-6 text-[#7B9BDB]">
-            <a href="#" className="hover:text-white">Polityka Prywatności</a>
-            <a href="#" className="hover:text-white">Regulamin</a>
+            <a href="/polityka-prywatnosci" className="hover:text-white">Polityka Prywatności</a>
+            <a href="/regulamin" className="hover:text-white">Regulamin</a>
             <a href="mailto:contact@infinityteam.io" className="hover:text-white">contact@infinityteam.io</a>
           </div>
         </div>

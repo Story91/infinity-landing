@@ -10,9 +10,19 @@ export function escapeHtml(str: string): string {
 
 /** Simple in-memory rate limiter per IP */
 const hits = new Map<string, { count: number; resetAt: number }>();
+let lastCleanup = Date.now();
 
 export function rateLimit(ip: string, maxRequests = 10, windowMs = 60_000): boolean {
   const now = Date.now();
+
+  // Cleanup expired entries every 5 minutes
+  if (now - lastCleanup > 300_000) {
+    hits.forEach((entry, key) => {
+      if (now > entry.resetAt) hits.delete(key);
+    });
+    lastCleanup = now;
+  }
+
   const entry = hits.get(ip);
 
   if (!entry || now > entry.resetAt) {

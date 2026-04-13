@@ -8,11 +8,18 @@ import {
   Wand2,
   BookOpen,
   ArrowRight,
-  Twitter,
   Linkedin,
-  Instagram,
+  Mail,
   Menu,
 } from 'lucide-react';
+
+function XIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -133,14 +140,16 @@ export default function BloomPage() {
           <div className="flex items-center justify-between">
             <div className="liquid-glass rounded-full px-3 py-2 flex items-center gap-2">
               {[
-                { Icon: Linkedin, href: 'https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true' },
-                { Icon: Instagram, href: 'https://x.com/InfinityTech_PL' },
-              ].map(({ Icon, href }, i) => (
+                { Icon: Linkedin, href: 'https://www.linkedin.com/company/infinitytechgroup/?viewAsMember=true', label: 'LinkedIn' },
+                { Icon: XIcon, href: 'https://x.com/InfinityTech_PL', label: 'X (Twitter)' },
+                { Icon: Mail, href: 'mailto:contact@infinityteam.io', label: 'Wyślij email' },
+              ].map(({ Icon, href, label }, i) => (
                 <a
                   key={i}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={href.startsWith('mailto:') ? undefined : '_blank'}
+                  rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                  aria-label={label}
                   className="text-white hover:text-white/80 transition-colors"
                 >
                   <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
